@@ -1,5 +1,15 @@
 :root {
+  /* Font size */
+  --small-font: 0.8rem;
+  --medium-font: 1.4rem;
+  --big-font: 2rem;
 
+  /* Colors */
+  --primary-color: #ffffff;
+  --secondary-color: #eef0f2;
+  --accent-color: #00bfff;
+  --success-color: #03c03c;
+  --problem-color: #ff8200;
 }
 
 * {

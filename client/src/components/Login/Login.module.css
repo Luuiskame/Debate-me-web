@@ -1,0 +1,23 @@
+.testing {
+  font-size: var(--smallFontSize);
+  font-weight: var(--light-w);
+}
+
+.dos {
+  font-weight: var(--medium-w);
+}
+.tres {
+  font-size: var(--mediumFontSize);
+  font-weight: var(--bold-w);
+}
+
+.cuatro {
+  font-size: var(--bigFontSize);
+  font-weight: var(--extra-bold-w);
+}
+
+/* 
+--light-w: 300;
+--medium-w: 500;
+--bold-w: 700;
+--extra-bold-w: 900; */
