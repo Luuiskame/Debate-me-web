@@ -1,25 +1,34 @@
 // userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { changeNameFunction } from "./userActions";
+import { createUser } from "./userActions";
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    name: [],
+    name: '',
     userName: "",
     photo: "",
     uid: "",
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder
-      .addCase(changeNameFunction.fulfilled, (state, action) => {
-        state.name = action.payload;
-      })
-      .addCase(changeNameFunction.rejected, (state, action) => {
-        console.error("Async operation failed:", action.error);
-      });
-  },
+    builder 
+    .addCase(createUser.fulfilled, (state, action) => {
+      // Handle the successful completion of the createUser action
+      // Update the state with the response data or perform any necessary logic
+      // For example, assuming the action.payload contains the new user data
+      const { name, userName, photo, uid } = action.payload
+      state.name = name
+      state.userName = userName
+      state.photo = photo
+      state.uid = uid
+    })
+    .addCase(createUser.rejected, (state, action) => {
+      // Handle the rejection or failure of the createUser action
+      // You can update the state, log errors, or perform other actions
+      console.error("Error creating user:", action.error)
+    });
+},
 });
 
 export default userSlice.reducer;
