@@ -4,21 +4,21 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
   width: 90%;
-  height: 90%;
   font-family: var(--body-font);
   max-width: 500px;
-  max-height: 650px;
+  max-height: min-content;
   background-color: rgba(190, 199, 206, 0.185);
   border-radius: 32px;
   box-shadow: 8px 13px 20px 0px rgba(37, 107, 91, 0.199);
   padding: 10px 20px;
+  gap: 2rem;
 }
 .header {
   font-family: var(--header-font);
@@ -62,8 +62,9 @@
 
 .submitBtn {
   width: 40%;
+  line-height: 2;
   max-width: 262px;
-  height: 40px;
+  height: min-content;
   background-color: rgba(14, 11, 78, 0.559);
   color: white;
   font-weight: bold;

@@ -25,9 +25,11 @@ commentModel(sequelize)
 likeModel(sequelize)
 followersModel(sequelize)
 
+// Getting all created models from sequelize
+const {User,Post, Comment, Like, Followers} = sequelize.models
+
 // models and relations
 
-const {User,Post, Comment, Like, Followers} = sequelize.models
 
 
 module.exports = {
