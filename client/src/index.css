@@ -1,12 +1,20 @@
+/* Roboto */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+/* Nunito */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 :root {
   /* Font size */
   --small-font: 0.8rem;
   --medium-font: 1.4rem;
-  --big-font: 2rem;
+  --big-font: 2.5rem;
 
+  /* Font Family */
+  --header-font: Nunito;
+  --body-font: Roboto;
   /* Colors */
   --primary-color: #ffffff;
-  --secondary-color: #eef0f2;
+  --secondary-color: #e2eff5;
   --accent-color: #00bfff;
   --success-color: #03c03c;
   --problem-color: #ff8200;
