@@ -4,7 +4,7 @@ const {Sequelize} = require('sequelize')
 
 //models
 const userModel = require('./models/User')
-// const postModel = require('./models/Post')
+const postModel = require('./models/Post')
 // const commentModel = require('./models/Comment')
 // const likeModel = require('./models/Like')
 // const followersModel = require('./models/Followers')
@@ -20,13 +20,15 @@ const sequelize = new Sequelize(
 
 //executing models
 userModel(sequelize)
+postModel(sequelize)
 
 // models and relations
 
-const {User} = sequelize.models
+const {User,Post} = sequelize.models
 
 
 module.exports = {
     User,
+    Post,
     conn: sequelize
 }
