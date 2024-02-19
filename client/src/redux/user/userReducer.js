@@ -7,7 +7,7 @@ const userSlice = createSlice({
   initialState: {
     name: '',
     userName: "",
-    photo: "",
+    profilePicture: "",
     uid: "",
   },
   reducers: {},
@@ -17,10 +17,10 @@ const userSlice = createSlice({
       // Handle the successful completion of the createUser action
       // Update the state with the response data or perform any necessary logic
       // For example, assuming the action.payload contains the new user data
-      const { name, userName, photo, uid } = action.payload
+      const { name, userName, profilePicture, uid } = action.payload
       state.name = name
       state.userName = userName
-      state.photo = photo
+      state.profilePicture = profilePicture
       state.uid = uid
     })
     .addCase(createUser.rejected, (state, action) => {
