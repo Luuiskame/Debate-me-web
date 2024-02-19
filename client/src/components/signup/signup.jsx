@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./signup.module.css";
 
@@ -10,6 +10,7 @@ import {useSelector, useDispatch} from 'react-redux'
 
 function Signup() {
   const [isTaken, setIsTaken] = useState(true);
+  const [isTheSamePassword, setIsTheSamePassword] = useState(null)
    
   const user = useSelector(state=> state.user)
   // console.log(user)
@@ -28,6 +29,7 @@ function Signup() {
       ...userData,
       [event.target.name]: event.target.value
     })
+    handlePasswordVerification(event)
   }
 
   const handleSubmit = (event)=>{
@@ -35,6 +37,27 @@ function Signup() {
     console.log(userData)
     dispatch(createUser(userData))
   }
+
+  const [twoPasswordsVerify, setTwoPasswordsVerify] = useState({
+    repPassword: ''
+  })
+
+
+
+  const handlePasswordVerification = (event)=>{
+    setTwoPasswordsVerify({
+      ...twoPasswordsVerify,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  useEffect(()=>{
+    if(twoPasswordsVerify.repPassword !== userData.password){
+      setIsTheSamePassword(true)
+    } else {
+      setIsTheSamePassword(false)
+    }
+  },[twoPasswordsVerify])
 
   return (
     <>
@@ -96,8 +119,10 @@ function Signup() {
             name="repPassword"
             id="repPassword" 
             type="password" 
+            onChange={handlePasswordVerification}
             required
             placeholder="Reapeat password" />
+            {isTheSamePassword && <p>passwords aren't the same</p>}
 
             <button className={styles.submitBtn} type="submit">Create your account</button>
             <p className={styles.termsofservice}>
