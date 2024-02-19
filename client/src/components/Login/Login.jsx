@@ -15,7 +15,7 @@ function Login() {
 
         <LoginGoogle />
         <p className={styles.register}>
-          Don't have an account yet?{" "}
+          Don't have an account yet?
           <a className={styles.link} href="">
             Register now
           </a>

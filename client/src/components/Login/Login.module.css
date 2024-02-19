@@ -148,7 +148,10 @@
   cursor: pointer;
   background-color: #683516;
 }
-
+.googleImg {
+  margin-left: -33px;
+  margin-top: 5px;
+}
 /* Register Account */
 
 .register {

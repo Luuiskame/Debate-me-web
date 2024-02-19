@@ -6,7 +6,7 @@ function LoginGoogle() {
     <>
       <button className={styles.loginGoogle}>
         <span>
-          <img src="..\resources\png\search.png" width="25px" alt="" />
+          <img className={styles.googleImg} src="..\resources\png\search.png" width="25px" alt="" />
         </span>
         continue with Gmail
       </button>
