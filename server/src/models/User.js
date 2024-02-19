@@ -26,6 +26,13 @@ module.exports = (sequelize)=>{
             type: DataTypes.STRING,
             allowNull: false
         },
-        profilePicture: DataTypes.STRING,
+        profilePicture: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        isVip:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        }
     })
 }
