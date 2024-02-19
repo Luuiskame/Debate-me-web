@@ -21,7 +21,12 @@ const sequelize = new Sequelize(
 //executing models
 userModel(sequelize)
 
+// models and relations
+
+const {User} = sequelize.models
+
 
 module.exports = {
+    User,
     conn: sequelize
 }
