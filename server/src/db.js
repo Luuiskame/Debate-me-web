@@ -3,7 +3,7 @@ const pg = require('pg')
 const {Sequelize} = require('sequelize')
 
 //models
-// const userModel = require('./models/User')
+const userModel = require('./models/User')
 // const postModel = require('./models/Post')
 // const commentModel = require('./models/Comment')
 // const likeModel = require('./models/Like')
@@ -19,6 +19,7 @@ const sequelize = new Sequelize(
 )
 
 //executing models
+userModel(sequelize)
 
 
 module.exports = {
