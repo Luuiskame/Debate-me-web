@@ -1,13 +1,27 @@
 import React from "react";
 import styles from "./Login.module.css";
+import LoginForm from "./loginExtra/loginform";
+import LoginFacebook from "./loginExtra/loginFacebook";
+import LoginGoogle from "./loginExtra/loginGoogle";
+
 function Login() {
   return (
-    <>
-      <div className={styles.testing}>Login</div>
-      <div className={styles.dos}>Login</div>
-      <div className={styles.tres}>Login</div>
-      <div className={styles.cuatro}>Login</div>
-    </>
+    <div className={styles.display}>
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>Welcome to SpeakiT</h1>
+        <LoginForm />
+        <p>Or</p>
+        <LoginFacebook />
+
+        <LoginGoogle />
+        <p className={styles.register}>
+          Don't have an account yet?{" "}
+          <a className={styles.link} href="">
+            Register now
+          </a>
+        </p>
+      </div>
+    </div>
   );
 }
 

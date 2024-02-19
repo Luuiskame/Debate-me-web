@@ -1,22 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-
-//importing redux
-
-import { useDispatch, useSelector } from "react-redux";
-import { changeNameFunction } from "./redux/user/userActions";
 
 //Importing components
 import Login from "./components/Login/Login";
 
+//importing redux
+
 function App() {
-  const user = useSelector((state) => state.user.name);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(changeNameFunction());
-  }, []);
-
   return (
     <main>
       <Routes>
