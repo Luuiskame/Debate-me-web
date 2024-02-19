@@ -1,18 +1,15 @@
 /* login */
-* {
-  font-family: var(--body-font);
-}
+
 .display {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100dvh;
-  /* background-color: #a4b7af23; */
+  font-family: var(--body-font);
 }
 
 .wrapper {
   display: flex;
-  /* width with 90% so it adapts dinamicly to the display size */
   width: 90%;
   max-width: 600px;
   margin: 0 auto;
@@ -63,12 +60,13 @@
 }
 .labels {
   margin-right: auto;
-  margin-left: 59px;
+  margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 6px;
+  color: rgba(0, 0, 0, 0.8);
 }
 .recoverPassword {
-  margin-right: 60px;
+  margin-right: 20px;
   margin-left: auto;
   margin-top: 7px;
   font-size: var(--small-font);

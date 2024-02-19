@@ -3,7 +3,7 @@ import styles from "./Login.module.css";
 import LoginForm from "./loginExtra/loginform";
 import LoginFacebook from "./loginExtra/loginFacebook";
 import LoginGoogle from "./loginExtra/loginGoogle";
-
+import { Link } from "react-router-dom";
 function Login() {
   return (
     <div className={styles.display}>
@@ -12,13 +12,13 @@ function Login() {
         <LoginForm />
         <p>Or</p>
         <LoginFacebook />
-
         <LoginGoogle />
+
         <p className={styles.register}>
-          Don't have an account yet?
-          <a className={styles.link} href="">
+          Don't have an account yet?{" "}
+          <Link className={styles.link} to="/register">
             Register now
-          </a>
+          </Link>
         </p>
       </div>
     </div>
