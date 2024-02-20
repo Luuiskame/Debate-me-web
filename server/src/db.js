@@ -22,8 +22,23 @@ likeModel(sequelize);
 followersModel(sequelize);
 
 // models and relations
-
 const { User, Post, Comment, Like, Followers } = sequelize.models;
+
+// relations between users and their posts
+User.hasMany(Post)
+Post.belongsTo(User)
+
+// relation between posts and their comments
+Post.hasMany(Comment)
+Comment.belongsTo(Post)
+
+//relations between Posts and Likes
+Post.hasMany(Like)
+Like.belongsTo(Post)
+
+//Relations between Users and Followers
+User.belongsToMany(User, {as: 'Followers', through: 'userFollowers',foreignKey:'userId'})
+User.belongsToMany(User, {as: 'Following', through: 'userFollowing', foreignKey: 'followerId'})
 
 module.exports = {
   User,

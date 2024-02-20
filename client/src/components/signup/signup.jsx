@@ -21,7 +21,7 @@ function Signup() {
     email: '',
     username: '',
     password: '',
-    profilePicture: 'sdfadf'
+    profilePicture: 'https://res.cloudinary.com/dzmhi1ton/image/upload/v1708399827/user-default-pfp_sgftt3.png'
   })
 
   const handleChange = (event)=>{
