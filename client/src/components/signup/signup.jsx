@@ -58,7 +58,7 @@ const Signup = () => {
             <label className={styles.titles} htmlFor="name">
               Full name
             </label>
-            <input className={styles.inputs} { && disabled} onChange={(e) => handleChange(e.target.value, e.target.name)} id="name" name="name" type="text" required placeholder="introduce your name" />
+            <input className={styles.inputs} onChange={(e) => handleChange(e.target.value, e.target.name)} id="name" name="name" type="text" required placeholder="introduce your name" />
             <label className={styles.titles} htmlFor="email">
               Email
             </label>
