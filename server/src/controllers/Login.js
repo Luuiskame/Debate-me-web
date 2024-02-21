@@ -11,10 +11,9 @@ const Login = async (req, res) => {
     const user = await User.findOne({
       where: {
         [Op.and]: [
-          // {
-          //   [Op.or]: [{ username: username }, { email: email }],
-          // },
-          { username: username },
+          {
+            [Op.or]: [{ username: username }, { email: email }],
+          },
           { password: password },
         ],
       },
@@ -29,7 +28,7 @@ const Login = async (req, res) => {
     return res.json(updatedUser);
   } catch (err) {
     console.log(err);
-    return res.send(400, "Password or Username Invalid");
+    return res.send(404, "Password or Username Invalid");
   }
 };
 
