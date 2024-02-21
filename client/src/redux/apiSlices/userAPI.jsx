@@ -18,6 +18,11 @@ export const userApi = createApi({
         body: reqbody,
       }),
     }),
+    checkExist: builder.mutation({
+      query: (reqbody) => {
+        url: "isExisting",
+      }
+    }),
   }),
 });
 

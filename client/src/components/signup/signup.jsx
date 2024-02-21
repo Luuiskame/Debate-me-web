@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./signup.module.css";
+// custom hooks
 import { useRegister } from "../../hooks/useRegister";
+import { useExist } from "../../hooks/useExist";
 
 const Signup = () => {
   const initialState = { name: "", email: "", username: "", password: "", profilePicture: "" };
@@ -12,10 +14,10 @@ const Signup = () => {
   const handleChange = (value, name) => {
     // server request to check if username is taken
     if (name === "username") {
-      // const response = useExist(value);  (not finished)
-      // setIsTaken(response);
+      const response = useExist(value);
+      setIsTaken(response);
     }
-    // update data
+    // then updating data
     setUserData({
       ...userData,
       [name]: value,
@@ -27,7 +29,7 @@ const Signup = () => {
       const comparison = userData.password !== value;
       setIsMatching(comparison);
     }
-    // update data
+    // then updating data
     setUserData({
       ...userData,
       [name]: value,
@@ -36,6 +38,8 @@ const Signup = () => {
 
   // testing <3 -----------------------------
   const handleSubmit = (event) => {
+    if (!isTaken) return;
+
     event.preventDefault();
     fetchData(userData);
   };
@@ -54,7 +58,7 @@ const Signup = () => {
             <label className={styles.titles} htmlFor="name">
               Full name
             </label>
-            <input className={styles.inputs} onChange={(e) => handleChange(e.target.value, e.target.name)} id="name" name="name" type="text" required placeholder="introduce your name" />
+            <input className={styles.inputs} { && disabled} onChange={(e) => handleChange(e.target.value, e.target.name)} id="name" name="name" type="text" required placeholder="introduce your name" />
             <label className={styles.titles} htmlFor="email">
               Email
             </label>

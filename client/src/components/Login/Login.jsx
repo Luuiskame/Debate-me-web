@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
-
-import Loginfb from "./loginfb";
-
 import { useNavigate } from "react-router-dom";
+
+// custom hooks
+import Loginfb from "./loginfb";
 
 const Login = () => {
   const initialState = { username: "", password: "" };
   const [user, setUser] = useState(initialState);
   const { fetchData, data, isLoading, error } = useLogin();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // testing <3 -----------------------------------------
   const sendRequest = (e) => {
@@ -19,7 +19,7 @@ const Login = () => {
     fetchData(user);
   };
   if (data) {
-    navigate('/home')
+    navigate("/home");
   }
 
   return (
