@@ -6,7 +6,7 @@ const Login = require("../controllers/Login");
 const router = Router();
 
 //get related to users
-router.get("/login", Login);
+router.post("/login", Login);
 
 //post related to users
 router.post("/createuser", createUser);
