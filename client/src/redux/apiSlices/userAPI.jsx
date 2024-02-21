@@ -6,7 +6,7 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     log: builder.mutation({
       query: (reqbody) => ({
-        url: "login",
+        url: `login`,
         method: "POST",
         body: reqbody,
       }),
