@@ -23,8 +23,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/speakit', routes);
-
-
 // Error catching endware.
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
@@ -38,12 +36,12 @@ const server = http.createServer(app)
 const io = socketIO(server)
 
 io.on('connection', (socket)=>{
-  console.log("User connected", socket.io)
-
+  console.log("User connected", socket.id)
+  
   socket.on('message',(data)=>{
     io.emit('message', data)
   })
-
+  
   socket.on('disconnect',()=>{
     console.log('user disconnected', socket.id)
   })
@@ -51,4 +49,4 @@ io.on('connection', (socket)=>{
 })
 
 
-module.exports = server;
+module.exports = {server,io};
