@@ -9,6 +9,7 @@ const commentModel = require("./models/Comment");
 const likeModel = require("./models/Like");
 const followersModel = require("./models/Followers");
 const MessageModel = require('./models/Message')
+const ChatModel = require('./models/Chat')
 
 const { DB_USER, DB_PASSWORD, DB_HOST, POSTGRES_URL } = process.env;
 
@@ -22,9 +23,10 @@ commentModel(sequelize);
 likeModel(sequelize);
 followersModel(sequelize);
 MessageModel(sequelize)
+ChatModel(sequelize)
 
 // models and relations
-const { User, Post, Comment, Like, Followers, Message } = sequelize.models;
+const { User, Post, Comment, Like, Followers, Message, Chat } = sequelize.models;
 
 // relations between users and their posts
 User.hasMany(Post)
@@ -46,6 +48,14 @@ User.belongsToMany(User, {as: 'Following', through: 'userFollowing', foreignKey:
 User.hasMany(Message, {foreignKey: 'senderId'})
 User.hasMany(Message, {foreignKey: 'receiverId'})
 
+// relations between chats and users
+User.belongsToMany(Chat, {through: 'UserChat', foreignKey: 'userId'})
+Chat.belongsToMany(User, {through: 'userChat', foreignKey: 'chatId'})
+
+//relations between messages and chats
+Chat.hasMany(Message)
+Message.belongsTo(Chat)
+
 module.exports = {
   User,
   Post,
@@ -53,5 +63,6 @@ module.exports = {
   Like,
   Followers,
   Message,
+  Chat,
   conn: sequelize,
 };
