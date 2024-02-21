@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const initialState = { username: "", password: "" };
   const [user, setUser] = useState(initialState);
   const { fetchData, data, isLoading, error } = useLogin();
+  const navigate = useNavigate()
 
   // testing <3 -----------------------------------------
   const sendRequest = (e) => {
     e.preventDefault();
     fetchData(user);
   };
-  if (data) return <div>{JSON.stringify(data)}</div>;
-  // testing <3 -----------------------------------------
+  if (data) {
+    navigate('/home')
+  }
 
   return (
     <div>
