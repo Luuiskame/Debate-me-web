@@ -3,6 +3,7 @@ const { User } = require("../db");
 
 const Login = async (req, res) => {
   // handling request
+  console.log(req);
   const { username, password, email } = req.body;
   if ((!username || email) && !password) return res.status(400).send(400, ` username/email and password are require fields`);
 
@@ -10,25 +11,25 @@ const Login = async (req, res) => {
     const user = await User.findOne({
       where: {
         [Op.and]: [
-          {
-            [Op.or]: [{ username: username }, { email: email }],
-          },
+          // {
+          //   [Op.or]: [{ username: username }, { email: email }],
+          // },
+          { username: username },
           { password: password },
         ],
       },
     });
+    // setting the user status to active :)
 
-    if (!user) return res.send(400, "Password or Username Invalid");
-    else {
-      // setting the user status to active :)
-      await User.update({ isActive: true }, { where: { username: username } });
+    await User.update({ isActive: true }, { where: { username: username } });
+    const updatedUser = await User.findOne({ where: { username: username } });
 
-      // sending the updated user values
-      const updatedUser = await User.findOne({ where: { username: username } });
-      return res.json(updatedUser);
-    }
+    // sending the updated user values
+
+    return res.json(updatedUser);
   } catch (err) {
-    res.send(500, `A server error occurred :c`).json(err);
+    console.log(err);
+    return res.send(400, "Password or Username Invalid");
   }
 };
 
