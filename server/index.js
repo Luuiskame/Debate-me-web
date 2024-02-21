@@ -8,6 +8,5 @@ const port = process.env.PORT || 3001
 conn.sync({ force: false }).then(() => {
   server.listen(port, () => {
     console.log(`server listening at port ${port}`); // eslint-disable-line no-console
-    console.log(io.emit)
   });
 });

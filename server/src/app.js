@@ -1,5 +1,6 @@
 const express = require('express')
 const socketIO = require('socket.io')
+const {Server} = require('socket.io')
 const http = require('http')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
@@ -33,20 +34,19 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 
 const server = http.createServer(app)
 
-const io = socketIO(server)
-
-io.on('connection', (socket)=>{
-  console.log("User connected", socket.id)
-  
-  socket.on('message',(data)=>{
-    io.emit('message', data)
-  })
-  
-  socket.on('disconnect',()=>{
-    console.log('user disconnected', socket.id)
-  })
-  
+const io = new Server(server,{
+  cors:{
+    origin: "http://localhost:3000",
+    methods: [ 'GET', 'POST', 'OPTIONS', 'PUT', 'DELETE']
+  }
 })
 
+io.on("connection", (socket)=>{
+  console.log(`user connected: ${socket.id}`)
+
+  socket.on('sendMessage', (data)=>{
+    console.log(data)
+  })
+})
 
 module.exports = {server,io};
