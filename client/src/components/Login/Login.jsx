@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { useLogin } from "../../hooks/useLogin";
+import Loginfb from "./loginfb";
 
 const Login = () => {
   const initialState = { username: "", password: "" };
@@ -47,12 +48,14 @@ const Login = () => {
 
           {/* Facebook */}
 
-          <button className={styles.loginFacebook}>
+          <Loginfb />
+
+          {/* <button className={styles.loginFacebook}>
             <span>
               <img className={styles.fbimg} src="https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/U7MAWJlE6hZ.png" alt="" />
             </span>
             Continue with Facebook
-          </button>
+          </button> */}
 
           {/* Google */}
 
