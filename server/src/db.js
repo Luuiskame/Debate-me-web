@@ -50,7 +50,7 @@ User.hasMany(Message, {foreignKey: 'receiverId'})
 
 // relations between chats and users
 User.belongsToMany(Chat, {through: 'UserChat', foreignKey: 'userId'})
-Chat.belongsToMany(User, {through: 'userChat', foreignKey: 'chatId'})
+Chat.belongsToMany(User, {through: 'UserChat', foreignKey: 'chatId'})
 
 //relations between messages and chats
 Chat.hasMany(Message)
