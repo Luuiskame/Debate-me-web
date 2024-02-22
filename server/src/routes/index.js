@@ -4,6 +4,8 @@ const createPost = require("../controllers/CreatePost");
 const Login = require("../controllers/Login");
 const sendMessage = require('../controllers/SendMessage');
 const getMessages = require("../controllers/GetMessage");
+const getUserChats = require("../controllers/getChats");
+const startChat = require("../controllers/StartChat");
 
 const router = Router();
 
@@ -17,8 +19,11 @@ router.post("/createuser", createUser);
 router.post("/home/createpost", createPost);
 
 //messages routes
-router.post('/send', sendMessage)
+router.post('/chats/send', sendMessage)
+router.post('/chats/startchat', startChat)
 
-router.get('/get/:senderId/:receiverId', getMessages)
+router.get('/chats/get/:senderId/:receiverId', getMessages)
+router.get('/chats/get/:userId', getUserChats)
+
 
 module.exports = router;
