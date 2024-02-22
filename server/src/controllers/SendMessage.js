@@ -3,7 +3,7 @@ const {Message, User} = require('../db')
 
 const sendMessage = async (req,res)=>{
     try {
-        const {senderId, receiverId, content, ChatId} = req.body
+        const {senderId, receiverId, content, chatId} = req.body
         
         //checking if both the sender and receiver exist
         const sender = await User.findByPk(senderId)
@@ -15,7 +15,7 @@ const sendMessage = async (req,res)=>{
             content,
             senderId,
             receiverId,
-            ChatId
+            chatId
         })
 
         // console.log(io)
