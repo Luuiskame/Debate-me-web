@@ -3,7 +3,7 @@ const { User } = require("../db");
 const createUser = async (req, res) => {
   try {
     const { username, email, password, name, profilePicture } = req.body;
-    if (!email || !password || !username) return res.status(400).send("Empty inputs");
+    if (!email || !password || !username || !email || !name || !profilePicture) return res.status(400).send("Missing inputs");
 
     const existingUser = await User.findOne({
       where: {

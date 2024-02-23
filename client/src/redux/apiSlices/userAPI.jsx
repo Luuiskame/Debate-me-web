@@ -18,7 +18,14 @@ export const userApi = createApi({
         body: reqbody,
       }),
     }),
+    exist: builder.mutation({
+      query: (reqbody) => ({
+        url: "isExisting",
+        method: "POST",
+        body: reqbody,
+      }),
+    }),
   }),
 });
 
-export const { useCreateUserMutation, useLogMutation } = userApi;
+export const { useCreateUserMutation, useLogMutation, useExistMutation } = userApi;

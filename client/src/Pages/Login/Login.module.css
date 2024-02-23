@@ -27,7 +27,7 @@
   font-weight: bold;
 }
 
-/* loginForm */
+/* normalLogin */
 
 .form {
   display: flex;
@@ -94,6 +94,12 @@
 .loginBtn:hover {
   cursor: pointer;
   background-color: rgb(47, 154, 216);
+}
+.errorMsg {
+  color: var(--problem-color);
+  font-size: var(--small-font);
+  margin-left: auto;
+  margin-right: 10px;
 }
 
 /* login with facebook*/
