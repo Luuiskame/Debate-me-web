@@ -20,7 +20,7 @@ const getUserChats = async (req, res) => {
     });
 
     if (!user) {
-      return res.status(404).json({ message: 'Usuario no encontrado' });
+      return res.status(404).json({ message: 'user not found' });
     }
 
     const userChats = user.Chats.map(chat => {
