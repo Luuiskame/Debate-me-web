@@ -13,11 +13,11 @@
   --header-font: Nunito;
   --body-font: Roboto;
   /* Colors */
-  --primary-color: #ffffff;
-  --secondary-color: #e2eff5;
-  --accent-color: #00bfff;
-  --success-color: #03c03c;
-  --problem-color: #ff8200;
+  --primary-color: hsl(0, 0%, 99%);
+  --secondary-color: rgb(255, 249, 249);
+  --accent-color: #08616d;
+  --accent-color-lighter: #3b7880da;
+  --error-color: #fe5f55;
 }
 
 * {
