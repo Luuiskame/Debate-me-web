@@ -1,35 +1,31 @@
 const { Op } = require("sequelize");
 const { User } = require("../db");
+const bcrypt = require("bcrypt");
 
 const Login = async (req, res) => {
   // handling request
-  console.log(req);
   const { username, password, email } = req.body;
-  if ((!username || email) && !password) return res.status(400).send(400, ` username/email and password are require fields`);
+
+  if (!username || !email || !password) return res.status(400).json({ error: ` Missing input fields` });
 
   try {
     const user = await User.findOne({
       where: {
-        [Op.and]: [
-          // {
-          //   [Op.or]: [{ username: username }, { email: email }],
-          // },
-          { username: username },
-          { password: password },
-        ],
+        [Op.or]: [{ username: username }, { email: email }],
       },
     });
-    // setting the user status to active :)
 
-    await User.update({ isActive: true }, { where: { username: username } });
-    const updatedUser = await User.findOne({ where: { username: username } });
-
+    if (!user) return res.status(400).json({ error: "User not found" });
+    else if (!(await bcrypt.compare(password, user.password))) return res.json({ error: "Incorrect password" });
+    else {
+      // setting the user status to active
+      await User.update({ isActive: true }, { where: { username: username } });
+      const updatedUser = await User.findOne({ where: { username: username } });
+      return res.json(updatedUser);
+    }
     // sending the updated user values
-
-    return res.json(updatedUser);
   } catch (err) {
     console.log(err);
-    return res.send(400, "Password or Username Invalid");
   }
 };
 

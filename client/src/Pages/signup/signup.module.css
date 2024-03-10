@@ -65,8 +65,8 @@
   line-height: 2;
   max-width: 262px;
   height: min-content;
-  background-color: rgba(14, 11, 78, 0.559);
-  color: white;
+  background-color: rgba(13, 4, 193, 0.803);
+  color: rgb(233, 227, 227);
   font-weight: bold;
   font-size: 17px;
   border: transparent;
@@ -87,9 +87,24 @@
   display: block;
   margin-left: auto;
   margin-right: 30px;
-  margin-bottom: -15px;
+  margin-bottom: 0px;
   color: red;
+  font-size: var(--small-font);
 }
-.isNotUsed {
-  display: none;
+
+.disabled {
+  width: 40%;
+  line-height: 2;
+  max-width: 262px;
+  height: min-content;
+  background-color: rgba(175, 169, 169, 0.559);
+  font-weight: bold;
+  font-size: 17px;
+  border: 2px solid red;
+  border-radius: 17px;
+  margin-top: 30px;
+  font-family: var(--header-font);
+
+  color: rgb(255, 20, 20);
+  cursor: not-allowed;
 }

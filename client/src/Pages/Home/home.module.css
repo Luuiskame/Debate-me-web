@@ -1,0 +1,8 @@
+.nvbar {
+}
+section {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  background-color: rebeccapurple;
+}
