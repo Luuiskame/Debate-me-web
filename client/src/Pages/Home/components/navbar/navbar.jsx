@@ -1,8 +1,14 @@
 import React from "react";
 import styles from "./navbar.module.css";
 import {Link} from 'react-router-dom'
+import { CiUser } from "react-icons/ci";
+
+// redux
+import {useSelector} from 'react-redux'
 
 const Navbar = () => {
+ const personalUserId = useSelector(state=> state.userReducer.user.id) 
+ console.log(personalUserId)
   return (
     <div>
       <div className={styles.navbar}>
@@ -47,6 +53,14 @@ const Navbar = () => {
         <div className={styles.settings}>
           <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
         </div>
+
+        {/* Profile Icon */}
+        <div className={styles.settings}>
+          <Link to={`/profile/${personalUserId}`}>
+            <CiUser className={styles.settings}/> 
+          </Link>
+        </div>
+
       </div>
     </div>
   );
