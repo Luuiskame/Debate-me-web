@@ -2,24 +2,29 @@ import React, { useEffect, useState } from "react";
 import styles from "../Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../../hooks/useLogin";
-// custom hooks
+import { useDispatch } from "react-redux";
+import { updateDataReducer } from "../../../redux/slices/userSlice";
 
 const NormalLogin = () => {
   const [user, setUser] = useState({ usernameOrEmail: "", password: "" });
-  const { sendRequest, isError, isFound } = useLogin(user);
+  const { sendRequest, isError, data, isFound } = useLogin(user);
   const navigate = useNavigate();
-
   const handleRequest = (e) => {
     e.preventDefault();
     sendRequest();
   };
+  console.log(data);
+  const testing = () => {
+    navigate("/home");
+  };
 
   // redirecting if user found
-  useEffect(() => {
-    if (isFound) navigate("/home");
-  }, [isFound]);
+  // useEffect(() => {
+  //   if (isFound) navigate("/home");
+  // }, []);
   return (
     <>
+      <button onClick={testing}>Log in</button>
       <h1 className={styles.title}>Welcome to SpeakiT</h1>
 
       <form onSubmit={(e) => handleRequest(e)} className={styles.form}>

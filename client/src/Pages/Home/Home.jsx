@@ -3,13 +3,17 @@ import mainstyle from "./home.module.css";
 import Navbar from "./components/navbar/navbar";
 import Posts from "./components/posts/posts";
 import Voicechats from "./components/voicechats/voicechats";
-import { UseSelector, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 const Home = () => {
-  const user = useSelector(state=> state.userReducer)
-  console.log(user)
+  const user = useSelector((state) => state.userReducer);
 
+  const showData = () => {
+    console.log(user);
+  };
   return (
     <>
+      <button onClick={showData}>show asdasd</button>
       <nav className={mainstyle.nvbar}>
         <Navbar />
       </nav>

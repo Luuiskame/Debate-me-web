@@ -16,11 +16,12 @@ const Login = async (req, res) => {
     });
 
     if (!user) return res.status(400).json({ error: "User not found" });
-    else if (!(await bcrypt.compare(password, user.password))) return res.json({ error: "Incorrect password" });
+    else if (await bcrypt.compare(password, user.password)) return res.json({ error: "Incorrect password" });
     else {
       // setting the user status to active
       await User.update({ isActive: true }, { where: { username: username } });
       const updatedUser = await User.findOne({ where: { username: username } });
+      console.log(updatedUser);
       return res.json(updatedUser);
     }
     // sending the updated user values

@@ -1,11 +1,17 @@
 import { useLogMutation } from "../redux/apiSlices/userAPI";
-
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateDataReducer } from "../redux/slices/userSlice";
+import { useEffect } from "react";
 
 export const useLogin = (userData) => {
   const [fetch, { data, isLoading, error }] = useLogMutation();
-  const dispatch = useDispatch()
   let isEmail, email, username, password, request, isFound, isError;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(updateDataReducer(data));
+  }, [data]);
+
   const sendRequest = () => {
     isEmail = JSON.stringify(userData.usernameOrEmail).includes(`@`);
     if (isEmail) {
@@ -24,5 +30,5 @@ export const useLogin = (userData) => {
 
   isError = error === undefined;
   isFound = data !== undefined;
-  return { sendRequest, isError, isFound };
+  return { sendRequest, isError, data, isFound };
 };
