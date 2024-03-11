@@ -1,6 +1,7 @@
 import { useLogMutation } from "../redux/apiSlices/userAPI";
 
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateDataReducer } from "../redux/slices/userSlice";
 
 export const useLogin = (userData) => {
   const [fetch, { data, isLoading, error }] = useLogMutation();
@@ -21,6 +22,7 @@ export const useLogin = (userData) => {
     }
     fetch(request);
   };
+  dispatch(updateDataReducer(data))
 
   isError = error === undefined;
   isFound = data !== undefined;
