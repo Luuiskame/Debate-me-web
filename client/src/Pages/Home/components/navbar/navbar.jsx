@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./navbar.module.css";
+import {Link} from 'react-router-dom'
+
 const Navbar = () => {
   return (
     <div>
@@ -27,7 +29,9 @@ const Navbar = () => {
             <img className={styles.notificationIcons} src="./resources/png/friends.png" alt="" />
           </div>
           <div className={styles.notifications}>
-            <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
+            <Link to='/chat'>
+              <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
+            </Link>
           </div>
           <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/notifications.png" alt="" />
