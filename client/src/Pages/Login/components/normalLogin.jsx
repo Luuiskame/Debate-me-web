@@ -9,22 +9,18 @@ const NormalLogin = () => {
   const [user, setUser] = useState({ usernameOrEmail: "", password: "" });
   const { sendRequest, isError, data, isFound } = useLogin(user);
   const navigate = useNavigate();
+
   const handleRequest = (e) => {
     e.preventDefault();
     sendRequest();
   };
-  console.log(data);
-  const testing = () => {
-    navigate("/home");
-  };
 
   // redirecting if user found
-  // useEffect(() => {
-  //   if (isFound) navigate("/home");
-  // }, []);
+  useEffect(() => {
+    if (isFound) navigate("/home");
+  }, [isFound]);
   return (
     <>
-      <button onClick={testing}>Log in</button>
       <h1 className={styles.title}>Welcome to SpeakiT</h1>
 
       <form onSubmit={(e) => handleRequest(e)} className={styles.form}>

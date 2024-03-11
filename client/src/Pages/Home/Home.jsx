@@ -8,12 +8,10 @@ import { useEffect } from "react";
 const Home = () => {
   const user = useSelector((state) => state.userReducer);
 
-  const showData = () => {
-    console.log(user);
-  };
+  console.log(user);
+
   return (
     <>
-      <button onClick={showData}>show asdasd</button>
       <nav className={mainstyle.nvbar}>
         <Navbar />
       </nav>
