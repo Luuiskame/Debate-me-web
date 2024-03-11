@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "../Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../../hooks/useLogin";
-import { useDispatch } from "react-redux";
-import { updateDataReducer } from "../../../redux/slices/userSlice";
 
 const NormalLogin = () => {
   const [user, setUser] = useState({ usernameOrEmail: "", password: "" });
