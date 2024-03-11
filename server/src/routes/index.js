@@ -6,11 +6,13 @@ const sendMessage = require("../controllers/SendMessage");
 const getMessages = require("../controllers/GetMessage");
 const getUserChats = require("../controllers/getChats");
 const startChat = require("../controllers/StartChat");
+const getUser = require("../controllers/getUser")
 
 const isExisting = require("../controllers/isExisting");
 const router = Router();
 
 //get related to users
+router.get("/getuser/:userId", getUser)
 
 //post related to users
 router.post("/login", Login);
