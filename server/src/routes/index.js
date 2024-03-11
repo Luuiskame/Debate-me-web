@@ -24,7 +24,7 @@ router.post("/home/createpost", createPost);
 router.post("/chats/send", sendMessage);
 router.post("/chats/startchat", startChat);
 
-router.get("/chats/get/:senderId/:receiverId", getMessages);
+router.get("/chats/messages/get/:chatId", getMessages);
 router.get("/chats/get/:userId", getUserChats);
 
 router.post("/send", sendMessage);
