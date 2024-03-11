@@ -53,8 +53,8 @@ User.belongsToMany(Chat, {through: 'UserChat', foreignKey: 'userId'})
 Chat.belongsToMany(User, {through: 'UserChat', foreignKey: 'chatId'})
 
 //relations between messages and chats
-Chat.hasMany(Message, { foreignKey: 'chatId' }); 
-Message.belongsTo(Chat, { foreignKey: 'chatId' }); 
+Chat.hasMany(Message, { foreignKey: 'chatId' })
+Message.belongsTo(Chat, { foreignKey: 'chatId' })
 
 module.exports = {
   User,
@@ -66,3 +66,4 @@ module.exports = {
   Chat,
   conn: sequelize,
 };
+

@@ -1,7 +1,10 @@
 import { useLogMutation } from "../redux/apiSlices/userAPI";
 
+import { UseDispatch, useDispatch } from "react-redux";
+
 export const useLogin = (userData) => {
   const [fetch, { data, isLoading, error }] = useLogMutation();
+  const dispatch = useDispatch()
   let isEmail, email, username, password, request, isFound, isError;
   const sendRequest = () => {
     isEmail = JSON.stringify(userData.usernameOrEmail).includes(`@`);
