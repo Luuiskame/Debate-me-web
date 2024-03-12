@@ -1,5 +1,9 @@
 .voicechats {
-  width: 40vw;
-  height: 100dvh;
-  background-color: black;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  background-color: transparent;
+  width: 38.3%;
+  border: dotted red 10px;
 }

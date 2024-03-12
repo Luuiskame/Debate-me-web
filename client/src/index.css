@@ -5,16 +5,17 @@
 
 :root {
   /* Font size */
-  --small-font: 0.8rem;
-  --medium-font: 1.4rem;
+  --small-font: 1rem;
+  --medium-font: 1.2rem;
   --big-font: 2.5rem;
 
   /* Font Family */
   --header-font: Nunito;
   --body-font: Roboto;
+
   /* Colors */
-  --primary-color: hsl(0, 0%, 99%);
-  --secondary-color: rgb(255, 249, 249);
+  --primary-color: rgb(255, 255, 255);
+  --secondary-color: hsla(0, 0%, 54%, 0.4);
   --accent-color: #08616d;
   --accent-color-lighter: #3b7880da;
   --error-color: #fe5f55;
@@ -24,4 +25,8 @@
   padding: 0;
   margin: 0;
   box-sizing: 0;
+  font-family: var(--body-font);
+}
+body {
+  background-color: var(--secondary-color);
 }

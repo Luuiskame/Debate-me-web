@@ -1,16 +1,23 @@
 import React from "react";
 import styles from "./createpost.module.css";
+import { useSelector } from "react-redux";
 
 const Createpost = () => {
+  const user = useSelector((state) => state.userReducer.user);
+
   return (
     <div className={styles.createpost}>
       {/* user img,name and select publising priority */}
       <div>
-        <img src="" alt="" />
+        <img src="../../../../../resources/png/nopicture.png" alt="" />
 
         <span>
-          <p>@user</p>
-          <select name="" id=""></select>
+          <p>{user.username ? `@${user.username}` : "@unnamed"}</p>
+          <select name="public">
+            <option value="">🌎Public</option>
+            <option value="">👥Friends</option>
+            <option value="">👁️‍🗨️Private</option>
+          </select>
         </span>
       </div>
 
@@ -22,12 +29,16 @@ const Createpost = () => {
       {/*add tags, img, emojies, and publish-button */}
 
       <div className={styles.buttons}>
-        <div>
-          <button>tag</button>
-          <button>emojie</button>
-          <button>img</button>
+        <div className={styles.emojies}>
+          <span>
+            <img src="../../../../../resources/png/tag.png" alt="uploadpic" />
+          </span>
+          <p>😊</p>
+          <span>
+            <img src="../../../../../resources/png/uploadimg.png" alt="uploadpic" />
+          </span>
         </div>
-        <button>post</button>
+        <button className={styles.pusblishbutton}>post</button>
       </div>
     </div>
   );

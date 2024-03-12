@@ -1,0 +1,73 @@
+.postwrapper {
+  width: 90%;
+  display: flex;
+  flex-flow: column;
+  background-color: white;
+  margin: 20px auto;
+  border-radius: 20px;
+  min-height: 300px;
+  padding: 15px 20px;
+}
+/* user img,name and more button */
+.postwrapper > div:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapperuserinfo {
+  display: flex;
+}
+.wrapperuserinfo img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.userinfo {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  margin-left: 4px;
+}
+.name {
+  font-size: 1rem;
+  text-decoration: none;
+  color: black;
+}
+.name:hover {
+  text-decoration: underline;
+}
+.usernamelink {
+  font-size: var(--small-font);
+  color: rgba(7, 7, 7, 0.564);
+  text-decoration: none;
+}
+.usernamelink:hover {
+  text-decoration: underline;
+}
+.user p::first-letter {
+  font-size: var(--medium-font);
+}
+.more {
+  display: flex;
+  width: 20px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.more img {
+  cursor: pointer;
+  height: 30px;
+}
+/* post image and text  */
+
+.postwrapper > div:nth-child(2) p {
+  margin-top: 10px;
+  font-size: var(--medium-font);
+}
+.postwrapper > div:nth-child(2) img {
+  margin-top: 10px;
+  border-radius: 13px;
+  width: 100%;
+}
+.postwrapper > div:nth-child(3) {
+}
