@@ -1,19 +1,17 @@
 .navbar {
   display: flex;
   flex-direction: row;
-  background-color: var(--primary-color);
-  height: 54px;
+  height: 40px;
   box-shadow: 0px 0px 10px 2px #34343433;
   width: 100%;
   position: fixed;
   margin-top: -1px;
+  background-color: var(--primary-color);
 }
 
 .logoImg {
-  width: 90%;
-  max-width: 150px;
-  height: 50px;
-  margin-top: -5px;
+  height: 39px;
+  margin-left: 20px;
 }
 /* searching bar */
 .searchBox {
@@ -23,9 +21,9 @@
   justify-content: space-between;
   width: 90%;
   max-width: 600px;
-  height: 40px;
-  border: 2px solid var(--accent-color);
-  border-radius: 15px;
+  height: 30px;
+  border: 3px solid var(--accent-color);
+  border-radius: 10px;
   outline: none;
   margin-left: 50px;
   margin-top: 3px;
@@ -43,19 +41,20 @@
 
 .searchIcon {
   width: 90px;
-  height: 43px;
-  border-radius: 10px;
+  height: 30px;
   text-align: center;
 }
 .searchimg {
   width: 90%;
-  max-width: 45px;
-  height: 45px;
+  max-width: 30px;
+  height: 30px;
 }
 
 .searchIcon:hover {
   cursor: pointer;
   background-color: var(--accent-color-lighter);
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 /* create new post */
@@ -64,32 +63,31 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
   padding: 3px;
-  margin-right: auto;
   margin-left: 30px;
+  border: 3px solid transparent;
 }
 .newPost:hover {
   cursor: pointer;
-  background-color: var(--accent-color-lighter);
+  border-bottom: 3px solid rgb(35, 142, 195);
 }
 .newPostText {
   word-break: break-all;
   width: 4ch;
-  font-size: var(--large-font);
+  font-size: 13px;
   color: #08616d;
 }
 .newPostIcon {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
-/* notifcation icons */
-.wrapper {
+/* main icons */
+.mainicons {
   display: flex;
+  width: 200px;
   flex-flow: row nowrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: 1rem;
+  align-items: center;
+  margin-left: auto;
 }
 .notifications {
   display: flex;
@@ -97,38 +95,36 @@
   align-items: center;
   width: 70px;
   padding: 6px;
-  border-radius: 20px;
 }
 .notificationIcons {
-  width: 39px;
-  height: 39px;
-  border-radius: 10px;
+  width: 30px;
+  height: 30px;
   margin: auto 0;
+  border: 3px solid transparent;
 }
 
-.notifications:hover {
+.notificationIcons:hover {
   cursor: pointer;
-  background-color: var(--accent-color-lighter);
+  border-bottom: 3px solid rgb(35, 142, 195);
 }
 /* toggle theme*/
 .switchTheme {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: 13px;
-  border-radius: 20px;
-  width: 60px;
   padding: 6px;
+  margin-left: 10px;
+  margin-right: auto;
+  border: 3px solid transparent;
 }
 
 .switchThemeIcon {
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
 }
 .switchTheme:hover {
   cursor: pointer;
-  background-color: var(--accent-color-lighter);
+  border-bottom: 3px solid rgb(35, 142, 195);
 }
 
 /* settings */
@@ -136,17 +132,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
   padding: 6px;
-  border-radius: 20px;
-}
-.settings:hover {
-  cursor: pointer;
-  background-color: var(--accent-color-lighter);
-  border-radius: 20px;
 }
 .settingsIcon {
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
   margin-top: auto;
+  border: 3px solid transparent;
+}
+.settingsIcon:hover {
+  cursor: pointer;
+  border-bottom: 3px solid rgb(35, 142, 195);
 }

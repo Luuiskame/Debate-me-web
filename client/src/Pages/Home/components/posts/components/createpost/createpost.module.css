@@ -2,13 +2,12 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  width: 90%;
-  margin: 0 auto;
+  width: 80%;
   text-align: center;
-  margin-bottom: auto;
-  border: 1px solid black;
-  height: 150px;
-  padding: 30px;
+  margin: auto;
+  padding: 9px 30px;
+  border: 0.1px solid rgba(128, 128, 128, 0.314);
+  background-color: var(--primary-color);
   border-radius: 12px;
   outline: none;
 }
@@ -20,32 +19,51 @@
 
 .createpost div:nth-child(1) > img {
   display: flex;
-  border: 1px solid black;
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   border-radius: 80px;
 }
 .createpost div:nth-child(1) > span {
-  margin-top: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  margin-left: 5px;
 }
 
 .createpost div:nth-child(1) > span p {
-  font-size: var(--medium-font);
+  font-size: 13px;
   color: rgba(7, 7, 7, 0.564);
 }
+.createpost div:nth-child(1) > span p::first-letter {
+  font-size: 18px;
+}
 .createpost div:nth-child(1) > span select {
+  padding: 0px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  width: 90px;
+  height: 22px;
+  background-color: rgba(128, 128, 128, 0.192);
+  border-radius: 30px;
+  font-size: 10px;
 }
 /* text input */
 .createpost div:nth-child(2) {
-  background-color: red;
+  margin-top: 10px;
+  width: 100%;
 }
+
 .userinput {
-  width: 95%;
-  height: 40px;
+  width: 100%;
+  height: 50px;
   border: 1px solid transparent;
-  background-color: rgba(255, 255, 255, 0.349);
-  align-items: start;
-  margin-right: 30px;
+  font-size: var(--medium-font);
+  padding-left: 10px;
 }
 .userinput:focus {
   outline: none;
@@ -55,24 +73,51 @@
 .createpost div:nth-child(3) {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  align-items: center;
   margin-top: auto;
 }
-.buttons {
-  width: 100%;
-  background-color: bisque;
-}
-.buttons > button {
-  background-color: var(--accent-color);
-  font-size: 20px;
-  border: 1px solid transparent;
-  border-radius: 15px;
-  padding: 15px;
+.emojies {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
   width: 100px;
-  height: 60px;
-  margin-left: auto;
+  gap: 1px;
+  margin-top: auto;
 }
-.buttons > button:hover {
+.emojies img {
+  height: 20px;
+  width: 20px;
+}
+.emojies p {
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  margin-left: -17px;
+  margin-bottom: 2px;
+}
+
+.buttons p:hover {
   cursor: pointer;
-  background-color: rgb(0, 255, 0, 0.5);
+  box-shadow: 0px 1px 0px rgba(6, 156, 179, 0.5);
+}
+.buttons img:hover {
+  cursor: pointer;
+  box-shadow: 0px 1px 0px rgba(6, 156, 179, 0.5);
+}
+
+/* publish button */
+.pusblishbutton {
+  background-color: rgb(1, 180, 204);
+  font-size: 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100px;
+  margin-left: auto;
+  color: white;
+}
+.pusblishbutton:hover {
+  cursor: pointer;
+  background-color: rgb(1, 163, 204);
 }

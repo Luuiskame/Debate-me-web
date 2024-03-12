@@ -23,17 +23,21 @@ const Navbar = () => {
         </div>
 
         {/* create new post */}
+
         <div className={styles.newPost}>
           <img className={styles.newPostIcon} src="./resources/png/notes-icon.png" alt="" />
           <p className={styles.newPostText}>New Post</p>
         </div>
 
+        <div className={styles.switchTheme}>
+          <img className={styles.switchThemeIcon} src="./resources/png/darkmode.png" alt="" />
+        </div>
         {/* main icons */}
-
-        <div className={styles.wrapper}>
-          <div className={styles.notifications}>
+        <div className={styles.mainicons}>
+          {/* <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/friends.png" alt="" />
-          </div>
+          </div> */}
+
           <div className={styles.notifications}>
             <Link to='/chat'>
               <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
@@ -42,16 +46,11 @@ const Navbar = () => {
           <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/notifications.png" alt="" />
           </div>
-        </div>
 
-        {/* switch theme */}
-        <div className={styles.switchTheme}>
-          <img className={styles.switchThemeIcon} src="./resources/png/darkmode.png" alt="" />
-        </div>
-
-        {/* setting icon */}
-        <div className={styles.settings}>
-          <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
+          {/* setting icon */}
+          <div className={styles.settings}>
+            <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
+          </div>
         </div>
 
         {/* Profile Icon */}

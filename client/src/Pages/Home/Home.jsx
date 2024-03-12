@@ -4,9 +4,9 @@ import Navbar from "./components/navbar/navbar";
 import Posts from "./components/posts/posts";
 import Voicechats from "./components/voicechats/voicechats";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import Friends from "./components/friends/friends";
 const Home = () => {
-  const user = useSelector((state) => state.userReducer);
+  const user = useSelector((state) => state.userReducer.user);
 
   console.log(user);
 
@@ -16,6 +16,7 @@ const Home = () => {
         <Navbar />
       </nav>
       <section>
+        <Friends />
         <Posts />
         <Voicechats />
       </section>
