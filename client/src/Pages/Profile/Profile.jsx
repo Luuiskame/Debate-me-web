@@ -20,7 +20,7 @@ const Profile = ()=>{
                 <p>{user.name}</p>
                 <p>@{user.username}</p>
             </div>
-            VIP
+            <p className={styles.vipText}>VIP</p>
             
             </div>
             
