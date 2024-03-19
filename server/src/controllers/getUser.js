@@ -10,7 +10,7 @@ const getUser = async (req,res)=>{
 
         res.status(200).json(user)
 
-    } catch (error) {
+    } catch (error) {z
         res.status(500).json({error: error.message})
     }
 }   
