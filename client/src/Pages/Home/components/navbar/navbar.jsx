@@ -6,6 +6,10 @@ import { CiUser } from "react-icons/ci";
 // redux
 import {useSelector} from 'react-redux'
 
+// components
+import Searchbar from "../Searchbar/Searchbar";
+
+
 const Navbar = () => {
  const personalUserId = useSelector(state=> state.userReducer.user.id) 
  console.log(personalUserId)
@@ -16,10 +20,7 @@ const Navbar = () => {
 
         {/* search-box */}
         <div className={styles.searchBox}>
-          <input type="text" placeholder="Search" className={styles.searchBar} />
-          <span className={styles.searchIcon}>
-            <img className={styles.searchimg} src="./resources/png/search-icon.png" alt="" />
-          </span>
+          <Searchbar/>
         </div>
 
         {/* create new post */}

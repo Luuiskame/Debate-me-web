@@ -13,6 +13,7 @@
   height: 39px;
   margin-left: 20px;
 }
+
 /* searching bar */
 .searchBox {
   display: flex;
@@ -28,34 +29,7 @@
   margin-left: 50px;
   margin-top: 3px;
 }
-.searchBar {
-  width: 100%;
-  height: 100%;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  outline: none;
-  background-color: transparent;
-  margin-left: 20px;
-  font-size: large;
-}
 
-.searchIcon {
-  width: 90px;
-  height: 30px;
-  text-align: center;
-}
-.searchimg {
-  width: 90%;
-  max-width: 30px;
-  height: 30px;
-}
-
-.searchIcon:hover {
-  cursor: pointer;
-  background-color: var(--accent-color-lighter);
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
 
 /* create new post */
 .newPost {
