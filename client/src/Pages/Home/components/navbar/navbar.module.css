@@ -16,6 +16,7 @@
 
 /* searching bar */
 .searchBox {
+  position: relativee;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
