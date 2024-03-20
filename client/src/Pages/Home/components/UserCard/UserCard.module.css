@@ -1,0 +1,51 @@
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: 5px;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+.firstProfilePart {
+    display: flex;
+    align-items: center;
+    min-width: max-content;
+    gap: 1rem;
+    height: 10dvh;
+    min-height: 60px;
+    background-color: white;
+    border-radius: 5px ;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover{
+        background-color: rgb(236, 227, 227);
+    }
+}
+
+.vipText {
+    margin: .4rem;
+    margin-bottom: 2rem;
+    color: rgb(212, 166, 14);
+}
+
+.pfpContainer{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+.userProfilePicture {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.nameAndUserContainer{
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
