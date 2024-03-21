@@ -11,8 +11,8 @@ import Searchbar from "../Searchbar/Searchbar";
 
 
 const Navbar = () => {
- const personalUserId = useSelector(state=> state.userReducer.user.id) 
- console.log(personalUserId)
+ const personalUsername = useSelector(state=> state.userReducer.user.username) 
+ console.log(personalUsername)
   return (
     <div>
       <div className={styles.navbar}>
@@ -56,7 +56,7 @@ const Navbar = () => {
 
         {/* Profile Icon */}
         <div className={styles.settings}>
-          <Link to={`/profile/${personalUserId}`}>
+          <Link to={`/profile/${personalUsername}`}>
             <CiUser className={styles.settings}/> 
           </Link>
         </div>

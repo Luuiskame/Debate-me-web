@@ -8,7 +8,7 @@ const UserCard = ({user}) => {
         <div className={styles.profileContainer}>
 
             <Link 
-            to={`/profile/${user.id}`}
+            to={`/profile/${user.username}`}
             className={styles.firstProfilePart}>
             <figure className={styles.pfpContainer}>
                 <img className={styles.userProfilePicture} src={user.profilePicture} alt="" />
