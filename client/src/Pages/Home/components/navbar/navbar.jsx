@@ -1,6 +1,18 @@
 import React from "react";
 import styles from "./navbar.module.css";
+import {Link} from 'react-router-dom'
+import { CiUser } from "react-icons/ci";
+
+// redux
+import {useSelector} from 'react-redux'
+
+// components
+import Searchbar from "../Searchbar/Searchbar";
+
+
 const Navbar = () => {
+ const personalUsername = useSelector(state=> state.userReducer.user.username) 
+ console.log(personalUsername)
   return (
     <div>
       <div className={styles.navbar}>
@@ -8,10 +20,7 @@ const Navbar = () => {
 
         {/* search-box */}
         <div className={styles.searchBox}>
-          <input type="text" placeholder="Search" className={styles.searchBar} />
-          <span className={styles.searchIcon}>
-            <img className={styles.searchimg} src="./resources/png/search-icon.png" alt="" />
-          </span>
+          <Searchbar/>
         </div>
 
         {/* create new post */}
@@ -31,7 +40,9 @@ const Navbar = () => {
           </div> */}
 
           <div className={styles.notifications}>
-            <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
+            <Link to='/chat'>
+              <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
+            </Link>
           </div>
           <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/notifications.png" alt="" />
@@ -42,6 +53,14 @@ const Navbar = () => {
             <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
           </div>
         </div>
+
+        {/* Profile Icon */}
+        <div className={styles.settings}>
+          <Link to={`/profile/${personalUsername}`}>
+            <CiUser className={styles.settings}/> 
+          </Link>
+        </div>
+
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import Login from "./Pages/Login/Login";
 import Signup from "./Pages/signup/signup";
 import Chat from "./Pages/Chat/Chat";
 import Home from "./Pages/Home/Home";
+import Profile from "./Pages/Profile/Profile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/profile/:foreignUsername" element={<Profile />} />
       </Routes>
     </main>
   );

@@ -7,12 +7,17 @@ const getMessages = require("../controllers/GetMessage");
 const getUserChats = require("../controllers/getChats");
 const startChat = require("../controllers/StartChat");
 const getUser = require("../controllers/getUser")
+const getUserByUsername = require("../controllers/getUserByUsername")
 
 const isExisting = require("../controllers/isExisting");
 const router = Router();
 
 //get related to users
 router.get("/getuser/:userId", getUser)
+//! we are using the getuser route since putting another / wold make the petition to the previously one
+//the query goes like this: http://localhost:3001/speakit/getuser?username=user1
+router.get("/getuser", getUserByUsername)
+
 
 //post related to users
 router.post("/login", Login);
