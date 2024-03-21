@@ -5,24 +5,31 @@ import styles from './Profile.module.css'
 // redux
 import { useSelector } from 'react-redux'
 
-const Profile = ({foreignUser})=>{
+import { useParams } from 'react-router-dom';
+import { useGetUserByUsernameQuery } from '../../redux/apiSlices/userAPI'
+
+const Profile = ()=>{
+    
+    const {foreignUsername} = useParams()
+    console.log(foreignUsername)
+    const {data, isLoading, isError, error} = useGetUserByUsernameQuery(foreignUsername)
 
     
-    const user = useSelector(state=> state.userReducer.user)
-    console.log(user)
+    const personalUsername = useSelector(state=> state.userReducer.user)
+    // console.log(user)
     
-    if(user.id){
+    if(personalUsername.username === foreignUsername){
         return (
             <div className={styles.profileContainer}>
 
             <div className={styles.firstProfilePart}>
             <figure className={styles.pfpContainer}>
-                <img className={styles.userProfilePicture} src={user.profilePicture} alt="" />
+                <img className={styles.userProfilePicture} src={personalUsername.profilePicture} alt="" />
             </figure>
             
             <div className={styles.nameAndUserContainer}>
-                <p>{user.name}</p>
-                <p>@{user.username}</p>
+                <p>{personalUsername.name}</p>
+                <p>@{personalUsername.username}</p>
             </div>
             <p className={styles.vipText}>VIP</p>
             
@@ -41,18 +48,18 @@ const Profile = ({foreignUser})=>{
         )
     }
 
-    if(foreignUser.id){
+    if(foreignUsername !== personalUsername.username){
         return(
             <div className={styles.profileContainer}>
 
             <div className={styles.firstProfilePart}>
             <figure className={styles.pfpContainer}>
-                <img className={styles.userProfilePicture} src={user.profilePicture} alt="" />
+                <img className={styles.userProfilePicture} src={data.profilePicture} alt="" />
             </figure>
             
             <div className={styles.nameAndUserContainer}>
-                <p>{user.name}</p>
-                <p>@{user.username}</p>
+                <p>{data.name}</p>
+                <p>@{data.username}</p>
             </div>
             <p className={styles.vipText}>VIP</p>
             

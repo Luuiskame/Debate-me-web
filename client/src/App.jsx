@@ -15,7 +15,7 @@ function App() {
         <Route path="/register" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/chat" element={<Chat />} />
-        <Route path="/profile/:uid" element={<Profile />} />
+        <Route path="/profile/:foreignUsername" element={<Profile />} />
       </Routes>
     </main>
   );
