@@ -9,15 +9,16 @@ import { useParams } from 'react-router-dom';
 import { useGetUserByUsernameQuery } from '../../redux/apiSlices/userAPI'
 
 const Profile = ()=>{
-    
+    // when clicking on someone elses profile or our profile we're extracting the username from the params url
     const {foreignUsername} = useParams()
     console.log(foreignUsername)
     const {data, isLoading, isError, error} = useGetUserByUsernameQuery(foreignUsername)
 
-    
+    // getting our own username from the gloabl state
     const personalUsername = useSelector(state=> state.userReducer.user)
-    // console.log(user)
-    
+
+    //comparing that username with the one received from params 
+    //! if its our own profile, we access to more features
     if(personalUsername.username === foreignUsername){
         return (
             <div className={styles.profileContainer}>
