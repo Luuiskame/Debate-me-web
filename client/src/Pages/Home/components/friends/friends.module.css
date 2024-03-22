@@ -1,7 +1,18 @@
 .friendsbackground {
-  width: 20%;
-  background-color: red;
+  margin-top: 10px;
+  width: 15%;
 }
 .wrapper {
   position: fixed;
+  background-color: blue;
+}
+.friend {
+  display: flex;
+  justify-content: space-between;
+  background-color: red;
+  width: 100;
+}
+.friend img {
+  width: 30px;
+  height: 30px;
 }

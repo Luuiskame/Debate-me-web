@@ -9,9 +9,8 @@
 }
 
 section {
-  margin-top: 70px;
+  margin-top: 36px;
   width: 98%;
   height: 100%;
   display: flex;
-  border: 10px dotted rgb(68, 0, 255);
 }

@@ -15,7 +15,7 @@
 
   /* Colors */
   --primary-color: rgb(255, 255, 255);
-  --secondary-color: hsla(0, 0%, 54%, 0.4);
+  --secondary-color: rgba(115, 137, 247, 0.13);
   --accent-color: #08616d;
   --accent-color-lighter: #3b7880da;
   --error-color: #fe5f55;
