@@ -1,9 +1,14 @@
 .voicechats {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 47px;
   position: fixed;
   top: 0;
   right: 0;
   height: 100vh;
   background-color: transparent;
   width: 38.3%;
-  border: dotted red 10px;
+}
+.voicechats {
 }
