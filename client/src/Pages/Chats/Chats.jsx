@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 // web sockets
 
@@ -10,14 +11,20 @@ import ChatPreview from './ChatPreview/ChatPreview';
 //styles 
 import styles from './Chats.module.css'
 
-const Chat = () => {
+//redux
+import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
+
+const Chats = () => {
+
+  const userId = useSelector((state)=> state.userReducer.user)
+  console.log(userId?.id)
 
 
   return (
     <div className={styles.chatMainContainer}>
       
       <div className={styles.searchBox}>
-      <Searchbar/>
+      {/* <Searchbar/> */}
       </div>
 
       <div className={styles.friendsContainer}>
@@ -30,4 +37,4 @@ const Chat = () => {
   );
 };
 
-export default Chat
+export default Chats

@@ -1,20 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
-// user files
-import userReducer from "./slices/userSlice";
+import userSlice from "./slices/userSlice";
 import { userApi } from "./apiSlices/userAPI";
-
-//chats files
-import chatReducer from "./slices/chatSlice";
+import chatSlice from "./slices/chatSlice";
 import { chatsApi } from "./apiSlices/chatsAPI";
 
 const store = configureStore({
   reducer: {
-    userReducer: userReducer,
+    // Combining user reducer and user API reducer
+    userReducer: userSlice,
     [userApi.reducerPath]: userApi.reducer,
-    chatsReducer: chatReducer,
-    [chatsApi.reducerPath]: chatsApi
+    // Combining chat reducer and chat API reducer
+    chatsReducer: chatSlice,
+    [chatsApi.reducerPath]: chatsApi.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(userApi.middleware, chatsApi.middleware),
 });
 
 export default store;
+
