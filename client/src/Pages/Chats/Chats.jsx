@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // web sockets
 
@@ -13,12 +13,22 @@ import styles from './Chats.module.css'
 
 //redux
 import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
+import { setChats } from '../../redux/slices/chatSlice';
 
 const Chats = () => {
 
-  const userId = useSelector((state)=> state.userReducer.user)
-  console.log(userId?.id)
+  const userId = useSelector((state)=> state.userReducer.user?.id)
+  const userChats = useSelector((state)=> state.chatsReducer.chats)
+  console.log(userId)
+  console.log(userChats)
 
+  const dispatch = useDispatch()
+  const { data: chats, isLoading, error } = useGetChatsByUserIdQuery(userId);
+  console.log(chats)
+
+  useEffect(()=>{
+    dispatch(setChats(chats))
+  },[chats])
 
   return (
     <div className={styles.chatMainContainer}>
