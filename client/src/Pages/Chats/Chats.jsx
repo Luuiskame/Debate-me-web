@@ -23,12 +23,12 @@ const Chats = () => {
   console.log(userChats)
 
   const dispatch = useDispatch()
-  const { data: chats, isLoading, error } = useGetChatsByUserIdQuery(userId);
+  const { data: chats, isLoading, error } = useGetChatsByUserIdQuery(userId)
   console.log(chats)
 
   useEffect(()=>{
     dispatch(setChats(chats))
-  },[chats])
+  },[chats, dispatch])
 
   return (
     <div className={styles.chatMainContainer}>
@@ -41,8 +41,12 @@ const Chats = () => {
         Friends 
       </div>
 
-      <ChatPreview/>
-    
+      {chats?.map((chat)=> (
+        <ChatPreview
+        key={chat.id}
+        lastMessage={chat.lastMessage.content}
+        />
+      ))}    
     </div>
   );
 };

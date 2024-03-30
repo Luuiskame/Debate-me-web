@@ -1,10 +1,13 @@
 //styles
+import { useSelector } from 'react-redux'
 import styles from './ChatPreview.module.css'
+import { useState } from 'react'
 
-const ChatPreview = ()=>{
+const ChatPreview = ({lastMessage})=>{
+
     return(
         <div className={styles.chatPreviewContainer}>
-            chat preview xd
+            {lastMessage}
         </div>
     )
 }
