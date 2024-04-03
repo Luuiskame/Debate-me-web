@@ -32,7 +32,20 @@ export const userApi = createApi({
         method: "GET",
       }),
     }),
+    getUserByUid: builder.query({
+      query: (uids)=>{
+        const requests = uids.map(uid=> ({
+          url: `getuser/${uid}`,
+          method: "GET"
+        }))
+        return Promise.all(requests)
+      }
+    })
   }),
 });
 
-export const { useCreateUserMutation, useLogMutation, useExistMutation, useGetUserByUsernameQuery, } = userApi;
+export const { useCreateUserMutation,
+useLogMutation,
+useExistMutation, 
+useGetUserByUsernameQuery,
+useGetUserByUidQuery } = userApi;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // web sockets
@@ -13,9 +13,11 @@ import styles from './Chats.module.css'
 
 //redux
 import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
+import { useGetUserByUidQuery } from '../../redux/apiSlices/userAPI';
 import { setChats } from '../../redux/slices/chatSlice';
 
 const Chats = () => {
+  const [usersChatedWith, setUsersChatedWith] = useState([])
 
   const userId = useSelector((state)=> state.userReducer.user?.id)
   const userChats = useSelector((state)=> state.chatsReducer.chats)
@@ -29,6 +31,14 @@ const Chats = () => {
   useEffect(()=>{
     dispatch(setChats(chats))
   },[chats, dispatch])
+
+  useEffect(()=> {
+    const arr = []
+    userChats?.map(user=> {
+      arr.push(user.lastMessage.receiverId)
+    })
+    setUsersChatedWith([...arr])
+  },[userChats])
 
   return (
     <div className={styles.chatMainContainer}>
@@ -44,6 +54,7 @@ const Chats = () => {
       {chats?.map((chat)=> (
         <ChatPreview
         key={chat.id}
+        usersChatedWith={usersChatedWith}
         lastMessage={chat.lastMessage.content}
         />
       ))}    
