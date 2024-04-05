@@ -13,7 +13,7 @@ import styles from './Chats.module.css'
 
 //redux
 import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
-import { setChats } from '../../redux/slices/chatSlice';
+import { setChats, setUsersBasicInfo } from '../../redux/slices/chatSlice';
 
 const Chats = () => {
   const [usersChatedWith, setUsersChatedWith] = useState([])
@@ -29,6 +29,13 @@ const Chats = () => {
 
   useEffect(()=>{
     dispatch(setChats(chats))
+    
+    const arr = []
+
+    chats?.map((chat)=>{
+      arr.push(chat.receiver)
+    })
+    dispatch(setUsersBasicInfo(arr))
   },[chats, dispatch])
 
   useEffect(()=> {

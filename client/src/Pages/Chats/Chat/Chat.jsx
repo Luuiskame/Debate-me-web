@@ -1,6 +1,10 @@
 //react
-import { useState, useEffect } from 'react'
+import { useState, useEffect} from 'react'
+import {useParams} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+
+// styles 
+import styles from './Chat.module.css'
 
 //io 
 import io from 'socket.io-client'
@@ -8,15 +12,20 @@ const URL = "http://localhost:3001/"
 const socket = io.connect(URL)
 
 const Chat = ()=>{
+
+    //sending message state related
     const [message, setMessage] = useState('')
     const [messageReceived, setMessageReceived] = useState([])
 
+    // necessary properties for comparing and getting the user chats info 
     const personalUserId = useSelector((state)=> state.userReducer.user?.id)
-    console.log(personalUserId)
-  
-    const handleChange = (e)=>{
-      setMessage(e.target.value)
-    }
+    const {chatId} = useParams()
+    const chats = useSelector((state)=> state.chatsReducer.chats)
+    console.log(chats)
+
+    //searching in the global state the chat id that matches our chatId gave through params
+    const correctChatInfo = chats.find(chat=> chatId === chat.id)
+    console.log(correctChatInfo)
     
     const sendMessage = ()=>{
       socket.emit("sendMessage",{
@@ -33,15 +42,15 @@ const Chat = ()=>{
     },[socket])
   
     return (
-      <>
-      <input onChange={handleChange} type="text" name='text' value={message} placeholder='send message'/>
+      <div className={styles.chatMainContainer}>
+      <input onChange={(e)=> setMessage(e.target.value)} type="text" name='text' value={message} placeholder='send message'/>
       <button onClick={sendMessage}>send</button>
       {messageReceived.length > 0 ? messageReceived.map((message, index)=>(
         <p key={index}>{message}</p>
       )): (
-        <p>This is the beggening of your legendary conversation with </p>
+        <p>This is the beggening of your legendary conversation with {correctChatInfo.receiver.name}</p>
       )}
-      </>
+      </div>
     )
 }
 
