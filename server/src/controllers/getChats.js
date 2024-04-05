@@ -44,6 +44,9 @@ const getUserChats = async (req, res) => {
             isActive: receiver.isActive
             // Include other receiver info here as needed
           },
+          sender: {
+            id: lastMessage.senderId
+          }
         };
       } else {
         return {

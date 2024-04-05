@@ -16,15 +16,16 @@ import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
 import { setChats, setUsersBasicInfo } from '../../redux/slices/chatSlice';
 
 const Chats = () => {
+  //we gonna keep track of the users 
   const [usersChatedWith, setUsersChatedWith] = useState([])
 
-  const userId = useSelector((state)=> state.userReducer.user?.id)
+  const currentUserId = useSelector((state)=> state.userReducer.user?.id)
   const userChats = useSelector((state)=> state.chatsReducer.chats)
-  console.log(userId)
+  console.log(`current user id: ${currentUserId}`)
   console.log(userChats)
 
   const dispatch = useDispatch()
-  const { data: chats, isLoading, error } = useGetChatsByUserIdQuery(userId)
+  const { data: chats, isLoading, error } = useGetChatsByUserIdQuery(currentUserId)
   console.log(chats)
 
   useEffect(()=>{
