@@ -6,6 +6,7 @@ import Signup from "./Pages/signup/signup";
 import Chats from "./Pages/Chats/Chats";
 import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
+import Chat from "./Pages/Chats/Chat/Chat";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/chats" element={<Chats />} />
+        <Route path="/chat/:chatId" element={<Chat />} />
         <Route path="/profile/:foreignUsername" element={<Profile />} />
       </Routes>
     </main>

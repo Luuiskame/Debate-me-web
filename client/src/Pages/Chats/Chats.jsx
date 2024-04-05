@@ -55,6 +55,7 @@ const Chats = () => {
       {chats?.map((chat)=> (
         <ChatPreview
         key={chat.id}
+        chatId={chat.id}
         usersChatedWithId={usersChatedWith}
         lastMessage={chat.lastMessage.content}
         userPic={chat.receiver.profilePicture}
