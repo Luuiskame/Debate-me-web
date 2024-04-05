@@ -4,9 +4,8 @@ import styles from './ChatPreview.module.css'
 import { useEffect, useState } from 'react'
 
 
-
-const ChatPreview = ({lastMessage, usersChatedWith})=>{
-    console.log(usersChatedWith)
+const ChatPreview = ({lastMessage, usersChatedWithId})=>{
+    console.log(usersChatedWithId)
 
     return(
         <div className={styles.chatPreviewContainer}>

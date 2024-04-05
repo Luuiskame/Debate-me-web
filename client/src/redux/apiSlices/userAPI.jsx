@@ -33,13 +33,19 @@ export const userApi = createApi({
       }),
     }),
     getUserByUid: builder.query({
-      query: (uids)=>{
-        const requests = uids.map(uid=> ({
-          url: `getuser/${uid}`,
-          method: "GET"
-        }))
-        return Promise.all(requests)
-      }
+      queryFn: async (uids) => {
+        try {
+          const promises = uids.map(async (uid)=>{
+            const response = await fetch(`${url}getuser/${uid}`)
+            if(!response.ok) throw new Error("something unexpected happened when getting users")
+            return response.json()    
+          })
+          const userData = await Promise.all(promises)
+          return {data: userData}
+        } catch (error) {
+            return {error}
+        }
+      },
     })
   }),
 });

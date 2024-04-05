@@ -13,7 +13,6 @@ import styles from './Chats.module.css'
 
 //redux
 import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
-import { useGetUserByUidQuery } from '../../redux/apiSlices/userAPI';
 import { setChats } from '../../redux/slices/chatSlice';
 
 const Chats = () => {
@@ -35,10 +34,12 @@ const Chats = () => {
   useEffect(()=> {
     const arr = []
     userChats?.map(user=> {
-      arr.push(user.lastMessage.receiverId)
+      arr.push(user.receiver?.id)
     })
     setUsersChatedWith([...arr])
   },[userChats])
+
+
 
   return (
     <div className={styles.chatMainContainer}>
@@ -54,9 +55,11 @@ const Chats = () => {
       {chats?.map((chat)=> (
         <ChatPreview
         key={chat.id}
-        usersChatedWith={usersChatedWith}
+        usersChatedWithId={usersChatedWith}
         lastMessage={chat.lastMessage.content}
-        />
+        >
+
+        </ChatPreview>
       ))}    
     </div>
   );
