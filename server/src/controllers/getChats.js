@@ -38,6 +38,7 @@ const getUserChats = async (req, res) => {
           receiver: {
             id: receiver.id,
             username: receiver.username,
+            name: receiver.name,
             profilePicture: receiver.profilePicture,
             isVip: receiver.isVip,
             isActive: receiver.isActive

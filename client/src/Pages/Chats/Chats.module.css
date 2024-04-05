@@ -22,6 +22,7 @@
   
 .friendsContainer{
     width: 90%;
+    max-width: 600px;
     background-color: purple;
     height: 20dvh;
     border-radius: 5px;

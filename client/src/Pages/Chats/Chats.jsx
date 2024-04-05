@@ -57,6 +57,9 @@ const Chats = () => {
         key={chat.id}
         usersChatedWithId={usersChatedWith}
         lastMessage={chat.lastMessage.content}
+        userPic={chat.receiver.profilePicture}
+        username={chat.receiver.username}
+        name={chat.receiver.name}
         >
 
         </ChatPreview>
