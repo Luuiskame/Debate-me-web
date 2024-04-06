@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 //components
-import Searchbar from '../Home/components/Searchbar/Searchbar';
+import Searchbar from '../Home/components/navbar/components/Searchbar/Searchbar';
 import ChatPreview from './ChatPreview/ChatPreview';
 
 //styles 
