@@ -15,6 +15,9 @@ import styles from './Chats.module.css'
 import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
 import { setChats, setUsersBasicInfo } from '../../redux/slices/chatSlice';
 
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 const Chats = () => {
   const [participantsId, setParticipantsId] = useState([])
   
@@ -73,7 +76,8 @@ const Chats = () => {
         />
 
       ))}    
-      {isLoading ? <p className={styles.loadingText}>loading chats...</p> : null}
+      {/* ste the height as 10dvh like the cards => containerClassname is the class that wraps all skeletons*/}
+      {isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' count={3}/>: null}
       {error ? <p className={styles.loadingText}>{error}</p> : null}
     </div>
   );

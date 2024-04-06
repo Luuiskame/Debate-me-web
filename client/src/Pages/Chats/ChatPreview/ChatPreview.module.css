@@ -1,6 +1,6 @@
 
 .chatPreviewContainer {
-    width: 90%;
+    width: 100%;
     max-width: 600px;
     height: 10dvh;
     margin: 0 auto;
@@ -8,6 +8,7 @@
     cursor: pointer;
     text-decoration: none;
     color: inherit;
+    border-radius: 5px;
 
     display: flex;
     align-items: center;

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 
 import {Link} from 'react-router-dom'
 
+import Skeleton from 'react-loading-skeleton'
 
 const ChatPreview = ({lastMessage, chatId, userPic, username, name, participantsId})=>{
 
@@ -15,8 +16,8 @@ const ChatPreview = ({lastMessage, chatId, userPic, username, name, participants
                 <img src={userPic} alt={`${name}'s profile picture`} />
             </div>
             <div className={styles.nameAndMessageContainer}>
-            <p className={styles.maxTextAndNameContentLimit}>{name}</p>
-            <p className={styles.maxTextAndNameContentLimit}>{lastMessage}</p>
+            <p className={styles.maxTextAndNameContentLimit}>{name || <Skeleton/>} </p>
+            <p className={styles.maxTextAndNameContentLimit}>{lastMessage || <Skeleton/>}</p>
             </div>
         </Link>
     )
