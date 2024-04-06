@@ -6,8 +6,7 @@ import { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 
 
-const ChatPreview = ({lastMessage, usersChatedWithId, chatId, userPic, username, name})=>{
-    console.log(usersChatedWithId)
+const ChatPreview = ({lastMessage, chatId, userPic, username, name})=>{
 
     return(
         

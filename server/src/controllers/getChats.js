@@ -30,6 +30,7 @@ const getUserChats = async (req, res) => {
         const receiver = await User.findByPk(lastMessage.receiverId);
         return {
           id: chat.id,
+          participants: chat.participants,
           lastMessage: {
             id: lastMessage.id,
             content: lastMessage.content,

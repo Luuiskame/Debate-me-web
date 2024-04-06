@@ -17,7 +17,6 @@ import { setChats, setUsersBasicInfo } from '../../redux/slices/chatSlice';
 
 const Chats = () => {
   //we gonna keep track of the users 
-  const [usersChatedWith, setUsersChatedWith] = useState([])
 
   const currentUserId = useSelector((state)=> state.userReducer.user?.id)
   const userChats = useSelector((state)=> state.chatsReducer.chats)
@@ -39,14 +38,6 @@ const Chats = () => {
     dispatch(setUsersBasicInfo(arr))
   },[chats, dispatch])
 
-  useEffect(()=> {
-    const arr = []
-    userChats?.map(user=> {
-      arr.push(user.receiver?.id)
-    })
-    setUsersChatedWith([...arr])
-  },[userChats])
-
 
 
   return (
@@ -64,7 +55,6 @@ const Chats = () => {
         <ChatPreview
         key={chat.id}
         chatId={chat.id}
-        usersChatedWithId={usersChatedWith}
         lastMessage={chat.lastMessage.content}
         userPic={chat.receiver.profilePicture}
         username={chat.receiver.username}
