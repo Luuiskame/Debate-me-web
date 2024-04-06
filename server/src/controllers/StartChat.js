@@ -1,4 +1,5 @@
 const {User, Chat} = require('../db')
+const { Op } = require('sequelize');
 
 const startChat = async(req,res)=>{
     try {
@@ -11,7 +12,21 @@ const startChat = async(req,res)=>{
 
         if(bothUserExist.length !== 2) return res.status(400).send("a user doesn't exist")
 
-        const newChat = await Chat.create()
+        const chatAlreadyExist = await Chat.findOne({
+            where: {
+                participants: {
+                    [Op.contains]: [userId, participantId]
+                }
+            }
+        });
+
+        if (chatAlreadyExist) {
+            return res.status(400).send("A chat already exists between these users");
+        }
+
+        const newChat = await Chat.create({
+            participants: [userId, participantId]
+        })
 
         await newChat.addUsers([userId, participantId])
 

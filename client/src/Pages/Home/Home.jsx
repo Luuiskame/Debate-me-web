@@ -11,9 +11,9 @@ import Navbar from "./components/navbar/navbar";
 import Posts from "./components/posts/posts";
 import Voicechats from "./components/voicechats/voicechats";
 import Social from "./components/social/Social";
+
 const Home = () => {
   const user = useSelector((state) => state.userReducer.user);
-
   console.log(user);
 
   return (

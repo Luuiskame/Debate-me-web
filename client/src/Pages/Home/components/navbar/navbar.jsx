@@ -38,7 +38,7 @@ const Navbar = ({ styles }) => {
           </div> */}
 
           <div className={styles.notifications}>
-            <Link to="/chat">
+            <Link to='/chats'>
               <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
             </Link>
           </div>

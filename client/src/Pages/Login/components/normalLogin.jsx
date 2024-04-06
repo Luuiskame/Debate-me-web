@@ -3,6 +3,9 @@ import styles from "../Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../../../hooks/useLogin";
 
+// skeleton 
+import Skeleton from 'react-loading-skeleton'
+
 const NormalLogin = () => {
   const [user, setUser] = useState({ usernameOrEmail: "", password: "" });
   const { sendRequest, isError, data, isFound } = useLogin(user);
@@ -19,6 +22,7 @@ const NormalLogin = () => {
   }, [isFound]);
   return (
     <>
+      <Skeleton/>
       <h1 className={styles.title}>Welcome to SpeakiT</h1>
 
       <form onSubmit={(e) => handleRequest(e)} className={styles.form}>
