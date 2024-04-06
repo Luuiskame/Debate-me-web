@@ -73,6 +73,8 @@ const Chats = () => {
         />
 
       ))}    
+      {isLoading ? <p className={styles.loadingText}>loading chats...</p> : null}
+      {error ? <p className={styles.loadingText}>{error}</p> : null}
     </div>
   );
 };
