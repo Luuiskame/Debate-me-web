@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "./postlist.module.css";
 
-const Postlist = ({ user }) => {
+const Postlist = ({ user, styles }) => {
   return (
-    <div className={styles.postwrapper}>
+    <div className={styles.post_list_wrapper}>
       <div>
         <span className={styles.wrapperuserinfo}>
           <img src={user.profilepicture} alt="" />

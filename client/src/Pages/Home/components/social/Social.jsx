@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import styles from "./friends.module.css";
-const Social = () => {
+const Social = ({ styles }) => {
   const isActive = false;
   const friends = [
     { img: "../../../resources/png/nopicture.png", name: "kevin ", profileUrl: "#" },
@@ -13,7 +11,11 @@ const Social = () => {
   return (
     <div className={styles.friendsbackground}>
       <div className={styles.wrapper}>
-        <h1>friends</h1>
+        <div className={styles.title}>
+          <h1>friends</h1>
+          <p>🔍</p>
+          <p>...</p>
+        </div>
         {friends.map((friend) => (
           <div className={styles.friend}>
             <img src={friend.img} alt="profile-picture" />

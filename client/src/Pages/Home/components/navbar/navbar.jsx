@@ -1,18 +1,16 @@
 import React from "react";
-import styles from "./navbar.module.css";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { CiUser } from "react-icons/ci";
 
 // redux
-import {useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
 
 // components
-import Searchbar from "../Searchbar/Searchbar";
+import Searchbar from "./components/Searchbar/Searchbar";
 
-
-const Navbar = () => {
- const personalUsername = useSelector(state=> state.userReducer.user.username) 
- console.log(personalUsername)
+const Navbar = ({ styles }) => {
+  const personalUsername = useSelector((state) => state.userReducer.user.username);
+  console.log(personalUsername);
   return (
     <div>
       <div className={styles.navbar}>
@@ -20,7 +18,7 @@ const Navbar = () => {
 
         {/* search-box */}
         <div className={styles.searchBox}>
-          <Searchbar/>
+          <Searchbar />
         </div>
 
         {/* create new post */}
@@ -57,10 +55,9 @@ const Navbar = () => {
         {/* Profile Icon */}
         <div className={styles.settings}>
           <Link to={`/profile/${personalUsername}`}>
-            <CiUser className={styles.settings}/> 
+            <CiUser className={styles.settings} />
           </Link>
         </div>
-
       </div>
     </div>
   );

@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "./createpost.module.css";
 import { useSelector } from "react-redux";
 
-const Createpost = () => {
+const Createpost = ({ styles }) => {
   const user = useSelector((state) => state.userReducer.user);
 
   return (
@@ -23,7 +22,7 @@ const Createpost = () => {
 
       {/* text input */}
       <div>
-        <input type="text" placeholder="What's on your mind" className={styles.userinput} />
+        <input type="text" placeholder="What's on your mind" className={styles.create_post_userinput} />
       </div>
 
       {/*add tags, img, emojies, and publish-button */}
