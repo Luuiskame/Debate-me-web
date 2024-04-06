@@ -16,8 +16,9 @@ import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
 import { setChats, setUsersBasicInfo } from '../../redux/slices/chatSlice';
 
 const Chats = () => {
+  const [participantsId, setParticipantsId] = useState([])
+  
   //we gonna keep track of the users 
-
   const currentUserId = useSelector((state)=> state.userReducer.user?.id)
   const userChats = useSelector((state)=> state.chatsReducer.chats)
   console.log(`current user id: ${currentUserId}`)
@@ -33,12 +34,19 @@ const Chats = () => {
     const arr = []
 
     chats?.map((chat)=>{
-      arr.push(chat.receiver)
+      arr.push(chat.renderChatInfo)
     })
     dispatch(setUsersBasicInfo(arr))
   },[chats, dispatch])
 
+  useEffect(()=>{
+    const arr = []
 
+    chats?.map((chat)=> {
+      arr.push(chat.participants)
+    })
+    setParticipantsId([...arr])
+  },[])
 
   return (
     <div className={styles.chatMainContainer}>
@@ -56,12 +64,14 @@ const Chats = () => {
         key={chat.id}
         chatId={chat.id}
         lastMessage={chat.lastMessage.content}
-        userPic={chat.receiver.profilePicture}
-        username={chat.receiver.username}
-        name={chat.receiver.name}
-        >
+        userPic={chat.renderChatInfo?.profilePicture}
+        username={chat.renderChatInfo?.username}
+        name={chat.renderChatInfo?.name}
 
-        </ChatPreview>
+        //we might need this in the future: 
+        participantsId={participantsId}
+        />
+
       ))}    
     </div>
   );

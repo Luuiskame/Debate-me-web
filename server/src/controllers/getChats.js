@@ -28,9 +28,26 @@ const getUserChats = async (req, res) => {
       if (lastMessage) {
         // Fetch the receiver's information for the last message
         const receiver = await User.findByPk(lastMessage.receiverId);
+
+        // Filter participants to exclude the current user
+        const otherParticipants = chat.participants.filter(id => id !== userId);
+
+        // Fetch additional information for other participants
+        const otherParticipantsInfo = {};
+        await Promise.all(otherParticipants.map(async (participantId) => {
+          const participant = await User.findByPk(participantId);
+          otherParticipantsInfo.id = participant.id;
+          otherParticipantsInfo.username = participant.username;
+          otherParticipantsInfo.name = participant.name;
+          otherParticipantsInfo.profilePicture = participant.profilePicture;
+          otherParticipantsInfo.isVip = participant.isVip;
+          otherParticipantsInfo.isActive = participant.isActive;
+          // Include other participant info here as needed
+        }));
+
         return {
           id: chat.id,
-          participants: chat.participants,
+          participantsIds: chat.participants,
           lastMessage: {
             id: lastMessage.id,
             content: lastMessage.content,
@@ -47,7 +64,8 @@ const getUserChats = async (req, res) => {
           },
           sender: {
             id: lastMessage.senderId
-          }
+          },
+          renderChatInfo: otherParticipantsInfo
         };
       } else {
         return {
@@ -64,3 +82,5 @@ const getUserChats = async (req, res) => {
 };
 
 module.exports = getUserChats;
+
+
