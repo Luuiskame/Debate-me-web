@@ -77,7 +77,7 @@ const Chats = () => {
 
       ))}    
       {/* ste the height as 10dvh like the cards => containerClassname is the class that wraps all skeletons*/}
-      {isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' count={3}/>: null}
+      { isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' width='100%' count={3}/>: null}
       {error ? <p className={styles.loadingText}>{error}</p> : null}
     </div>
   );
