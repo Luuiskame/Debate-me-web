@@ -7,9 +7,7 @@ import {useSelector} from 'react-redux'
 import styles from './Chat.module.css'
 
 //io 
-import io from 'socket.io-client'
-const URL = "http://localhost:3001/"
-const socket = io.connect(URL)
+import { socket } from '../../../socket'
 
 const Chat = ()=>{
 
@@ -37,9 +35,9 @@ const Chat = ()=>{
     useEffect(()=>{
       socket.on("receiveMessage", (data)=>{
         console.log(data.message)
-        setMessageReceived(prevMessage => [...prevMessage, data.message])
+        setMessageReceived([...messageReceived, data.message])
       })
-    },[socket])
+    },[messageReceived])
   
     return (
       <div className={styles.chatMainContainer}>
@@ -48,7 +46,7 @@ const Chat = ()=>{
       {messageReceived.length > 0 ? messageReceived.map((message, index)=>(
         <p key={index}>{message}</p>
       )): (
-        <p>This is the beggening of your legendary conversation with {correctChatInfo.receiver.name}</p>
+        <p>This is the beggening of your legendary conversation with {correctChatInfo.renderChatInfo.name}</p>
       )}
       </div>
     )
