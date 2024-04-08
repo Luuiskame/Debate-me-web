@@ -34,7 +34,7 @@ function App() {
     if(userId){
       // socket.connect()
       dispatch(updateUserActivity(true))
-    } else {
+    } else if(userId === null || userId === undefined) {
       navigate(`/login`)
       dispatch(updateUserActivity(false))
     }

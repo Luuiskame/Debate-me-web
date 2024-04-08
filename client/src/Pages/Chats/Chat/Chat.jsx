@@ -9,6 +9,14 @@ import styles from './Chat.module.css'
 //io 
 import { socket } from '../../../socket'
 
+
+// react icons
+import { CiCirclePlus } from "react-icons/ci";
+import { IoArrowBackOutline } from "react-icons/io5";
+import { IoIosCall } from "react-icons/io";
+import { CiVideoOn } from "react-icons/ci";
+
+
 const Chat = ()=>{
 
     //sending message state related
@@ -49,13 +57,46 @@ const Chat = ()=>{
   
     return (
       <div className={styles.chatMainContainer}>
-      <input onChange={(e)=> setMessage(e.target.value)} type="text" name='text' value={message} placeholder='send message'/>
-      <button onClick={sendMessage}>send</button>
+
+        <div className={styles.userTopContainer}>
+          
+          <div className={styles.backArrowContainer}>
+        <IoArrowBackOutline />
+          </div>
+          
+          <div className={styles.mainTopOptionsContainer}>
+
+          <div className={styles.topPictureContainer}>
+            <img src={correctChatInfo.renderChatInfo.profilePicture} alt="user pfp" />
+          </div>
+          <div className="onlineStatusContainer">
+          🟢
+          </div>
+          <p>{correctChatInfo.renderChatInfo.name}</p>
+
+          </div>
+          
+
+          <div className={styles.callsContainer}>
+          <IoIosCall />
+          <CiVideoOn />
+          </div>
+    
+        </div>
+      
       {messageReceived.length > 0 ? messageReceived.map((message, index)=>(
         <p key={index}>{message}</p>
+      
       )): (
         <p>This is the beggening of your legendary conversation with {correctChatInfo.renderChatInfo.name}</p>
       )}
+
+      <div className={styles.mainChatInputOptionsContainer}>
+      <CiCirclePlus />
+      <input onChange={(e)=> setMessage(e.target.value)} type="text" name='text' value={message} placeholder='send message'/>
+      <button onClick={sendMessage}>send</button>
+      </div>
+      
       </div>
     )
 }
