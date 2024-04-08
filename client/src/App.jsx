@@ -32,13 +32,14 @@ function App() {
 
   useEffect(()=> {
     if(userId){
-      socket.connect()
+      // socket.connect()
       dispatch(updateUserActivity(true))
     } else {
       navigate(`/login`)
+      dispatch(updateUserActivity(false))
     }
     return ()=> {
-      socket.disconnect()
+      // socket.disconnect()
       dispatch(updateUserActivity(false))
     }
   },[userId])

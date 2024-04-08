@@ -38,6 +38,14 @@ const Chat = ()=>{
         setMessageReceived([...messageReceived, data.message])
       })
     },[messageReceived])
+
+    useEffect(()=>{
+      socket.connect()
+
+      return ()=>{
+        socket.disconnect()
+      }
+    },[])
   
     return (
       <div className={styles.chatMainContainer}>
