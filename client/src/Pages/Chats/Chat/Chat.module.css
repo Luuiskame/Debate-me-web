@@ -1,5 +1,6 @@
 .chatMainContainer {
   width: 100%;
+  max-width: 1060px;
   height: 100dvh;
   margin: 0 auto;
 
@@ -12,6 +13,7 @@
   background-color: salmon;
   display: flex;
   align-items: center;
+  /* min-width: 330px; */
   /* justify-content: space-between; */
 }
 
@@ -22,6 +24,8 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: .2s;
+  border-radius: 3px;
 
     &:hover {
         background: rgba(0, 0, 0, 0.3);
@@ -34,6 +38,9 @@
   cursor: pointer;
   align-items: center;
   gap: .2rem;
+  transition: .2s;
+  border-radius: 3px;
+
 
   &:hover {
     background: rgba(0, 0, 0, 0.3);
@@ -44,6 +51,7 @@
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
+  margin: .3rem 0;
 
   & img {
     width: 100%;
@@ -53,18 +61,27 @@
 }
 
 .onlineStatus {
-
-}
+    /* this does not work yet */
+    width: 3rem;
+    height: 3rem;
+} 
 
 .callsContainer{
     display: flex;
     width: 20%;
-    gap: 2rem;
+    gap: 1.6rem;
+    margin-right: 1rem;
 
     & svg{
         width: 3rem;
         height: 3rem;
 
         min-width: 25px;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
     }
 }
