@@ -6,7 +6,8 @@
 
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
+  justify-content: space-between;
+  align-items: space-between;
 }
 
 .userTopContainer {
@@ -75,7 +76,7 @@
     & svg{
         width: 3rem;
         height: 3rem;
-
+      /*? we can actually make the whole container still working on smaller devices; if we set the min width to some dynamice width using rem => however, I actually think this is the most appropiate min width we should use*/
         min-width: 25px;
         cursor: pointer;
         transition: .2s;
@@ -84,4 +85,33 @@
           transform: scale(1.2);
         }
     }
+}
+
+
+
+/* ! bottom of chat component */
+
+.mainChatInputOptionsContainer {
+  display: flex;
+  align-items: center;
+  background-color: red;
+}
+
+.circlePlus {
+  width: 20%;
+  max-width: 80px;
+  height: 2rem;
+}
+
+.inputAndSendBtnContainer {
+  width: 80%;
+
+  & input {
+    width: 80%;
+  }
+
+  & button {
+    width: 10%;
+    min-width: max-content;
+  }
 }

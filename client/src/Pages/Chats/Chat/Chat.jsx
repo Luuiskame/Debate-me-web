@@ -92,9 +92,13 @@ const Chat = ()=>{
       )}
 
       <div className={styles.mainChatInputOptionsContainer}>
-      <CiCirclePlus />
+      <CiCirclePlus className={styles.circlePlus} />
+      <div className={styles.inputAndSendBtnContainer}>
       <input onChange={(e)=> setMessage(e.target.value)} type="text" name='text' value={message} placeholder='send message'/>
       <button onClick={sendMessage}>send</button>
+
+      </div>
+      
       </div>
       
       </div>
