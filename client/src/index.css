@@ -19,6 +19,9 @@
   --accent-color: #08616d;
   --accent-color-lighter: #3b7880da;
   --error-color: #fe5f55;
+
+  /* hover transitions */
+  --quick-transition: .2s;
 }
 
 * {
