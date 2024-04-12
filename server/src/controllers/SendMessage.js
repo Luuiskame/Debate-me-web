@@ -1,5 +1,5 @@
 const {Message, User} = require('../db')
-// const {io} = require('../app')
+const {io} = require('../app')
 
 const sendMessage = async (req,res)=>{
     try {

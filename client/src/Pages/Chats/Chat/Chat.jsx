@@ -21,10 +21,15 @@ const Chat = ()=>{
 
     //sending message state related
     const [message, setMessage] = useState('')
+    const [sentMessages, setSentMessages] = useState([])
     const [messageReceived, setMessageReceived] = useState([])
 
     // necessary properties for comparing and getting the user chats info 
     const personalUserId = useSelector((state)=> state.userReducer.user?.id)
+    const personalUserName = useSelector((state)=> state.userReducer.user?.name)
+    const personalUserPicture = useSelector((state)=> state.userReducer.user?.profilePicture)
+    const personalUserUsername = useSelector((state)=> state.userReducer.user?.username)
+   
     const {chatId} = useParams()
     const chats = useSelector((state)=> state.chatsReducer.chats)
     console.log(chats)
@@ -32,18 +37,28 @@ const Chat = ()=>{
     //searching in the global state the chat id that matches our chatId gave through params
     const correctChatInfo = chats.find(chat=> chatId === chat.id)
     console.log(correctChatInfo)
+
+    //once we got our correct chat, we also want to get the other user Id
+    const correctParticipantInfo = correctChatInfo.participantsIds.find(participant=> participant !== personalUserId  )
+    console.log(correctParticipantInfo)
     
     const sendMessage = ()=>{
       socket.emit("sendMessage",{
-        message
+        senderId: personalUserId,
+        receiverId: correctParticipantInfo,
+        senderPicture: personalUserPicture,
+        senderName: personalUserName,
+        senderUsername: personalUserName,
+        content: message,
+        chatId: chatId
       })
       setMessage('')
     }
   
     useEffect(()=>{
       socket.on("receiveMessage", (data)=>{
-        console.log(data.message)
-        setMessageReceived([...messageReceived, data.message])
+        console.log(data)
+        setMessageReceived([...messageReceived, data.content])
       })
     },[messageReceived])
 

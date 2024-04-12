@@ -66,7 +66,7 @@ const Chats = () => {
         <ChatPreview
         key={chat.id}
         chatId={chat.id}
-        lastMessage={chat.lastMessage.content}
+        lastMessage={chat.lastMessage?.content}
         userPic={chat.renderChatInfo?.profilePicture}
         username={chat.renderChatInfo?.username}
         name={chat.renderChatInfo?.name}
