@@ -26,7 +26,7 @@ const getUserChats = async (req, res) => {
       });
       return {
         id: chat.id,
-        participantsInfo: [...participants],
+        participantsInfo: participants,
         participantsIds: chat.participants
       };
     }));

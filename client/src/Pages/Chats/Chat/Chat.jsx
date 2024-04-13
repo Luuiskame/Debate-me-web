@@ -82,12 +82,12 @@ const Chat = ()=>{
           <div className={styles.mainTopOptionsContainer}>
 
           <div className={styles.topPictureContainer}>
-            <img src={correctChatInfo.renderChatInfo.profilePicture} alt="user pfp" />
+            <img src={correctChatInfo.participantsInfo[0].profilePicture} alt="user pfp" />
           </div>
           <div className="onlineStatusContainer">
           🟢
           </div>
-          <p>{correctChatInfo.renderChatInfo.name}</p>
+          <p>{correctChatInfo.participantsInfo[0]?.name}</p>
 
           </div>
           
@@ -103,7 +103,7 @@ const Chat = ()=>{
         <p key={index}>{message}</p>
       
       )): (
-        <p>This is the beggening of your legendary conversation with {correctChatInfo.renderChatInfo.name}</p>
+        <p>This is the beggening of your legendary conversation with {correctChatInfo.participantsInfo[0].name}</p>
       )}
 
       <div className={styles.mainChatInputOptionsContainer}>

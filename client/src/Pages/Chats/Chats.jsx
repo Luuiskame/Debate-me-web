@@ -66,10 +66,10 @@ const Chats = () => {
         <ChatPreview
         key={chat.id}
         chatId={chat.id}
-        lastMessage={chat.lastMessage?.content}
-        userPic={chat.renderChatInfo?.profilePicture}
-        username={chat.renderChatInfo?.username}
-        name={chat.renderChatInfo?.name}
+        // lastMessage={chat.lastMessage?.content}
+        userPic={chat.participantsInfo[0]?.profilePicture}
+        username={chat.participantsInfo[0]?.username}
+        name={chat.participantsInfo[0]?.name}
 
         //we might need this in the future: 
         participantsId={participantsId}
