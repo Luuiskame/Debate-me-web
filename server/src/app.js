@@ -56,26 +56,26 @@ io.on("connection", (socket) => {
     console.log(`user disconnected: ${socket.id}`);
   });
 
-  // socket.on('sendMessage', async (data) => {
-  //   try {
-  //     const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId } = data;
+  socket.on('sendMessage', async (data) => {
+    try {
+      const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId } = data;
 
-  //     const newMessage = await Message.create({
-  //       senderId,
-  //       receiverId,
-  //       senderPicture,
-  //       senderName,
-  //       senderUsername,
-  //       content,
-  //       chatId,
-  //     });
+      const newMessage = await Message.create({
+        senderId,
+        receiverId,
+        senderPicture,
+        senderName,
+        senderUsername,
+        content,
+        chatId,
+      });
 
-  //     io.emit("receiveMessage", newMessage);
-  //     console.log(newMessage)
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // });
+      io.emit("receiveMessage", newMessage);
+      console.log(newMessage)
+    } catch (error) {
+      console.error(error);
+    }
+  });
 });
 
 module.exports = { server };
