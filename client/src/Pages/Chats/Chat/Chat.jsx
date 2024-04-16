@@ -65,7 +65,6 @@ const Chat = ()=>{
         socket.auth.serverOffset = data?.id
         socket.auth.chatId = data.chatId
         console.log(data)
-        console.log(socket.auth)
         setMessageReceived([...messageReceived, data.content])
       })
     },[messageReceived])

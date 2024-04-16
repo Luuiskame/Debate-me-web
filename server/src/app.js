@@ -90,36 +90,39 @@ io.on("connection", async (socket) => {
 
   
       io.to(chatId).emit("receiveMessage", messageInfo);
-      console.log(messageInfo);
-      console.log(data)
       console.log(socket.handshake.auth)
     } catch (error) {
       console.error(error);
     }
   });
   
-  // if (!socket.recovered) {
+  if (!socket.recovered) {
     
-  //   // if the connection state recovery was not successful
-  //   try {
-  //     console.log(`not recovered: ${socket.recovered}`)
-  //     const offset = socket.handshake.auth.serverOffset || 0;
-  //     const chatId = socket.handshake.auth.chatId;
+    try {
+      console.log(`not recovered: ${socket.recovered}`)
+      // const offset = socket.handshake.auth.serverOffset || 0;
+      const chatId = socket.handshake.auth.chatId;
+      const page = socket.handshake.auth.page
+      const limit = socket.handshake.auth.limit
+      console.log(socket.handshake.auth)
 
-  //     const messages = await Message.findAll({
-  //       where: {
-  //         chatId
-
-  //       },
-  //       order: [['timestamp', 'DESC']] // Ensure messages are ordered by ID
-  //     })
-  //     console.log(messages)
-  //     io.emit("receiveMessages", messages)
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  
-  // }
+      const messages = await Message.findAll({
+        where: {
+          chatId
+        },
+        order: [['timestamp', 'DESC']],
+        limit: limit,
+        offset: (page -1) * limit
+      })
+      messages.map(message=> {
+        console.log(message.get({ plain: true }))
+        socket.emit("receiveMessage", message)
+      })
+    } catch (error) {
+      
+    }
+      
+}
 });
 
 module.exports = { server };

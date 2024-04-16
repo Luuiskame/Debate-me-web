@@ -7,7 +7,7 @@ export const socket = io(URL, {
         serverOffset: 0,
         chatId: 0,
         page: 1,
-        limit: 15
+        limit: 30
     }
 })
 
