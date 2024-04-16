@@ -31,6 +31,7 @@ const Chat = ()=>{
     const personalUserUsername = useSelector((state)=> state.userReducer.user?.username)
    
     const {chatId} = useParams()
+    socket.auth.chatId = chatId
     const chats = useSelector((state)=> state.chatsReducer.chats)
     console.log(chats)
 
@@ -43,27 +44,35 @@ const Chat = ()=>{
     console.log(correctParticipantInfo)
     
     const sendMessage = ()=>{
-      socket.emit("sendMessage",{
-        senderId: personalUserId,
-        receiverId: correctParticipantInfo,
-        senderPicture: personalUserPicture,
-        senderName: personalUserName,
-        senderUsername: personalUserName,
-        content: message,
-        chatId: chatId
-      })
+      const messageAndInfo = {
+        
+          senderId: personalUserId,
+          receiverId: correctParticipantInfo,
+          senderPicture: personalUserPicture,
+          senderName: personalUserName,
+          senderUsername: personalUserUsername,
+          content: message,
+          chatId: chatId,
+          offset: socket.auth?.serverOffset
+        
+      }
+      socket.emit("sendMessage", messageAndInfo)
       setMessage('')
     }
   
     useEffect(()=>{
       socket.on("receiveMessage", (data)=>{
+        socket.auth.serverOffset = data?.id
+        socket.auth.chatId = data.chatId
         console.log(data)
+        console.log(socket.auth)
         setMessageReceived([...messageReceived, data.content])
       })
     },[messageReceived])
 
     useEffect(()=>{
       socket.connect()
+      socket.emit("joinRoom", chatId)
 
       return ()=>{
         socket.disconnect()

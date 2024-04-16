@@ -10,6 +10,8 @@ const routes = require('./routes/index.js');
 
 // messages
 const {Message, User} = require('./db.js')
+const {Sequelize, Op,} = require('sequelize');
+const { off } = require('process');
 
 const app = express();
 app.use(cors());
@@ -49,17 +51,22 @@ const io = new Server(server, {
 
 
 // Handle socket.io connections
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log(`user connected: ${socket.id}`);
 
   socket.on('disconnect', () => {
     console.log(`user disconnected: ${socket.id}`);
   });
 
+  socket.on("joinRoom", (chatId)=> {
+    socket.join(chatId)
+    console.log(`user joined to chat ${chatId}`)
+  })
+
   socket.on('sendMessage', async (data) => {
     try {
-      const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId } = data;
-
+      const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId, offset } = data;
+  
       const newMessage = await Message.create({
         senderId,
         receiverId,
@@ -70,12 +77,49 @@ io.on("connection", (socket) => {
         chatId,
       });
 
-      io.emit("receiveMessage", newMessage);
-      console.log(newMessage)
+      const messageInfo = {
+        senderId,
+        receiverId,
+        senderPicture,
+        senderName,
+        senderUsername,
+        content,
+        chatId,
+        id: newMessage.id
+      };
+
+  
+      io.to(chatId).emit("receiveMessage", messageInfo);
+      console.log(messageInfo);
+      console.log(data)
+      console.log(socket.handshake.auth)
     } catch (error) {
       console.error(error);
     }
   });
+  
+  // if (!socket.recovered) {
+    
+  //   // if the connection state recovery was not successful
+  //   try {
+  //     console.log(`not recovered: ${socket.recovered}`)
+  //     const offset = socket.handshake.auth.serverOffset || 0;
+  //     const chatId = socket.handshake.auth.chatId;
+
+  //     const messages = await Message.findAll({
+  //       where: {
+  //         chatId
+
+  //       },
+  //       order: [['timestamp', 'DESC']] // Ensure messages are ordered by ID
+  //     })
+  //     console.log(messages)
+  //     io.emit("receiveMessages", messages)
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+  
+  // }
 });
 
 module.exports = { server };
