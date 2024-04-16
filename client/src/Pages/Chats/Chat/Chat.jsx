@@ -65,9 +65,18 @@ const Chat = ()=>{
         socket.auth.serverOffset = data?.id
         socket.auth.chatId = data.chatId
         console.log(data)
-        setMessageReceived([...messageReceived, data.content])
+        
+        if(Array.isArray(data)){
+          const accumulatedMessages = data.map(message => message.content)
+          console.log(accumulatedMessages)
+            // Update the state once with all accumulated messages
+            setMessageReceived(prevMessages => [...prevMessages, ...accumulatedMessages])
+        } else {
+          setMessageReceived([...messageReceived, data.content])
+
+        }
       })
-    },[messageReceived])
+    },[socket, messageReceived])
 
     useEffect(()=>{
       socket.connect()

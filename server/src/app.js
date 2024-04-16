@@ -110,16 +110,15 @@ io.on("connection", async (socket) => {
         where: {
           chatId
         },
-        order: [['timestamp', 'DESC']],
-        limit: limit,
+        order: [['timestamp', 'ASC']],
+        limit: parseInt(limit, 30),
         offset: (page -1) * limit
       })
-      messages.map(message=> {
-        console.log(message.get({ plain: true }))
-        socket.emit("receiveMessage", message)
-      })
-    } catch (error) {
+      console.log(messages)
       
+      io.emit("receiveMessage", messages)
+    } catch (error) {
+      console.log(error)
     }
       
 }
