@@ -76,7 +76,7 @@ const Chat = ()=>{
 
         }
       })
-    },[socket, messageReceived])
+    },[messageReceived])
 
     useEffect(()=>{
       socket.connect()

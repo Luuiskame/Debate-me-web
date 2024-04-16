@@ -7,7 +7,28 @@ import {Link} from 'react-router-dom'
 
 import Skeleton from 'react-loading-skeleton'
 
-const ChatPreview = ({lastMessage, chatId, userPic, username, name, participantsId})=>{
+//sockets
+import { socket } from '../../../socket'
+
+const ChatPreview = ({ chatId, userPic, username, name, participantsId})=>{
+
+    const [lastMessage, setLastMessage] = useState("")
+
+    useEffect(()=> {
+        socket.on("receiveMessage", (data)=>{
+            setLastMessage(data.content)
+          })
+
+    },[socket, lastMessage])
+
+    useEffect(()=>{
+        socket.connect()
+        socket.emit("joinRoom", chatId)
+  
+        return ()=>{
+          socket.disconnect()
+        }
+      },[])
 
     return(
         
