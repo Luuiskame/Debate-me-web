@@ -10,7 +10,7 @@ import Skeleton from 'react-loading-skeleton'
 //sockets
 import { socket } from '../../../socket'
 
-const ChatPreview = ({ chatId, userPic, username, name, participantsId})=>{
+const ChatPreview = ({lastMessageProp, chatId, userPic, username, name, participantsId})=>{
 
     const [lastMessage, setLastMessage] = useState("")
 
@@ -40,7 +40,7 @@ const ChatPreview = ({ chatId, userPic, username, name, participantsId})=>{
             </div>
             <div className={styles.nameAndMessageContainer}>
             <p className={styles.maxTextAndNameContentLimit}>{name || <Skeleton/>} </p>
-            <p className={styles.maxTextAndNameContentLimit}>{lastMessage || <Skeleton/>}</p>
+            <p className={styles.maxTextAndNameContentLimit}>{lastMessage ? lastMessage : lastMessageProp}</p>
             </div>
         </Link>
     )

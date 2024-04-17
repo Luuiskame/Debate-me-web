@@ -24,10 +24,18 @@ const getUserChats = async (req, res) => {
           id: filteredParticipantIds
         }
       });
+
+      const lastMessage = await Message.findOne({
+        where: {
+          chatId: chat.id
+        },
+        order: [['createdAt', 'DESC']]
+      })
       return {
         id: chat.id,
         participantsInfo: participants,
-        participantsIds: chat.participants
+        participantsIds: chat.participants,
+        lastMessage: lastMessage || null
       };
     }));
 
