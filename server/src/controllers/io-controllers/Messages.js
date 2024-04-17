@@ -1,37 +1,55 @@
-// import { io } from "../../app";
+const {Message, User} = require('../../db')
 
+const getMessages = async (chatId, page, limit)=>{
+    
+    const messages = await Message.findAll({
+        where: {
+            chatId
+        },
+        order: [['timestamp', 'ASC']],
+        limit: parseInt(limit, 30),
+        offset: (page -1) * limit
+    })
 
-// const {Message, User} = require('../../db')
+    if(!messages) throw new Error('something went wrong went getting the messages')
 
-  
-//   io.on("connection", (socket)=>{
-//     console.log(`user connected: ${socket.id}`)
+    console.log(messages)
+    return messages
+}
 
-//     socket.on('disconnect', () => {
-//         console.log(`user disconnected: ${socket.id}`);
-//       });  
-  
-//     socket.on('sendMessage', async (data)=>{
-//       try {
+const sendMessages = async (data) => {
+    const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId, offset } = data;
 
-//         const {senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId} = data
+    try {
+        const newMessage = await Message.create({
+            senderId,
+            receiverId,
+            senderPicture,
+            senderName,
+            senderUsername,
+            content,
+            chatId,
+          });
 
-//         const newMessage = await Message.create({
-//             content,
-//             senderId,
-//             receiverId,
-//             chatId,
-//             senderName,
-//             senderPicture,
-//             senderUsername
-//         })
+          if(!newMessage) console.log(`something went wrong when creating the message`)
 
-//         io.emit("receiveMessage", newMessage)
+          const messageInfo = {
+            senderId,
+            receiverId,
+            senderPicture,
+            senderName,
+            senderUsername,
+            content,
+            chatId,
+            id: newMessage.id
+          };
+
+          return messageInfo
         
-//       } catch (error) {
-//         console.error(error)
-//       }
-//     })
-  
-  
-//   })
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+module.exports = { getMessages, sendMessages }

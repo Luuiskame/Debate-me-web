@@ -70,13 +70,13 @@ const Chat = ()=>{
           const accumulatedMessages = data.map(message => message.content)
           console.log(accumulatedMessages)
             // Update the state once with all accumulated messages
-            setMessageReceived(prevMessages => [...prevMessages, ...accumulatedMessages])
+            setMessageReceived([...messageReceived, ...accumulatedMessages])
         } else {
           setMessageReceived([...messageReceived, data.content])
 
         }
       })
-    },[messageReceived])
+    },[socket, messageReceived])
 
     useEffect(()=>{
       socket.connect()

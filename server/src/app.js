@@ -8,10 +8,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes/index.js');
 
-// messages
-const {Message, User} = require('./db.js')
-const {Sequelize, Op,} = require('sequelize');
-const { off } = require('process');
+// io controllers 
+const {getMessages, sendMessages} = require('../src/controllers/io-controllers/Messages.js')
 
 const app = express();
 app.use(cors());
@@ -65,29 +63,8 @@ io.on("connection", async (socket) => {
 
   socket.on('sendMessage', async (data) => {
     try {
-      const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId, offset } = data;
-  
-      const newMessage = await Message.create({
-        senderId,
-        receiverId,
-        senderPicture,
-        senderName,
-        senderUsername,
-        content,
-        chatId,
-      });
-
-      const messageInfo = {
-        senderId,
-        receiverId,
-        senderPicture,
-        senderName,
-        senderUsername,
-        content,
-        chatId,
-        id: newMessage.id
-      };
-
+      const {chatId} = data
+      const messageInfo = await sendMessages(data)
   
       io.to(chatId).emit("receiveMessage", messageInfo);
       console.log(socket.handshake.auth)
@@ -106,15 +83,7 @@ io.on("connection", async (socket) => {
       const limit = socket.handshake.auth.limit
       console.log(socket.handshake.auth)
 
-      const messages = await Message.findAll({
-        where: {
-          chatId
-        },
-        order: [['timestamp', 'ASC']],
-        limit: parseInt(limit, 30),
-        offset: (page -1) * limit
-      })
-      console.log(messages)
+      const messages = await getMessages(chatId, page, limit)
 
       // with socket.emit the specific socket that triggered the event its the one who get the info
       socket.emit("receiveMessage", messages)
