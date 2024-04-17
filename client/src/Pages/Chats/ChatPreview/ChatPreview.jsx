@@ -16,19 +16,21 @@ const ChatPreview = ({ chatId, userPic, username, name, participantsId})=>{
 
     useEffect(()=> {
         socket.on("receiveMessage", (data)=>{
-            setLastMessage(data.content)
+                if(data.chatId === chatId){
+                    setLastMessage(data.content)
+                }
           })
 
-    },[socket, lastMessage])
+    },[chatId])
 
-    useEffect(()=>{
-        socket.connect()
-        socket.emit("joinRoom", chatId)
-  
-        return ()=>{
-          socket.disconnect()
+    useEffect(() => {
+        socket.connect();
+        socket.emit("joinRoom", chatId);
+
+        return () => {
+            socket.disconnect();
         }
-      },[])
+    }, [chatId]);
 
     return(
         
