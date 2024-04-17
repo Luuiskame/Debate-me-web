@@ -1,37 +1,45 @@
-const {DataTypes, UUIDV4} = require('sequelize')
+const { DataTypes, UUIDV4 } = require('sequelize');
 
-module.exports = (sequelize)=>{
-    sequelize.define('Message',{
-        id:{
+module.exports = (sequelize) => {
+    sequelize.define('Message', {
+        id: {
             type: DataTypes.UUID,
             defaultValue: UUIDV4,
             primaryKey: true,
             allowNull: false,
         },
-        content:{
+        content: {
             type: DataTypes.TEXT,
-            allowNull:false,
+            allowNull: false,
         },
-        senderId:{
+        senderId: {
             type: DataTypes.UUID,
             allowNull: false,
-            references:{
-                model: 'Users',
-                key: 'id',
-            },
         },
-        receiverId:{
+        receiverId: {
             type: DataTypes.UUID,
             allowNull: false,
-            references:{
-                model: 'Users',
-                key: 'id',
-            },
+        },
+        senderPicture: {
+            type: DataTypes.STRING, // Assuming senderPicture is a string representing the URL or path
+            allowNull: true, // It can be null if senderPicture is optional
+        },
+        senderName: {
+            type: DataTypes.STRING, // Assuming senderName is a string
+            allowNull: false,
+        },
+        senderUsername: {
+            type: DataTypes.STRING, // Assuming senderUsername is a string
+            allowNull: false,
+        },
+        chatId: {
+            type: DataTypes.UUID,
+            allowNull: false,
         },
         timestamp: {
             type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: DataTypes.NOW
-        }
-    })
-}
+            defaultValue: DataTypes.NOW,
+        },
+    });
+};

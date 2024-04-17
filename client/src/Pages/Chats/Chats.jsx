@@ -66,10 +66,10 @@ const Chats = () => {
         <ChatPreview
         key={chat.id}
         chatId={chat.id}
-        lastMessage={chat.lastMessage.content}
-        userPic={chat.renderChatInfo?.profilePicture}
-        username={chat.renderChatInfo?.username}
-        name={chat.renderChatInfo?.name}
+        lastMessageProp={chat.lastMessage?.content}
+        userPic={chat.participantsInfo[0]?.profilePicture}
+        username={chat.participantsInfo[0]?.username}
+        name={chat.participantsInfo[0]?.name}
 
         //we might need this in the future: 
         participantsId={participantsId}
@@ -77,7 +77,7 @@ const Chats = () => {
 
       ))}    
       {/* ste the height as 10dvh like the cards => containerClassname is the class that wraps all skeletons*/}
-      {isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' count={3}/>: null}
+      { isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' width='100%' count={3}/>: null}
       {error ? <p className={styles.loadingText}>{error}</p> : null}
     </div>
   );
