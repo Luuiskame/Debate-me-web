@@ -115,8 +115,9 @@ io.on("connection", async (socket) => {
         offset: (page -1) * limit
       })
       console.log(messages)
-      
-      io.emit("receiveMessage", messages)
+
+      // with socket.emit the specific socket that triggered the event its the one who get the info
+      socket.emit("receiveMessage", messages)
     } catch (error) {
       console.log(error)
     }
