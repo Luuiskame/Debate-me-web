@@ -16,12 +16,14 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { IoIosCall } from "react-icons/io";
 import { CiVideoOn } from "react-icons/ci";
 
+//components
+import ChatMiddlePart from './chatComponents/ChatMiddlePart/ChatMiddlePart'
+
 
 const Chat = ()=>{
 
     //sending message state related
     const [message, setMessage] = useState('')
-    const [sentMessages, setSentMessages] = useState([])
     const [messageReceived, setMessageReceived] = useState([])
 
     // necessary properties for comparing and getting the user chats info 
@@ -67,12 +69,12 @@ const Chat = ()=>{
         console.log(data)
         
         if(Array.isArray(data)){
-          const accumulatedMessages = data.map(message => message.content)
-          console.log(accumulatedMessages)
+          // const accumulatedMessages = data.map(message => message.content)
+          console.log(data)
             // Update the state once with all accumulated messages
-            setMessageReceived([...messageReceived, ...accumulatedMessages])
+            setMessageReceived([...messageReceived, ...data])
         } else {
-          setMessageReceived([...messageReceived, data.content])
+          setMessageReceived([...messageReceived, data])
 
         }
       })
@@ -115,13 +117,11 @@ const Chat = ()=>{
           </div>
     
         </div>
+        <ChatMiddlePart
+        messageReceived={messageReceived}
+        correctChatInfo={correctChatInfo.participantsInfo[0]}
+        />
       
-      {messageReceived.length > 0 ? messageReceived.map((message, index)=>(
-        <p key={index}>{message}</p>
-      
-      )): (
-        <p>This is the beggening of your legendary conversation with {correctChatInfo.participantsInfo[0].name}</p>
-      )}
 
       <div className={styles.mainChatInputOptionsContainer}>
       <CiCirclePlus className={styles.circlePlus} />

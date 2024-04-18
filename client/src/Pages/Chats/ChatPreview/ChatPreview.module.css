@@ -28,6 +28,23 @@
     }
 }
 
+.nameAndMessageContainer {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    overflow-wrap: break-word;
+    overflow-y: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name {
+    font-weight: 700;
+}
+
 .maxTextAndNameContentLimit {
-    max-width: 240px;
+    max-height: 20px;
+    overflow: hidden;
 }
