@@ -51,8 +51,8 @@ const ChatPreview = ({ lastMessageProp, chatId, userPic, username, name, partici
         <img src={userPic} alt={`${name}'s profile picture`} />
       </div>
       <div className={styles.nameAndMessageContainer}>
-        <p className={styles.maxTextAndNameContentLimit}>{name || <Skeleton />} </p>
-        <p className={styles.maxTextAndNameContentLimit}>{lastMessage ? lastMessage : lastMessageProp}</p>
+        <p className={`${styles.maxTextAndNameContentLimit} ${styles.name}`}>{name || <Skeleton />} </p>
+        <p className={styles.maxTextAndNameContentLimit}>{lastMessage ? `${lastMessage} ...`: lastMessageProp + ' ...'}</p>
       </div>
     </Link>
   );
