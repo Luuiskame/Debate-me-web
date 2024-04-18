@@ -1,11 +1,17 @@
 
 .chatMiddlePartContainer {
-
+    height: 90%;
+    overflow-y: scroll;
 }
 
 .messageCardContainer {
     display: flex;
     align-items: center;
+    gap: .6rem;
+    margin-bottom: 1rem;
+
+    height: max-content;
+    
 }
 
 
@@ -14,10 +20,30 @@
     height: 2.6rem;
     border-radius: 50%;
     margin: 5px;
+
+    min-width: 40px;
+
+    align-self: flex-start;
     
     & img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
     }
+}
+
+/* ! this part here give us a nice text wrap for all screen sizes */
+.nameAndMessageContentContainer {
+    width: 80%;
+    overflow-wrap: break-word;
+}
+
+.name {
+    font-weight: 700;
+    width: 90%;
+    /* font-size: var(--medium-font); */
+}
+
+.message {
+    width: 90%;
 }

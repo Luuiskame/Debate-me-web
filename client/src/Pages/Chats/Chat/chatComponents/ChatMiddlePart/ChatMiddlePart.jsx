@@ -15,8 +15,8 @@ const ChatMiddlePart = ({messageReceived, correctChatInfo})=> {
                     </figure>
 
                     <div className={styles.nameAndMessageContentContainer}>
-                        <p>{message.senderName}</p>
-                        <p>{message.content}</p>
+                        <p className={styles.name}>{message.senderName}</p>
+                        <p className={styles.message}>{message.content}</p>
                         {/* <p>{message.timestamp}</p> */}
                     </div>
                 </div>
