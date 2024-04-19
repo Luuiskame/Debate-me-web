@@ -60,8 +60,11 @@ const Chat = ()=>{
           senderUsername: personalUserUsername,
           content: message,
           chatId: chatId,
-          offset: socket.auth?.serverOffset
-        
+          offset: socket.auth?.serverOffset,
+          deliveryStatus: true,
+          readStatus: false,
+          attachments: []
+
       }
       socket.emit("sendMessage", messageAndInfo)
       setMessage('')

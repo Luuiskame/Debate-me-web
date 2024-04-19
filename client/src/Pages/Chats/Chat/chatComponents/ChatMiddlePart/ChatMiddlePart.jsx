@@ -10,7 +10,7 @@ const ChatMiddlePart = ({messageReceived, correctChatInfo, readMessages})=> {
 
             {messageReceived.length > 0 
             ? messageReceived.map(message=> (
-                <div className={styles.messageCardContainer}>
+                <div key={message.id} className={styles.messageCardContainer}>
                     <figure className={styles.pfpContainer}>
                         <img src={message.senderPicture} alt="sender picture" />
                     </figure>

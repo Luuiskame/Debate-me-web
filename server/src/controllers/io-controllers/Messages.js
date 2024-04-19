@@ -18,7 +18,7 @@ const getMessages = async (chatId, page, limit)=>{
 }
 
 const sendMessages = async (data) => {
-    const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId, offset } = data;
+    const { senderId, receiverId, senderPicture, senderName, senderUsername, content, chatId, offset, deliveryStatus, readStatus, attachments } = data;
 
     try {
         const newMessage = await Message.create({
@@ -29,6 +29,8 @@ const sendMessages = async (data) => {
             senderUsername,
             content,
             chatId,
+            deliveryStatus,
+            readStatus,
           });
 
           if(!newMessage) console.log(`something went wrong when creating the message`)
@@ -41,6 +43,8 @@ const sendMessages = async (data) => {
             senderUsername,
             content,
             chatId,
+            deliveryStatus,
+            readStatus,
             id: newMessage.id
           };
 

@@ -62,7 +62,7 @@ const Chats = () => {
         Friends 
       </div>
 
-      {chats.length > 0  ? chats.map((chat)=> (
+      {chats?.length > 0  ? chats.map((chat)=> (
         <ChatPreview
         key={chat.id}
         chatId={chat.id}
