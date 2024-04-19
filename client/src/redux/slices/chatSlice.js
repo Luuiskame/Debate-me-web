@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     chats: [],
     usersChatBasicInfo: [],
+    notReadMessages: 0
 }
 
 const chatSlice = createSlice({
@@ -14,6 +15,9 @@ const chatSlice = createSlice({
         },
         setUsersBasicInfo: (state, action)=>{
             state.usersChatBasicInfo = action.payload
+        },
+        setNotReadMessages: (state, action)=>{
+            state.notReadMessages = action.payload
         }
     }
 })

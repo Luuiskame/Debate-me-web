@@ -1,8 +1,9 @@
 
 import styles from './ChatMiddlePart.module.css'
 
-const ChatMiddlePart = ({messageReceived, correctChatInfo})=> {
+const ChatMiddlePart = ({messageReceived, correctChatInfo, readMessages})=> {
      console.log(messageReceived)
+     console.log(readMessages)
     
     return(
         <div className={styles.chatMiddlePartContainer}>
@@ -16,7 +17,7 @@ const ChatMiddlePart = ({messageReceived, correctChatInfo})=> {
 
                     <div className={styles.nameAndMessageContentContainer}>
                         <p className={styles.name}>{message.senderName}</p>
-                        <p className={styles.message}>{message.content}</p>
+                        <p className={styles.message}>{message.content} {readMessages.sent ? '.' : null} {readMessages.read ? '.' : null}</p>
                         {/* <p>{message.timestamp}</p> */}
                     </div>
                 </div>

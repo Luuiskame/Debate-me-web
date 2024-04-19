@@ -25,6 +25,11 @@ const Chat = ()=>{
     //sending message state related
     const [message, setMessage] = useState('')
     const [messageReceived, setMessageReceived] = useState([])
+    
+    const [readMessages, setReadMessages] = useState({
+      sent: null,
+      receive: null
+    })
 
     // necessary properties for comparing and getting the user chats info 
     const personalUserId = useSelector((state)=> state.userReducer.user?.id)
@@ -66,10 +71,9 @@ const Chat = ()=>{
       socket.on("receiveMessage", (data)=>{
         socket.auth.serverOffset = data?.id
         socket.auth.chatId = data.chatId
-        console.log(data)
         
         if(Array.isArray(data)){
-          // const accumulatedMessages = data.map(message => message.content)
+          console.log(data)
           console.log(data)
             // Update the state once with all accumulated messages
             setMessageReceived([...messageReceived, ...data])
@@ -77,6 +81,7 @@ const Chat = ()=>{
           setMessageReceived([...messageReceived, data])
 
         }
+
       })
     },[socket, messageReceived])
 
@@ -120,6 +125,7 @@ const Chat = ()=>{
         <ChatMiddlePart
         messageReceived={messageReceived}
         correctChatInfo={correctChatInfo.participantsInfo[0]}
+        readMessages={readMessages}
         />
       
 
