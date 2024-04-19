@@ -62,7 +62,7 @@ const Chats = () => {
         Friends 
       </div>
 
-      {chats?.map((chat)=> (
+      {chats.length > 0  ? chats.map((chat)=> (
         <ChatPreview
         key={chat.id}
         chatId={chat.id}
@@ -75,7 +75,7 @@ const Chats = () => {
         participantsId={participantsId}
         />
 
-      ))}    
+      )) : <p>no chats yet</p> }    
       {/* ste the height as 10dvh like the cards => containerClassname is the class that wraps all skeletons*/}
       { isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' width='100%' count={3}/>: null}
       {error ? <p className={styles.loadingText}>{error}</p> : null}
