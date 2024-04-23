@@ -13,7 +13,7 @@ const getMessages = async (chatId, page, limit)=>{
 
     if(!messages) throw new Error('something went wrong went getting the messages')
 
-    console.log(messages)
+    // console.log(messages)
     return messages
 }
 
@@ -56,4 +56,27 @@ const sendMessages = async (data) => {
 
 }
 
-module.exports = { getMessages, sendMessages }
+const updateReadStatus = async (chatId)=> {
+    try {
+        const updatedRows = await Message.update(
+            {readStatus: true},
+            {where: {chatId}}
+        )
+
+        console.log(updatedRows)
+        
+        const lastUpdatedMessage = await Message.findOne({
+            where: {chatId},
+            order: [['timestamp', 'DESC']]
+        })
+
+        if(!lastUpdatedMessage) console.log("error finding the last message")
+
+        return lastUpdatedMessage
+    } catch (error) {
+        console.error('Error updating read status:', error);
+        throw new Error('Failed to update read status');
+    }
+}
+
+module.exports = { getMessages, sendMessages, updateReadStatus }

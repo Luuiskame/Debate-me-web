@@ -9,7 +9,7 @@ const cors = require('cors');
 const routes = require('./routes/index.js');
 
 // io controllers 
-const {getMessages, sendMessages} = require('../src/controllers/io-controllers/Messages.js')
+const {getMessages, sendMessages, updateReadStatus} = require('../src/controllers/io-controllers/Messages.js')
 
 const app = express();
 app.use(cors());
@@ -67,12 +67,22 @@ io.on("connection", async (socket) => {
       const messageInfo = await sendMessages(data)
   
       io.to(chatId).emit("receiveMessage", messageInfo);
-      console.log(socket.handshake.auth)
+      // console.log(socket.handshake.auth)
     } catch (error) {
       console.error(error);
     }
   });
   
+  socket.on("updateReadStatus", async (data)=> {
+    try {
+      const updateRows = await updateReadStatus(data)
+
+      io.to(data).emit('ReceiveUpdatedReadStatus', updateRows)
+    } catch (error) {
+      console.error('Error updating read status', error)
+    }
+  })
+
   if (!socket.recovered) {
     
     try {

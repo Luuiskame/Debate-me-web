@@ -26,6 +26,7 @@ const ChatPreview = ({ lastMessageProp, chatId, userPic, username, name, partici
 
         // Save last message to local storage
         localStorage.setItem(`lastMessage_${chatId}`, data.content);
+        console.log(data.content)
       }
     };
 

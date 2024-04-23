@@ -25,11 +25,6 @@ const Chat = ()=>{
     //sending message state related
     const [message, setMessage] = useState('')
     const [messageReceived, setMessageReceived] = useState([])
-    
-    const [readMessages, setReadMessages] = useState({
-      sent: null,
-      receive: null
-    })
 
     // necessary properties for comparing and getting the user chats info 
     const personalUserId = useSelector((state)=> state.userReducer.user?.id)
@@ -77,7 +72,6 @@ const Chat = ()=>{
         
         if(Array.isArray(data)){
           console.log(data)
-          console.log(data)
             // Update the state once with all accumulated messages
             setMessageReceived([...messageReceived, ...data])
         } else {
@@ -86,11 +80,20 @@ const Chat = ()=>{
         }
 
       })
+
     },[socket, messageReceived])
+
+    useEffect(()=> {
+      socket.on("ReceiveUpdatedReadStatus", data=> {
+        setMessageReceived([...messageReceived, data])
+        console.log(data)
+      })
+    },[messageReceived])
 
     useEffect(()=>{
       socket.connect()
       socket.emit("joinRoom", chatId)
+
 
       return ()=>{
         socket.disconnect()
@@ -126,9 +129,10 @@ const Chat = ()=>{
     
         </div>
         <ChatMiddlePart
+        chatId={chatId}
+        personalUserId={personalUserId}
         messageReceived={messageReceived}
         correctChatInfo={correctChatInfo.participantsInfo[0]}
-        readMessages={readMessages}
         />
       
 
