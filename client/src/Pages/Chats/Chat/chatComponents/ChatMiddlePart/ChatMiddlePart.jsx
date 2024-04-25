@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./ChatMiddlePart.module.css";
 
 import { socket } from "../../../../../socket";
@@ -11,23 +11,18 @@ const ChatMiddlePart = ({
   correctChatInfo,
   chatId,
   personalUserId,
+  activateRead,
 }) => {
   const [doubleCheck, setDoubleCheck] = useState(null);
+  const messagesEndRef = useRef(null);
+  console.log(activateRead)
   console.log(messageReceived);
 
-  useEffect(() => {
-    if (messageReceived.length > 0 && chatId && personalUserId) {
-      const lastMesage = messageReceived.pop();
-      console.log(lastMesage);
-      if (
-        lastMesage?.receiverId === personalUserId &&
-        lastMesage.readStatus === false
-      ) {
-        console.log("activating lastread");
-        socket.emit("updateReadStatus", chatId);
-      }
-    }
-  }, [messageReceived]);
+  
+
+  // useEffect(()=> {
+  //   messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  // },[])
 
   return (
     <div className={styles.chatMiddlePartContainer}>
@@ -40,7 +35,7 @@ const ChatMiddlePart = ({
 
             <div className={styles.nameAndMessageContentContainer}>
               <p className={styles.name}>{message.senderName}</p>
-              <p className={styles.message}>
+              <p ref={messagesEndRef} className={styles.message}>
                 {message.content}{" "}
                 {message.deliveryStatus ? <IoMdCheckmark className={`${message.readStatus ? `${styles.read}` : null}`}/> : null}{" "}
               </p>

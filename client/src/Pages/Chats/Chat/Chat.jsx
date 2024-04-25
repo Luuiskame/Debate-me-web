@@ -23,6 +23,7 @@ import ChatMiddlePart from './chatComponents/ChatMiddlePart/ChatMiddlePart'
 const Chat = ()=>{
 
     //sending message state related
+    const [activateRead, setActivateRead] = useState(null)
     const [message, setMessage] = useState('')
     const [messageReceived, setMessageReceived] = useState([])
 
@@ -74,21 +75,48 @@ const Chat = ()=>{
           console.log(data)
             // Update the state once with all accumulated messages
             setMessageReceived([...messageReceived, ...data])
+            setActivateRead(true)
+            console.log('one')
         } else {
+          // console.log(messageReceived)
           setMessageReceived([...messageReceived, data])
-
+          setActivateRead(true)
+          console.log('one')
         }
 
       })
 
     },[socket, messageReceived])
+    
 
     useEffect(()=> {
-      socket.on("ReceiveUpdatedReadStatus", data=> {
-        setMessageReceived([...messageReceived, data])
-        console.log(data)
-      })
-    },[messageReceived])
+      console.info('hihihiha')
+      if (messageReceived.length > 0 && chatId && personalUserId && activateRead === true) {
+        const arr = [...messageReceived]
+        const lastMesage = arr.pop();
+        console.log(lastMesage);
+        if (
+          lastMesage?.receiverId === personalUserId &&
+          lastMesage.readStatus === false
+        ) {
+          console.log("activating lastread");
+          socket.emit("updateReadStatus", chatId);
+        }
+      }
+      
+      if(activateRead){
+        socket.on("ReceiveUpdatedReadStatus", data=> {
+          //! we pop the last message so we can then put our new last message with the updated read status
+          messageReceived.pop()
+          setMessageReceived([...messageReceived, data])
+          console.log(data)
+        })
+      }
+      setActivateRead(false)
+      
+    },[socket,activateRead])
+
+    
 
     useEffect(()=>{
       socket.connect()
@@ -129,6 +157,7 @@ const Chat = ()=>{
     
         </div>
         <ChatMiddlePart
+        activateRead={activateRead}
         chatId={chatId}
         personalUserId={personalUserId}
         messageReceived={messageReceived}
