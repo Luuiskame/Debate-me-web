@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 // components
 import Searchbar from "./components/Searchbar/Searchbar";
+import MessageIcon from "./components/MessageIcon/MessageIcon";
 
 const Navbar = ({ styles }) => {
   const personalUsername = useSelector((state) => state.userReducer.user.username);
@@ -38,9 +39,7 @@ const Navbar = ({ styles }) => {
           </div> */}
 
           <div className={styles.notifications}>
-            <Link to='/chats'>
-              <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
-            </Link>
+            <MessageIcon/>
           </div>
           <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/notifications.png" alt="" />

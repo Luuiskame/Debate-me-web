@@ -1,0 +1,8 @@
+.messageIcon {
+    width: 30px;
+  height: 30px;
+  margin: auto 0;
+  border: 3px solid transparent;
+  text-decoration: none;
+  color: inherit;
+}
