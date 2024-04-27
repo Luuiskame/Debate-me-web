@@ -33,7 +33,7 @@ const Navbar = ({ styles }) => {
           <img className={styles.switchThemeIcon} src="./resources/png/darkmode.png" alt="" />
         </div>
         {/* main icons */}
-        <div className={styles.mainicons}>
+        <div className={styles.mainiconsContainer}>
           {/* <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/friends.png" alt="" />
           </div> */}
@@ -45,18 +45,20 @@ const Navbar = ({ styles }) => {
             <img className={styles.notificationIcons} src="./resources/png/notifications.png" alt="" />
           </div>
 
-          {/* setting icon */}
-          <div className={styles.settings}>
-            <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
-          </div>
-        </div>
-
-        {/* Profile Icon */}
+          {/* Profile Icon */}
         <div className={styles.settings}>
           <Link to={`/profile/${personalUsername}`}>
             <CiUser className={styles.settings} />
           </Link>
         </div>
+
+          {/* setting icon */}
+          <div className={styles.settings}>
+            <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
+          </div>
+
+        </div>
+
       </div>
     </div>
   );

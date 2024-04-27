@@ -41,10 +41,15 @@ const MessageIcon = ()=> {
     
     return(
         <>
-        <Link to='/chats'>
+        <Link className={styles.link} to='/chats'>
             <FiMessageSquare className={styles.messageIcon} />
             </Link>
 
+        <div className={styles.messageNotificationNumberContainer}>
+            <p>
+            {unreadMessages}
+            </p>
+        </div>
 
         </>
     )
