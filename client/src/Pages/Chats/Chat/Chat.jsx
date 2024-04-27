@@ -1,7 +1,7 @@
 //react
 import { useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 
 // styles 
 import styles from './Chat.module.css'
@@ -19,6 +19,9 @@ import { CiVideoOn } from "react-icons/ci";
 //components
 import ChatMiddlePart from './chatComponents/ChatMiddlePart/ChatMiddlePart'
 
+// redux actions
+import { setNotReadMessages } from '../../../redux/slices/chatSlice'
+
 
 const Chat = ()=>{
 
@@ -26,6 +29,8 @@ const Chat = ()=>{
     const [activateRead, setActivateRead] = useState(null)
     const [message, setMessage] = useState('')
     const [messageReceived, setMessageReceived] = useState([])
+
+    const dispatch = useDispatch()
 
     // necessary properties for comparing and getting the user chats info 
     const personalUserId = useSelector((state)=> state.userReducer.user?.id)
@@ -90,7 +95,6 @@ const Chat = ()=>{
     
 
     useEffect(()=> {
-      console.info('hihihiha')
       if (messageReceived.length > 0 && chatId && personalUserId && activateRead === true) {
         const arr = [...messageReceived]
         const lastMesage = arr.pop();
@@ -101,6 +105,10 @@ const Chat = ()=>{
         ) {
           console.log("activating lastread");
           socket.emit("updateReadStatus", chatId);
+
+          // this part may cause a glitch in case we send the -1 and not receive the updated message by some error
+          dispatch(setNotReadMessages(-1))
+            console.log("activating unread msg")
         }
       }
       

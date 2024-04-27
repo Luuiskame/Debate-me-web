@@ -63,11 +63,13 @@ io.on("connection", async (socket) => {
 
   socket.on('sendMessage', async (data) => {
     try {
-      const {chatId} = data
+      const {chatId, receiverId} = data
       const messageInfo = await sendMessages(data)
   
       io.to(chatId).emit("receiveMessage", messageInfo);
       // console.log(socket.handshake.auth)
+      // sending a notification and adding + 1
+      io.to(receiverId).emit('receiveMessageNotification', 1)
     } catch (error) {
       console.error(error);
     }
