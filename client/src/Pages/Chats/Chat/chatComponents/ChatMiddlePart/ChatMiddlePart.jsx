@@ -1,30 +1,53 @@
+import { useState, useEffect, useRef } from "react";
+import styles from "./ChatMiddlePart.module.css";
 
-import styles from './ChatMiddlePart.module.css'
+import { socket } from "../../../../../socket";
 
-const ChatMiddlePart = ({messageReceived, correctChatInfo})=> {
-     console.log(messageReceived)
-    
-    return(
-        <div className={styles.chatMiddlePartContainer}>
+import { IoMdCheckmark } from "react-icons/io";
+import { IoCheckmarkDone } from "react-icons/io5";
 
-            {messageReceived.length > 0 
-            ? messageReceived.map(message=> (
-                <div className={styles.messageCardContainer}>
-                    <figure className={styles.pfpContainer}>
-                        <img src={message.senderPicture} alt="sender picture" />
-                    </figure>
+const ChatMiddlePart = ({
+  messageReceived,
+  correctChatInfo,
+  chatId,
+  personalUserId,
+  activateRead,
+}) => {
+  const [doubleCheck, setDoubleCheck] = useState(null);
+  const messagesEndRef = useRef(null);
+  console.log(activateRead)
+  console.log(messageReceived);
 
-                    <div className={styles.nameAndMessageContentContainer}>
-                        <p className={styles.name}>{message.senderName}</p>
-                        <p className={styles.message}>{message.content}</p>
-                        {/* <p>{message.timestamp}</p> */}
-                    </div>
-                </div>
-            )) : (<p>sent any message!</p>)
-            }
+  
 
-        </div>
-    )
-}
+  // useEffect(()=> {
+  //   messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  // },[])
 
-export default ChatMiddlePart
+  return (
+    <div className={styles.chatMiddlePartContainer}>
+      {messageReceived.length > 0 ? (
+        messageReceived.map((message) => (
+          <div key={message.id} className={styles.messageCardContainer}>
+            <figure className={styles.pfpContainer}>
+              <img src={message.senderPicture} alt="sender picture" />
+            </figure>
+
+            <div className={styles.nameAndMessageContentContainer}>
+              <p className={styles.name}>{message.senderName}</p>
+              <p ref={messagesEndRef} className={styles.message}>
+                {message.content}{" "}
+                {message.deliveryStatus ? <IoMdCheckmark className={`${message.readStatus ? `${styles.read}` : null}`}/> : null}{" "}
+              </p>
+              {/* <p>{message.timestamp}</p> */}
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>sent any message!</p>
+      )}
+    </div>
+  );
+};
+
+export default ChatMiddlePart;

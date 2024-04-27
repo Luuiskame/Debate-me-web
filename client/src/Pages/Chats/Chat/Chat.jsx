@@ -1,7 +1,7 @@
 //react
 import { useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 
 // styles 
 import styles from './Chat.module.css'
@@ -19,12 +19,18 @@ import { CiVideoOn } from "react-icons/ci";
 //components
 import ChatMiddlePart from './chatComponents/ChatMiddlePart/ChatMiddlePart'
 
+// redux actions
+import { setNotReadMessages } from '../../../redux/slices/chatSlice'
+
 
 const Chat = ()=>{
 
     //sending message state related
+    const [activateRead, setActivateRead] = useState(null)
     const [message, setMessage] = useState('')
     const [messageReceived, setMessageReceived] = useState([])
+
+    const dispatch = useDispatch()
 
     // necessary properties for comparing and getting the user chats info 
     const personalUserId = useSelector((state)=> state.userReducer.user?.id)
@@ -55,8 +61,11 @@ const Chat = ()=>{
           senderUsername: personalUserUsername,
           content: message,
           chatId: chatId,
-          offset: socket.auth?.serverOffset
-        
+          offset: socket.auth?.serverOffset,
+          deliveryStatus: true,
+          readStatus: false,
+          attachments: []
+
       }
       socket.emit("sendMessage", messageAndInfo)
       setMessage('')
@@ -66,23 +75,61 @@ const Chat = ()=>{
       socket.on("receiveMessage", (data)=>{
         socket.auth.serverOffset = data?.id
         socket.auth.chatId = data.chatId
-        console.log(data)
         
         if(Array.isArray(data)){
-          // const accumulatedMessages = data.map(message => message.content)
           console.log(data)
             // Update the state once with all accumulated messages
             setMessageReceived([...messageReceived, ...data])
+            setActivateRead(true)
+            console.log('one')
         } else {
+          // console.log(messageReceived)
           setMessageReceived([...messageReceived, data])
-
+          setActivateRead(true)
+          console.log('one')
         }
+
       })
+
     },[socket, messageReceived])
+    
+
+    useEffect(()=> {
+      if (messageReceived.length > 0 && chatId && personalUserId && activateRead === true) {
+        const arr = [...messageReceived]
+        const lastMesage = arr.pop();
+        console.log(lastMesage);
+        if (
+          lastMesage?.receiverId === personalUserId &&
+          lastMesage.readStatus === false
+        ) {
+          console.log("activating lastread");
+          socket.emit("updateReadStatus", chatId);
+
+          // this part may cause a glitch in case we send the -1 and not receive the updated message by some error
+          dispatch(setNotReadMessages(-1))
+            console.log("activating unread msg")
+        }
+      }
+      
+      if(activateRead){
+        socket.on("ReceiveUpdatedReadStatus", data=> {
+          //! we pop the last message so we can then put our new last message with the updated read status
+          messageReceived.pop()
+          setMessageReceived([...messageReceived, data])
+          console.log(data)
+        })
+      }
+      setActivateRead(false)
+      
+    },[socket,activateRead])
+
+    
 
     useEffect(()=>{
       socket.connect()
       socket.emit("joinRoom", chatId)
+
 
       return ()=>{
         socket.disconnect()
@@ -118,6 +165,9 @@ const Chat = ()=>{
     
         </div>
         <ChatMiddlePart
+        activateRead={activateRead}
+        chatId={chatId}
+        personalUserId={personalUserId}
         messageReceived={messageReceived}
         correctChatInfo={correctChatInfo.participantsInfo[0]}
         />

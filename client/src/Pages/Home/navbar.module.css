@@ -1,6 +1,5 @@
 .navbar {
   display: flex;
-  flex-direction: row;
   height: 40px;
   box-shadow: 0px 0px 10px 2px #34343433;
   width: 100%;
@@ -56,19 +55,18 @@
   height: 30px;
 }
 /* main icons */
-.mainicons {
+.mainiconsContainer {
   display: flex;
-  width: 200px;
   flex-flow: row nowrap;
   align-items: center;
   margin-left: auto;
+  gap: .6rem;
 }
 .notifications {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  padding: 6px;
 }
 .notificationIcons {
   width: 30px;
@@ -86,9 +84,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
-  margin-left: 10px;
-  margin-right: auto;
   border: 3px solid transparent;
 }
 

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 // components
 import Searchbar from "./components/Searchbar/Searchbar";
+import MessageIcon from "./components/MessageIcon/MessageIcon";
 
 const Navbar = ({ styles }) => {
   const personalUsername = useSelector((state) => state.userReducer.user.username);
@@ -32,32 +33,32 @@ const Navbar = ({ styles }) => {
           <img className={styles.switchThemeIcon} src="./resources/png/darkmode.png" alt="" />
         </div>
         {/* main icons */}
-        <div className={styles.mainicons}>
+        <div className={styles.mainiconsContainer}>
           {/* <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/friends.png" alt="" />
           </div> */}
 
           <div className={styles.notifications}>
-            <Link to='/chats'>
-              <img className={styles.notificationIcons} src="./resources/png/message.png" alt="" />
-            </Link>
+            <MessageIcon/>
           </div>
           <div className={styles.notifications}>
             <img className={styles.notificationIcons} src="./resources/png/notifications.png" alt="" />
           </div>
 
-          {/* setting icon */}
-          <div className={styles.settings}>
-            <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
-          </div>
-        </div>
-
-        {/* Profile Icon */}
+          {/* Profile Icon */}
         <div className={styles.settings}>
           <Link to={`/profile/${personalUsername}`}>
             <CiUser className={styles.settings} />
           </Link>
         </div>
+
+          {/* setting icon */}
+          <div className={styles.settings}>
+            <img className={styles.settingsIcon} src="./resources/png/usersettings.png" alt="" />
+          </div>
+
+        </div>
+
       </div>
     </div>
   );
