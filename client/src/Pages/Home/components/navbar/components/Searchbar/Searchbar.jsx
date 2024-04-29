@@ -30,8 +30,8 @@ const Searchbar = () => {
 
   return (
     <>
-      <input className={styles.searchBar} type="search" placeholder="User name" onChange={(e) => setSearchData(e.target.value)} />
-      <button className={styles.searchIcon} onClick={handleSearch}>
+      <input className={styles.searchbarTypeInput} type="search" placeholder="User name" onChange={(e) => setSearchData(e.target.value)} />
+      <button className={styles.searchButtonAndImgContainer} onClick={handleSearch}>
         <img className={styles.searchimg} src="./resources/png/search-icon.png" alt="" />
       </button>
 
