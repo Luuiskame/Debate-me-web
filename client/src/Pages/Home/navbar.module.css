@@ -1,12 +1,12 @@
 .navbar {
   display: flex;
   flex-direction: column;
-  height: 40px;
   box-shadow: 0px 0px 10px 2px #34343433;
   width: 100%;
   position: fixed;
   margin-top: -1px;
   background-color: var(--primary-color);
+  z-index: 2;
 }
 
 .generalIconsSizeContainer {
@@ -65,3 +65,9 @@
   outline: none;
 }
 
+
+/* second part of the navbar */
+
+.mainIconsContainer {
+  display: flex;
+}

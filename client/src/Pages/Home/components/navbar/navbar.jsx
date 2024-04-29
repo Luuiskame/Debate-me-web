@@ -52,7 +52,7 @@ const Navbar = ({ styles }) => {
       </div>
 
       {/* main icons */}
-      <div className={styles.mainiconsContainer}>
+      <div className={styles.mainIconsContainer}>
         <div className={`${styles.generalIconsSizeContainer}`}>
           <CiHome color="#08616d"/>
         </div>
