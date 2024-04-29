@@ -6,12 +6,11 @@
     border-radius: 20px;
     outline: none;
     background-color: transparent;
-    margin-left: 20px;
     font-size: large;
   }
   
   .searchIcon {
-    width: 90px;
+    width: 50%;
     height: 30px;
     text-align: center;
     background-color: transparent;

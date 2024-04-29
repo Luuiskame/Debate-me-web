@@ -1,5 +1,6 @@
 .navbar {
   display: flex;
+  flex-direction: column;
   height: 40px;
   box-shadow: 0px 0px 10px 2px #34343433;
   width: 100%;
@@ -8,10 +9,31 @@
   background-color: var(--primary-color);
 }
 
-.logoImg {
-  height: 39px;
-  margin-left: 20px;
+.generalIconsSizeContainer {
+  width: 2rem;
+  height: 2rem;
+
+  && svg {
+    height: 100%;
+    width: 100%;
+  }
 }
+
+/* first part of the navbar */
+.navbarFirstPart {
+  display: flex;
+  gap: .6rem;
+}
+
+/* logo */
+.logoContainer {
+  height: 2rem;
+}
+
+.logoImg {
+  height: 100%;
+}
+
 
 /* searching bar */
 .searchBox {
@@ -20,96 +42,10 @@
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
+  width: 30%;
   max-width: 600px;
-  height: 30px;
   border: 3px solid var(--accent-color);
   border-radius: 10px;
   outline: none;
-  margin-left: 50px;
-  margin-top: 3px;
 }
 
-/* create new post */
-.newPost {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  padding: 3px;
-  margin-left: 30px;
-  border: 3px solid transparent;
-}
-.newPost:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
-}
-.newPostText {
-  word-break: break-all;
-  width: 4ch;
-  font-size: 13px;
-  color: #08616d;
-}
-.newPostIcon {
-  width: 30px;
-  height: 30px;
-}
-/* main icons */
-.mainiconsContainer {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  margin-left: auto;
-  gap: .6rem;
-}
-.notifications {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.notificationIcons {
-  width: 30px;
-  height: 30px;
-  margin: auto 0;
-  border: 3px solid transparent;
-}
-
-.notificationIcons:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
-}
-/* toggle theme*/
-.switchTheme {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid transparent;
-}
-
-.switchThemeIcon {
-  width: 30px;
-  height: 30px;
-}
-.switchTheme:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
-}
-
-/* settings */
-.settings {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 6px;
-}
-.settingsIcon {
-  width: 30px;
-  height: 30px;
-  margin-top: auto;
-  border: 3px solid transparent;
-}
-.settingsIcon:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
-}
