@@ -42,7 +42,7 @@ const Navbar = ({ styles }) => {
           {/* create new post */}
           <div className={`${styles.generalIconsSizeContainer}`}>
             <CiCirclePlus color="#08616d"/>
-            <p className={styles.newPostText}>New Post</p>
+            {/* <p className={styles.newPostText}>New Post</p> */}
           </div>
 
           <div className={`${styles.generalIconsSizeContainer}`}>
