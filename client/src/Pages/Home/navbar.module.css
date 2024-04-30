@@ -11,6 +11,8 @@
 }
 
 .generalIconsSizeContainer {
+  /* adding positions relative due to notifications icon on the message */
+  position: relative;
   width: 100%;
   max-width: 70px;
   height: 2rem;

@@ -16,6 +16,7 @@
   border-radius: 50%;
   width: 60%;
   height: 60%;
+  max-width: 25px;
   background-color: red;
 
   top: -10%;
