@@ -42,7 +42,7 @@ const MessageIcon = () => {
   return (
     <>
       <Link className={styles.link} to="/chats">
-        <FiMessageSquare className={styles.messageIcon} />
+        <FiMessageSquare color="#08616d" className={styles.messageIcon} />
       </Link>
 
       {unreadMessages > 0 ? (

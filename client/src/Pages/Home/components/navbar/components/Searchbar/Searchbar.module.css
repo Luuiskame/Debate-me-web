@@ -1,33 +1,33 @@
 
-  .searchBar {
+  .searchbarTypeInput {
     width: 100%;
     height: 100%;
     border: 1px solid transparent;
     border-radius: 20px;
     outline: none;
     background-color: transparent;
-    margin-left: 20px;
     font-size: large;
   }
   
-  .searchIcon {
-    width: 90px;
+  .searchButtonAndImgContainer {
+    width: 100%;
     height: 30px;
     text-align: center;
-    background-color: transparent;
     border: none;
+    border-radius: 5px;
+    background-color: transparent;
 
     &:hover{
             cursor: pointer;
             background-color: var(--accent-color-lighter);
-            border-top-right-radius: 6px;
-            border-bottom-right-radius: 6px;
+            border-radius: 5px;
+
           
     }
   }
 
   .searchimg {
-    width: 90%;
+    width: 100%;
     max-width: 30px;
     height: 30px;
   }

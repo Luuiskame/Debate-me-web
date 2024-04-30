@@ -1,115 +1,98 @@
 .navbar {
   display: flex;
-  height: 40px;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0px 0px 10px 2px #34343433;
   width: 100%;
   position: fixed;
   margin-top: -1px;
   background-color: var(--primary-color);
+  z-index: 2;
+}
+
+.generalIconsSizeContainer {
+  /* adding positions relative due to notifications icon on the message */
+  position: relative;
+  width: 100%;
+  max-width: 70px;
+  height: 2rem;
+  border: 3px solid transparent;
+  
+  && svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+  border-bottom: 3px solid rgb(35, 142, 195);
+  }
+}
+
+/* first part of the navbar */
+.navbarFirstPart {
+  /* we'll have to modify the width of this part on desktop */
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  gap: .6rem;
+  justify-content: space-between;
+  margin-top: .2rem;
+}
+
+.navbarItems {
+  display: flex;
+  width: 70%;
+  gap: .8rem;
+}
+
+/* logo */
+.logoContainer {
+  max-width: 100px;
+  height: 2rem;
 }
 
 .logoImg {
-  height: 39px;
-  margin-left: 20px;
+  height: 100%;
 }
+
 
 /* searching bar */
 .searchBox {
-  position: relativee;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
   width: 90%;
-  max-width: 600px;
-  height: 30px;
+  min-width: 100px;
   border: 3px solid var(--accent-color);
   border-radius: 10px;
   outline: none;
-  margin-left: 50px;
-  margin-top: 3px;
 }
 
-/* create new post */
-.newPost {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  justify-content: center;
-  padding: 3px;
-  margin-left: 30px;
-  border: 3px solid transparent;
-}
-.newPost:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
-}
-.newPostText {
-  word-break: break-all;
-  width: 4ch;
-  font-size: 13px;
-  color: #08616d;
-}
-.newPostIcon {
-  width: 30px;
-  height: 30px;
-}
-/* main icons */
-.mainiconsContainer {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  margin-left: auto;
-  gap: .6rem;
-}
-.notifications {
-  position: relative;
+
+/* second part of the navbar */
+
+.mainIconsContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-.notificationIcons {
-  width: 30px;
-  height: 30px;
-  margin: auto 0;
-  border: 3px solid transparent;
+  gap: 1.4rem;
+  width: 90%;
+  margin: 0 auto;
 }
 
-.notificationIcons:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
-}
-/* toggle theme*/
-.switchTheme {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 3px solid transparent;
-}
+@media screen and (min-width: 1024px){
+  .navbar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-.switchThemeIcon {
-  width: 30px;
-  height: 30px;
-}
-.switchTheme:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
-}
+  .mainIconsContainer {
+    justify-content: end;
+  }
 
-/* settings */
-.settings {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 6px;
-}
-.settingsIcon {
-  width: 30px;
-  height: 30px;
-  margin-top: auto;
-  border: 3px solid transparent;
-}
-.settingsIcon:hover {
-  cursor: pointer;
-  border-bottom: 3px solid rgb(35, 142, 195);
+  .logoContainer {
+    max-width: 100px;
+    height: 2.6rem;
+  }
 }
