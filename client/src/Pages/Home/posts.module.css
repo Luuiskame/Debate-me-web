@@ -17,7 +17,6 @@
   max-width: 500px;
   text-align: center;
   margin: auto;
-  padding: 9px 30px;
   border: 0.1px solid rgba(128, 128, 128, 0.314);
   background-color: var(--primary-color);
   border-radius: 12px;
@@ -27,6 +26,7 @@
 /* user img,name and select publising priority */
 .createpost div:nth-child(1) {
   display: flex;
+  margin: .6rem;
 }
 
 .createpost div:nth-child(1) > img {
@@ -67,7 +67,7 @@
 /* text input */
 .createpost div:nth-child(2) {
   margin-top: 10px;
-  width: 100%;
+  width: 90%;
 }
 
 .create_post_userinput {
@@ -84,9 +84,8 @@
 /*add tags, img, emojies, and publish-button */
 .createpost div:nth-child(3) {
   display: flex;
-  flex-flow: row nowrap;
   align-items: center;
-  margin-top: auto;
+  margin: .6rem;
 }
 .emojies {
   display: flex;

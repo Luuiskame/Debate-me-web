@@ -18,12 +18,12 @@ const Home = () => {
 
   return (
     <>
+      <main className={main_styles.grid_container}>
       <Navbar styles={navbar_styles} />
-      <div className={main_styles.grid_container}>
         <Social styles={social_styles} />
         <Posts styles={posts_styles} />
         <Voicechats styles={voicechats_styles} />
-      </div>
+      </main>
     </>
   );
 };

@@ -8,7 +8,7 @@ const Createpost = ({ styles }) => {
     <div className={styles.createpost}>
       {/* user img,name and select publising priority */}
       <div>
-        <img src="../../../../../resources/png/nopicture.png" alt="" />
+        <img src={user.profilePicture} />
 
         <span>
           <p>{user.username ? `@${user.username}` : "@unnamed"}</p>

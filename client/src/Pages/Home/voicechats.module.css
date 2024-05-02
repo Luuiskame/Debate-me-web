@@ -9,6 +9,8 @@
   height: 100vh;
   background-color: transparent;
   width: 38.3%;
+ 
+  display: none;
 }
 .voicechats {
 }
