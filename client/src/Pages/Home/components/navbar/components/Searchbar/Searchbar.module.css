@@ -11,7 +11,8 @@
   
   .searchButtonAndImgContainer {
     width: 100%;
-    height: 30px;
+    height: 100%;
+    max-width: 150px;
     text-align: center;
     border: none;
     border-radius: 5px;
