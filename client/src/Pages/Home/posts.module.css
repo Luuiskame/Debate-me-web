@@ -208,3 +208,11 @@
 }
 .post_list_wrapper > div:nth-child(3) {
 }
+
+
+
+@media screen and (min-width: 1024px) {
+  .posts {
+    grid-area: post;
+  }
+}

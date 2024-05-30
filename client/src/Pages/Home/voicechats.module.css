@@ -2,15 +2,20 @@
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  margin-top: 47px;
-  position: fixed;
   top: 0;
   right: 0;
   height: 100vh;
   background-color: transparent;
-  width: 38.3%;
+  border: 1px solid red;
+  width: 350px;
  
   display: none;
 }
-.voicechats {
+
+
+@media screen and (min-width: 1024px) {
+  .voicechats {
+    grid-area: voice;
+    display: block;
+  }
 }

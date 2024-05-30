@@ -86,6 +86,12 @@
   .navbar {
     flex-direction: row;
     justify-content: space-between;
+    grid-area: navbi; 
+    align-self: start;
+
+    grid-area: navbar;
+    /* width: 100dvw; */
+
   }
 
   .mainIconsContainer {
