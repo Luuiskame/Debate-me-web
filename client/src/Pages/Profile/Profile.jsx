@@ -10,6 +10,7 @@ import {useGetUserByUsernameQuery} from '../../redux/apiSlices/userAPI'
 
 // components
 import SendMessageButton from './components/SendMessageButton/SendMessageButton';
+import Visitorpov from './components/Visitorpov/Visitorpov';
 
 const Profile = ()=>{
     // when clicking on someone elses profile or our profile we're extracting the username from the params url
@@ -59,28 +60,11 @@ const Profile = ()=>{
 
     if(foreignUsername !== personalUsername.username){
         return(
-            <div className={styles.profileContainer}>
-
-            <div className={styles.firstProfilePart}>
-            <figure className={styles.pfpContainer}>
-                <img className={styles.userProfilePicture} src={data.profilePicture} alt="" />
-            </figure>
-            
-            <div className={styles.nameAndUserContainer}>
-                <p>{data.name}</p>
-                <p>@{data.username}</p>
-            </div>
-            <p className={styles.vipText}>VIP</p>
-            
-            </div>
-
-            <div className={styles.userInteractions}>
-                <SendMessageButton 
-                receiverId={foreignId}
-                senderId={personalUid}
-                />
-            </div>
-        </div>
+            <Visitorpov
+            data={data}
+            receiverId={foreignId}
+            senderId={personalUid}
+            />
         )
     }
 }
