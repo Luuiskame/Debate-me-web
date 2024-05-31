@@ -215,4 +215,13 @@
   .posts {
     grid-area: post;
   }
+
+  .createpost {
+    max-width: 850px;
+
+  }
+
+  .post_list_wrapper {
+    max-width: 800px;
+  }
 }

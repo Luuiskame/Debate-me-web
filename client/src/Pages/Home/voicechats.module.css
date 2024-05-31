@@ -4,10 +4,11 @@
   align-items: center;
   top: 0;
   right: 0;
-  height: 100vh;
   background-color: transparent;
   border: 1px solid red;
-  width: 350px;
+  width: 550px;
+  max-width: 550px;
+  margin-top: 1.8rem;
  
   display: none;
 }
@@ -17,5 +18,6 @@
   .voicechats {
     grid-area: voice;
     display: block;
+    align-self: start;
   }
 }
