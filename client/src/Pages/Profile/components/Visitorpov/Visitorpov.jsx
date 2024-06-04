@@ -2,7 +2,7 @@ import SendMessageButton from '../SendMessageButton/SendMessageButton'
 import FollowButton from '../FollowButton/FollowButton'
 import styles from './visitorpov.module.css'
 
-const visitorpov = ({data}, receiverId, personalUid)=> {
+const visitorpov = ({data, receiverId, senderId})=> {
     return (
         <div className={styles.profileContainer}>
 
@@ -22,12 +22,12 @@ const visitorpov = ({data}, receiverId, personalUid)=> {
             <div className={styles.userInteractions}>
                 <SendMessageButton 
                 foreignId={receiverId}
-                senderId={personalUid}
+                senderId={senderId}
                 />
 
                 <FollowButton
-                foreignId={receiverId}
-                senderId={personalUid}
+                userToFollow={receiverId}
+                userWhosFollowing={senderId}
                 />
             </div>
 

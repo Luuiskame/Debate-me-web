@@ -3,13 +3,19 @@
 import { socket } from "../../../../socket"
 
 //react
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 
-const FollowButton = (foreignId, personalUid)=> {
+const FollowButton = ({userToFollow, userWhosFollowing})=> {
+    const [followStatus, setFollowStatus] = useState('follow')
+
+    const followFunction = ()=> {
+        socket.emit("followUser", {userWhosFollowingId: userWhosFollowing, userToFollowId: userToFollow})
+        setFollowStatus('Following')
+    }
     return(
-        <button>
-            follow
+        <button onClick={followFunction}>
+            {followStatus}
         </button>
     )
 }
