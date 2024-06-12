@@ -1,35 +1,36 @@
-const {Followers, User} = require('../../db')
+const { User, Followers } = require('../../db'); // Assuming you have a model named "userFollowers"
 
-async function folloUser({userWhosFollowingId, userToFollowId}) {
+async function followUserFn({ userWhosFollowingId, userToFollowId }) {
     try {
-        const userToFollow = await User.findByPk(userToFollowId)
-        if(!userToFollow) return {succes: false, error: 'userToFollow does not exist' }
+        // Find the user to follow
+        const userToFollow = await User.findByPk(userToFollowId);
+        if (!userToFollow) 
+            return { success: false, error: 'userToFollow does not exist' };
 
-        // check if user is already following(prevent duplicate follows)
+        // Check if user is already following (prevent duplicate follows)
         const existingFollow = await Followers.findOne({
             where: {
-                userWhosFollowingId,
-                userId: userToFollowId
+                userId: userWhosFollowingId,
+                followerId: userToFollowId
             }
-        })
+        });
 
-        if(existingFollow) return {success: false, error: 'you already follow this person'}
+        if (existingFollow) 
+            return { success: false, error: 'You already follow this person' };
 
-        const newFollow = await Followers.create({
-            userId: userToFollowId,
-            userWhosFollowingId
-        })
+        // Create a new follow relationship
+        await Followers.create({
+            userId: userWhosFollowingId,
+            followerId: userToFollowId
+        });
 
-        if(newFollow) return {success: true, message: 'user followed succesfully', followerId: userWhosFollowingId}
-
-        if(!newFollow) return {succes: false, error: 'something unexpected happened when following this user'}
-    
+        return { success: true, message: 'User followed successfully', followerId: userWhosFollowingId };
     } catch (error) {
-        console.log('error following this user', error)
-        return {success: false, message: 'Failed to follow user'}
+        console.error('Error following this user', error);
+        return { success: false, message: 'Failed to follow user' };
     }
 }
 
 module.exports = {
-    folloUser
-}
+    followUserFn
+};

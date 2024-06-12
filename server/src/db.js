@@ -41,8 +41,9 @@ Post.hasMany(Like)
 Like.belongsTo(Post)
 
 //Relations between Users and Followers
-User.belongsToMany(User, {as: 'Followers', through: 'userFollowers',foreignKey:'userId'})
-User.belongsToMany(User, {as: 'Following', through: 'userFollowing', foreignKey: 'followerId'})
+//Relations between Users and Followers
+User.belongsToMany(User, {as: 'userFollowers', through: Followers ,foreignKey:'userId'})
+User.belongsToMany(User, {as: 'userFollowing', through: Followers, foreignKey: 'followerId'})
 
 // relations between users and their messages
 User.hasMany(Message, {foreignKey: 'senderId'})
