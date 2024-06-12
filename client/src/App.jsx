@@ -45,7 +45,7 @@ function App() {
   },[userId])
 
   return (
-    <main>
+    <>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />
@@ -54,7 +54,7 @@ function App() {
         <Route path="/chat/:chatId" element={<Chat />} />
         <Route path="/profile/:foreignUsername" element={<Profile />} />
       </Routes>
-    </main>
+    </>
   );
 }
 

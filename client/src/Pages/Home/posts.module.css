@@ -4,20 +4,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   height: fit-content;
-  padding: 10px;
+  margin-top: 1rem;
 }
 /* create post section ------------------------------------------------------------------------------------*/
 .createpost {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   text-align: center;
   margin: auto;
-  padding: 9px 30px;
   border: 0.1px solid rgba(128, 128, 128, 0.314);
   background-color: var(--primary-color);
   border-radius: 12px;
@@ -27,6 +27,7 @@
 /* user img,name and select publising priority */
 .createpost div:nth-child(1) {
   display: flex;
+  margin: .6rem;
 }
 
 .createpost div:nth-child(1) > img {
@@ -67,7 +68,7 @@
 /* text input */
 .createpost div:nth-child(2) {
   margin-top: 10px;
-  width: 100%;
+  width: 90%;
 }
 
 .create_post_userinput {
@@ -84,9 +85,8 @@
 /*add tags, img, emojies, and publish-button */
 .createpost div:nth-child(3) {
   display: flex;
-  flex-flow: row nowrap;
   align-items: center;
-  margin-top: auto;
+  margin: .6rem;
 }
 .emojies {
   display: flex;
@@ -135,7 +135,7 @@
 }
 /* post list -------------------------------------------------------------------------------------*/
 .post_list_wrapper {
-  width: 90%;
+  /* width: 90%; */
   max-width: 500px;
   display: flex;
   flex-flow: column;
@@ -207,4 +207,21 @@
   width: 100%;
 }
 .post_list_wrapper > div:nth-child(3) {
+}
+
+
+
+@media screen and (min-width: 1024px) {
+  .posts {
+    grid-area: post;
+  }
+
+  .createpost {
+    max-width: 850px;
+
+  }
+
+  .post_list_wrapper {
+    max-width: 800px;
+  }
 }

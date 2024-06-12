@@ -10,6 +10,7 @@ const routes = require('./routes/index.js');
 
 // io controllers 
 const {getMessages, sendMessages, updateReadStatus} = require('../src/controllers/io-controllers/Messages.js')
+const {followUserFn} = require('./controllers/io-controllers/Follower.js')
 
 const app = express();
 app.use(cors());
@@ -103,6 +104,18 @@ io.on("connection", async (socket) => {
       console.log(error)
     }
       
+
+    // follow stuff
+    socket.on("followUser", async (data)=> {
+      try {
+        const response = await followUserFn(data)
+        console.log(response)
+        socket.emit("followUserResponse", response)
+        
+      } catch (error) {
+        console.log(error)
+      }
+    })
 }
 });
 
