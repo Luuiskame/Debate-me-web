@@ -8,6 +8,7 @@ const getUserChats = require("../controllers/getChats");
 const startChat = require("../controllers/StartChat");
 const getUser = require("../controllers/getUser")
 const getUserByUsername = require("../controllers/getUserByUsername")
+const verifyIfUserIsFollowing = require("../controllers/verifyIfUserIsFollowing")
 
 const isExisting = require("../controllers/isExisting");
 const router = Router();
@@ -37,5 +38,9 @@ router.get("/chats/get/:userId", getUserChats);
 router.post("/send", sendMessage);
 
 router.get("/get/:senderId/:receiverId", getMessages);
+
+
+// verify if user is a follwer
+router.post("/checkFollowStatus", verifyIfUserIsFollowing)
 
 module.exports = router;
