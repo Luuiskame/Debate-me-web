@@ -1,4 +1,3 @@
-
 // socket 
 import { socket } from "../../../../socket"
 
@@ -11,9 +10,9 @@ import { useGetIfFollowingUserMutation, useUnfollowUserMutation } from "../../..
 
 const FollowButton = ({ userToFollow, userWhosFollowing }) => {
   console.log({userToFollowId: userToFollow, userWhosFollowingId: userWhosFollowing})
-  const [followStatus, setFollowStatus] = useState('');
+  const [followStatus, setFollowStatus] = useState(''); // Default to empty string
   const [getIfFollowingUser] = useGetIfFollowingUserMutation();
-  const [unfollowUser] = useUnfollowUserMutation(); // Moved here
+  const [unfollowUser] = useUnfollowUserMutation(); 
 
   const followFunction = () => {
     if (followStatus === "Follow") {
@@ -22,15 +21,15 @@ const FollowButton = ({ userToFollow, userWhosFollowing }) => {
           userToFollowId: userToFollow
       });
     } else if (followStatus === "Following") {
+      unfollowUserFn();
       console.log("user unfollowed");
     }
   };
 
-
   useEffect(() => {
     const handleFollowUserResponse = (data) => {
       if(data.success){
-        setFollowStatus("Following")
+        setFollowStatus("Following");
       }
       console.log(data);
     };
@@ -43,8 +42,8 @@ const FollowButton = ({ userToFollow, userWhosFollowing }) => {
     };
   }, []);
 
-  useEffect(()=> {
-
+  useEffect(() => {
+    //the unwrap is a fn that we use to manage directly the response from redux toolkit
     const checkFollow = async () => {
       try {
         const response = await getIfFollowingUser({
@@ -54,8 +53,8 @@ const FollowButton = ({ userToFollow, userWhosFollowing }) => {
 
         if (response.isFollowing) {
           setFollowStatus('Following');
-        } else if(response.isFollowing === false){
-          setFollowStatus("Follow")
+        } else {
+          setFollowStatus('Follow');
         }
       } catch (error) {
         console.error("Error checking follow status:", error);
@@ -63,9 +62,22 @@ const FollowButton = ({ userToFollow, userWhosFollowing }) => {
     };
 
     checkFollow();
+  }, [userToFollow]);
 
+  const unfollowUserFn = async () => {
+    try {
+      const response = await unfollowUser({
+        userWhosFollowingId: userWhosFollowing,
+        userToFollowId: userToFollow
+      }).unwrap();
 
-  },[followStatus])
+      if (response.unfollowed) {
+        setFollowStatus("Follow");
+      }
+    } catch (error) {
+      console.log('error unfollowing this user: ', error);
+    }
+  }
 
   return (
     <button onClick={followFunction}>
@@ -74,5 +86,4 @@ const FollowButton = ({ userToFollow, userWhosFollowing }) => {
   );
 };
 
-
-export default FollowButton
+export default FollowButton;
