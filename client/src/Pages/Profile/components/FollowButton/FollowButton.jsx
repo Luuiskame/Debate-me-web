@@ -14,11 +14,19 @@ const FollowButton = ({ userToFollow, userWhosFollowing }) => {
     const [getIfFollowingUser] = useGetIfFollowingUserMutation();
   
     const followFunction = () => {
-      socket.emit("followUser", {
-        userWhosFollowingId: userWhosFollowing,
-        userToFollowId: userToFollow
-      });
+      if(followStatus === "Follow"){
+        socket.emit("followUser", {
+            userWhosFollowingId: userWhosFollowing,
+            userToFollowId: userToFollow
+          });
+      } else if(followStatus === "Following"){
+        console.log("user unfollowed")
+      }
     };
+
+    const unfollowFunction = ()=> {
+        console.log("user unfollowed")
+    }
   
     useEffect(() => {
       
