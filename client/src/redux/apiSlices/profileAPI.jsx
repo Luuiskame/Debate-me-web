@@ -12,9 +12,17 @@ export const profileApi = createApi({
         body: reqbody,
       }),
     }),
+    unfollowUser: builder.mutation({
+      query: (reqbody)=> ({
+        url: "unfollowUser",
+        method: "POST",
+        body: reqbody,
+      }) 
+    })
   }),
 });
 
 export const {
   useGetIfFollowingUserMutation,
+  useUnfollowUserMutation
 } = profileApi;

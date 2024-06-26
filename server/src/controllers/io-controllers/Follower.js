@@ -10,8 +10,8 @@ async function followUserFn({ userWhosFollowingId, userToFollowId }) {
         // Check if user is already following (prevent duplicate follows)
         const existingFollow = await Followers.findOne({
             where: {
-                userId: userWhosFollowingId,
-                followerId: userToFollowId
+                userId: userToFollowId,
+                followerId: userWhosFollowingId
             }
         });
 
@@ -20,8 +20,8 @@ async function followUserFn({ userWhosFollowingId, userToFollowId }) {
 
         // Create a new follow relationship
         await Followers.create({
-            userId: userWhosFollowingId,
-            followerId: userToFollowId
+            userId: userToFollowId,
+            followerId: userWhosFollowingId
         });
 
         return { success: true, message: 'User followed successfully', followerId: userWhosFollowingId };
