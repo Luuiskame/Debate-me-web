@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CiUser } from "react-icons/ci";
 
 // redux
 import { useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import { useSelector } from "react-redux";
 // components
 import Searchbar from "./components/Searchbar/Searchbar";
 import MessageIcon from "./components/MessageIcon/MessageIcon";
+import ProfileIcon from "./components/ProfileIcon/ProfileIcon";
 import { CiCirclePlus } from "react-icons/ci";
 import { CiHome } from "react-icons/ci";
 import { LiaUserFriendsSolid } from "react-icons/lia";
@@ -66,9 +66,9 @@ const Navbar = ({ styles }) => {
         </div>
 
         {/* Profile Icon */}
-        <div className={`${styles.generalIconsSizeContainer}`}>
+        <div className={`${styles.generalIconsSizeContainer} ${styles.picIcon}`}>
           <Link to={`/profile/${personalUsername}`}>
-            <CiUser className={styles.settings} color="#08616d"/>
+            <ProfileIcon/>
           </Link>
         </div>
 
