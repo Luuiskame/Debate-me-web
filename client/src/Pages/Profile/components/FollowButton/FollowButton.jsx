@@ -1,6 +1,9 @@
 // socket 
 import { socket } from "../../../../socket"
 
+//? css
+import styles from './FollowButton.module.css'
+
 //react
 import { useEffect, useState } from "react"
 
@@ -80,7 +83,7 @@ const FollowButton = ({ userToFollow, userWhosFollowing }) => {
   }
 
   return (
-    <button onClick={followFunction}>
+    <button className={styles.followButton} onClick={followFunction}>
       {followStatus}
     </button>
   );

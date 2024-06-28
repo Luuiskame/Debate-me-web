@@ -1,0 +1,11 @@
+
+.followButton {
+    width: 30%;
+    height: 2rem;
+    max-width: 200px;
+    min-width: max-content;
+    border-radius: 5px;
+    border: none;
+    background: var(--accent-color);
+    color: #fff;
+}

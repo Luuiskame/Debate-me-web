@@ -1,3 +1,4 @@
+import styles from './SendMessageButton.module.css'
 
 const SendMessageButton = ({receiverId, senderId})=>{
     console.log(`receiverId ${receiverId}, senderId: ${senderId}`)
@@ -7,7 +8,7 @@ const SendMessageButton = ({receiverId, senderId})=>{
     }
     
     return(
-        <button onClick={createChat}>
+        <button className={styles.button} onClick={createChat}>
             Send Message
         </button>
     )

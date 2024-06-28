@@ -1,5 +1,6 @@
 import SendMessageButton from '../SendMessageButton/SendMessageButton'
 import FollowButton from '../FollowButton/FollowButton'
+import ViewMomentsButton from '../ViewMomentsButton/ViewMomentsButton'
 import styles from './visitorpov.module.css'
 
 const visitorpov = ({data, receiverId, senderId})=> {
@@ -25,10 +26,14 @@ const visitorpov = ({data, receiverId, senderId})=> {
                 senderId={senderId}
                 />
 
+
+                <ViewMomentsButton/>
+
                 <FollowButton
                 userToFollow={receiverId}
                 userWhosFollowing={senderId}
                 />
+
             </div>
 
         </div>
