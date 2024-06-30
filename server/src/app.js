@@ -107,10 +107,16 @@ io.on("connection", async (socket) => {
 
     // follow stuff
     socket.on("followUser", async (data)=> {
+      console.log(data)
       try {
+        const {userWhosFollowingId, userToFollowId} = data
         const response = await followUserFn(data)
         console.log(response)
         socket.emit("followUserResponse", response)
+
+        if (response?.success) {
+          io.to(userToFollowId).emit("newFollowerNotification", 1)
+        }
         
       } catch (error) {
         console.log(error)

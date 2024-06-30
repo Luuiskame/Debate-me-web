@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   user: {},
-  isUserActive: null
+  isUserActive: null,
+  unreadFollowers: 0
 };
 
 const userSlice = createSlice({
@@ -15,9 +16,12 @@ const userSlice = createSlice({
     },
     updateUserActivity: (state,action)=>{
       state.isUserActive = action.payload
+    },
+    setUnreadFollowers: (state,action)=> {
+      state.unreadFollowers = state.unreadFollowers + action.payload
     }
   },
 });
 
-export const { updateDataReducer, updateUserActivity } = userSlice.actions;
+export const { updateDataReducer, updateUserActivity, setUnreadFollowers } = userSlice.actions;
 export default userSlice.reducer;
