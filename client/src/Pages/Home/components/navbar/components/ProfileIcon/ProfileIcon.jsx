@@ -7,8 +7,7 @@ import { setUnreadFollowers } from '../../../../../../redux/slices/userSlice';
 
 const ProfileIcon = ()=> {
   const dispatch = useDispatch()
-  const unread = useSelector((state)=> state.userReducer.unreadFollowers)
-  console.log(unread)
+  const unreadFollowers = useSelector((state)=> state.userReducer.unreadFollowers)
 
   useEffect(()=> {
     const handleNewFollowerNotificationResponse = (data)=> {
@@ -26,6 +25,12 @@ const ProfileIcon = ()=> {
     return (
        <>
          <CiUser color="#08616d" className={styles.UserIcon}/>
+
+         {unreadFollowers > 0 ? (
+          <div className={styles.unreadFollowersNotificationContainer}>
+            <p>{unreadFollowers}</p>
+          </div>
+         ) : null}
        </>
     )
 }
