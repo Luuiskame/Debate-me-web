@@ -11,6 +11,7 @@ import {useGetUserByUsernameQuery} from '../../redux/apiSlices/userAPI'
 // components
 import SendMessageButton from './components/SendMessageButton/SendMessageButton';
 import Visitorpov from './components/Visitorpov/Visitorpov';
+import FollowersCard from './components/FollowersCard/FollowersCard';
 
 const Profile = ()=>{
     // when clicking on someone elses profile or our profile we're extracting the username from the params url
@@ -47,13 +48,14 @@ const Profile = ()=>{
             
             <div className={styles.secondProfilePart}>
                 <div className={styles.mainButtonsContainer}>
-                    <button className={styles.mainButtons}>Following</button>
+                    <FollowersCard/>
                     <button className={styles.mainButtons}>Followers</button>
                     <button className={styles.mainButtons}>Memories</button>
                     <button className={styles.mainButtons}>Visitors</button>
                 </div>
                 <button className={styles.editProfileButton}>Edit Profile</button>
             </div>
+
         </div>
         )
     }

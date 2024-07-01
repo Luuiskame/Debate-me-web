@@ -1,0 +1,27 @@
+.mainButtons {
+    width: 30%;
+    height: 2rem;
+    max-width: 200px;
+    min-width: max-content;
+    border-radius: 5px;
+}
+
+.remove {
+    display: none;
+}
+
+.showFollwersCard {
+    height: 100dvh; /* Ajusta para ocupar toda la vista vertical */
+    width: 100%; /* Ocupa el 100% del ancho */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 0; /* Comienza desde la parte superior */
+    left: 0; /* Comienza desde el lado izquierdo */
+    z-index: 999; /* Asegura que esté por encima de otros elementos */
+    background-color: rgba(0, 0, 0, .6); /* Color de fondo para visibilidad */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
