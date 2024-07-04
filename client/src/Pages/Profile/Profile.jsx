@@ -48,7 +48,9 @@ const Profile = ()=>{
             
             <div className={styles.secondProfilePart}>
                 <div className={styles.mainButtonsContainer}>
-                    <FollowersCard/>
+                    <FollowersCard
+                    userId={personalUid}
+                    />
                     <button className={styles.mainButtons}>Followers</button>
                     <button className={styles.mainButtons}>Memories</button>
                     <button className={styles.mainButtons}>Visitors</button>

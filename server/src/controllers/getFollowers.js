@@ -22,7 +22,7 @@ const getFollowers = async (req,res) => {
       
           // Retornar los seguidores del usuario
           const followers = user.userFollowers;
-          return res.status(200).json({ followers });
+          return res.status(200).json( followers );
     } catch (error) {
         console.log(error)
         return res.status(500).json({error: error})
