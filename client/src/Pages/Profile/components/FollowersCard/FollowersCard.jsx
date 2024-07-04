@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux'
 
 import { useGetUserFollowersMutation } from '../../../../redux/apiSlices/profileAPI'
 
+import { IoIosArrowBack } from "react-icons/io";
+
+
 const FollowersCard = ({userId})=> {
     const username = useSelector(state=> state.userReducer.user?.username)
     console.log(userId)
@@ -45,17 +48,23 @@ const FollowersCard = ({userId})=> {
             </button>
 
             <div className={`${displayCardClass ? styles.showFollwersCard : styles.remove}`}>
-                <p>Followers</p>
+                <div className={styles.nameAndBackBtnContainer}>
+                <IoIosArrowBack
+                size={25}
+                 onClick={()=> setDisplayCardClass(false)}
+                 />
+                <p className={styles.titleText}>Followers</p>
+                </div>
                 <div className={styles.userCardsContainer}>
-                    users
 
                     {/* // we'll map all users and render a card per user */}
                     {followers.map(follower=> (
-                        <p>{follower.name}</p>
+                        <UserCard
+                            user={follower}
+                        />
                     ))}
                     {/* <UserCard/> */}
                 </div>
-                <button onClick={()=> setDisplayCardClass(false)}>X</button>
             </div>
         </>
     )

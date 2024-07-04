@@ -17,11 +17,29 @@
     top: 0; /* Comienza desde la parte superior */
     left: 0; /* Comienza desde el lado izquierdo */
     z-index: 999; /* Asegura que esté por encima de otros elementos */
-    background-color: rgba(0, 0, 0, .6); /* Color de fondo para visibilidad */
+    background-color: var(--primary-color);
 
     display: flex;
     flex-direction: column;
+    gap: 2rem;
+    max-width: 1023px;
+}
+
+.nameAndBackBtnContainer {
+    display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    margin-top: .6rem;
+    position: relative;
+
+    & svg {
+        position: absolute;
+        left: 0; 
+    }
+
+}
+.titleText {
+    font-size: 1.6rem;
+    font-weight: 700;
 }
