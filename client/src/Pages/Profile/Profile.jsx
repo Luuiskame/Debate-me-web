@@ -51,7 +51,7 @@ const Profile = ()=>{
                     <FollowersCard
                     userId={personalUid}
                     />
-                    <button className={styles.mainButtons}>Followers</button>
+                    <button className={styles.mainButtons}>Following</button>
                     <button className={styles.mainButtons}>Memories</button>
                     <button className={styles.mainButtons}>Visitors</button>
                 </div>

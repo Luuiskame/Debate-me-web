@@ -65,6 +65,14 @@
     max-width: 200px;
     min-width: max-content;
     border-radius: 5px;
+    border: 2px solid var(--accent-color);
+    background: var(--primary-color);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover{
+        background-color: var(--accent-color);
+    }
 }
 
 .editProfileButton {

@@ -21,7 +21,7 @@
     background-color: white;
     cursor: pointer;
     text-decoration: none;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--accent-color);
 
 
     &:hover{

@@ -2,16 +2,20 @@ import { useState } from 'react'
 import styles from './FollowersCard.module.css'
 import UserCard from '../../../Home/components/navbar/components/UserCard/UserCard'
 
-import { useSelector } from 'react-redux'
 
 import { useGetUserFollowersMutation } from '../../../../redux/apiSlices/profileAPI'
 
 import { IoIosArrowBack } from "react-icons/io";
 
+//redux
+import { setUnreadFollowersToZero } from '../../../../redux/slices/userSlice';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const FollowersCard = ({userId})=> {
     const username = useSelector(state=> state.userReducer.user?.username)
-    console.log(userId)
+    const unreadFollowers = useSelector(state=> state.userReducer.unreadFollowers)
+    const dispatch = useDispatch()
     const [getFollowers] = useGetUserFollowersMutation()
 
     const [displayCardClass, setDisplayCardClass] = useState(false)
@@ -38,6 +42,10 @@ const FollowersCard = ({userId})=> {
     const displayCardFn = ()=> {
         getFollwersFn()
         setDisplayCardClass(true)
+
+        if(unreadFollowers > 0){
+            dispatch(setUnreadFollowersToZero(0))
+        }
     }
     return (
         <>

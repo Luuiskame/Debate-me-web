@@ -19,9 +19,12 @@ const userSlice = createSlice({
     },
     setUnreadFollowers: (state,action)=> {
       state.unreadFollowers = state.unreadFollowers + action.payload
+    },
+    setUnreadFollowersToZero: (state,action)=> {
+      state.unreadFollowers = action.payload
     }
   },
 });
 
-export const { updateDataReducer, updateUserActivity, setUnreadFollowers } = userSlice.actions;
+export const { updateDataReducer, updateUserActivity, setUnreadFollowers, setUnreadFollowersToZero } = userSlice.actions;
 export default userSlice.reducer;
