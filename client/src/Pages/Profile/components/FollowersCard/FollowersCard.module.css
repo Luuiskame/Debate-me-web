@@ -11,12 +11,12 @@
 }
 
 .showFollwersCard {
-    height: 100dvh; /* Ajusta para ocupar toda la vista vertical */
-    width: 100%; /* Ocupa el 100% del ancho */
-    position: absolute; /* Posicionamiento absoluto */
-    top: 0; /* Comienza desde la parte superior */
-    left: 0; /* Comienza desde el lado izquierdo */
-    z-index: 999; /* Asegura que esté por encima de otros elementos */
+    height: 100dvh; 
+    width: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: 999; 
     background-color: var(--primary-color);
 
     display: flex;
@@ -42,4 +42,28 @@
 .titleText {
     font-size: 1.6rem;
     font-weight: 700;
+}
+
+
+@media screen and (min-width: 1024px){
+    .showFollwersCard {
+        height: 60dvh; /* Ajusta para ocupar toda la vista vertical */
+        max-height: 600px;
+        width: 60%; /* Ocupa el 100% del ancho */
+        top: 20%; /* Comienza desde la parte superior */
+        left: 20%; /* Comienza desde el lado izquierdo */
+    
+        gap: 2rem;
+        max-width: none;
+    }
+
+    .nameAndBackBtnContainer {
+        & svg {
+            &:hover {
+                color: var(--accent-color);
+                cursor: pointer;
+            }
+        }
+    
+    }
 }
