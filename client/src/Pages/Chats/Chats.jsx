@@ -62,20 +62,24 @@ const Chats = () => {
         Friends 
       </div>
 
-      {chats?.length > 0  ? chats.map((chat)=> (
+      {chats?.length > 0 ? (
+    chats.map(chat => 
+      chat.lastMessage?.content !== undefined && (
         <ChatPreview
-        key={chat.id}
-        chatId={chat.id}
-        lastMessageProp={chat.lastMessage?.content}
-        userPic={chat.participantsInfo[0]?.profilePicture}
-        username={chat.participantsInfo[0]?.username}
-        name={chat.participantsInfo[0]?.name}
-
-        //we might need this in the future: 
-        participantsId={participantsId}
+          key={chat.id}
+          chatId={chat.id}
+          lastMessageProp={chat.lastMessage?.content}
+          userPic={chat.participantsInfo[0]?.profilePicture}
+          username={chat.participantsInfo[0]?.username}
+          name={chat.participantsInfo[0]?.name}
+          participantsId={participantsId}
         />
-
-      )) : <p>no chats yet</p> }    
+      )
+    )
+    // at this part we'll put a div with a class to so vip can access chats that were never started
+  ) : null (
+    <p>No chats yet</p>
+  )}
       {/* ste the height as 10dvh like the cards => containerClassname is the class that wraps all skeletons*/}
       { isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' width='100%' count={3}/>: null}
       {error ? <p className={styles.loadingText}>{error}</p> : null}
