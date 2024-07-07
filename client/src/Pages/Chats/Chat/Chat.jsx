@@ -44,11 +44,11 @@ const Chat = ()=>{
     console.log(chats)
 
     //searching in the global state the chat id that matches our chatId gave through params
-    const correctChatInfo = chats.find(chat=> chatId === chat.id)
+    const correctChatInfo = chats.find(chat=> chatId === chat?.id)
     console.log(correctChatInfo)
 
     //once we got our correct chat, we also want to get the other user Id
-    const correctParticipantInfo = correctChatInfo.participantsIds.find(participant=> participant !== personalUserId  )
+    const correctParticipantInfo = correctChatInfo?.participantsIds.find(participant=> participant !== personalUserId  )
     console.log(correctParticipantInfo)
     
     const sendMessage = ()=>{

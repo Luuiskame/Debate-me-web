@@ -13,9 +13,15 @@ export const chatsApi = createApi({
         method: "GET",
       }),
     }),
-    // Add more endpoints as needed
+    startOrReturnChat: builder.mutation({
+      query: (reqbody) => ({
+        url: `chats/startchat`,
+        method: "POST",
+        body: reqbody,
+      })
+    })
   }),
 });
 
 // Export the generated hooks for each endpoint
-export const { useGetChatsByUserIdQuery } = chatsApi;
+export const { useGetChatsByUserIdQuery, useStartOrReturnChatMutation } = chatsApi;

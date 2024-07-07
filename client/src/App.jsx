@@ -28,6 +28,8 @@ function App() {
   const dispatch = useDispatch()
   const location = useLocation()
   const userId = useSelector((state) => state.userReducer.user?.id);
+  const chats = useSelector(state=> state.chatsReducer.chats)
+  console.log(chats)
   const usera = useSelector((state) => state.userReducer.isUserActive);
 
   console.log(usera)
