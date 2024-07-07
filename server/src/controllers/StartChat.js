@@ -21,7 +21,7 @@ const startChat = async(req,res)=>{
         });
 
         if (chatAlreadyExist) {
-            return res.status(400).send("A chat already exists between these users");
+            return res.status(200).json(chatAlreadyExist);
         }
 
         const newChat = await Chat.create({

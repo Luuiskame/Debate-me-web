@@ -77,8 +77,8 @@ const Chats = () => {
       )
     )
     // at this part we'll put a div with a class to so vip can access chats that were never started
-  ) : null (
-    <p>No chats yet</p>
+  ) :  (
+  <p>No chats yet</p>
   )}
       {/* ste the height as 10dvh like the cards => containerClassname is the class that wraps all skeletons*/}
       { isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' width='100%' count={3}/>: null}
