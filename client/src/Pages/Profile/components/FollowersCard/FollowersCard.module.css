@@ -1,0 +1,104 @@
+.mainButtons {
+    width: 30%;
+    height: 2rem;
+    max-width: 200px;
+    min-width: max-content;
+    border-radius: 5px;
+    border: 2px solid var(--accent-color);
+    background: var(--primary-color);
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+
+    &:hover{
+        background-color: var(--accent-color);
+    }
+
+    /* adding positions relative due to notifications icon on the message */
+  position: relative;
+}
+
+.remove {
+    display: none;
+}
+
+.showFollwersCard {
+    height: 100dvh; 
+    width: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    z-index: 999; 
+    background-color: var(--primary-color);
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1023px;
+}
+
+.nameAndBackBtnContainer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: .6rem;
+    position: relative;
+
+    & svg {
+        position: absolute;
+        left: 0; 
+    }
+
+}
+.titleText {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.unreadFollowersNotificationContainer {
+    position: absolute;
+  border-radius: 50%;
+  width: 60%;
+  height: 60%;
+  max-width: 20px;
+  max-height: 20px;
+  background-color: red;
+
+  top: -40%;
+  left: 80%;
+
+  && p {
+    text-align: center;
+    color: var(--primary-color);
+  }
+}
+
+
+@media screen and (min-width: 1024px){
+    .showFollwersCard {
+        height: 60dvh; /* Ajusta para ocupar toda la vista vertical */
+        max-height: 600px;
+        width: 60%; /* Ocupa el 100% del ancho */
+        top: 20%; /* Comienza desde la parte superior */
+        left: 20%; /* Comienza desde el lado izquierdo */
+    
+        gap: 2rem;
+        max-width: none;
+    }
+
+    .nameAndBackBtnContainer {
+        & svg {
+            &:hover {
+                color: var(--accent-color);
+                cursor: pointer;
+            }
+        }
+    
+    }
+
+    .unreadFollowersNotificationContainer {
+        top: -30%;
+        left: 90%;
+    }
+}

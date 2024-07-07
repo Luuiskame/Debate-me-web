@@ -6,12 +6,14 @@ import Chats from "./Pages/Chats/Chats";
 import Home from "./Pages/Home/Home";
 import Profile from "./Pages/Profile/Profile";
 import Chat from "./Pages/Chats/Chat/Chat";
+import Navbar from "./Pages/Home/components/navbar/navbar";
+import navbar_styles from './Pages/Home/navbar.module.css'
 
 // react redux
 import {useSelector, useDispatch} from 'react-redux'
 
 // react router dom
-import { Routes, Route,  useNavigate } from "react-router-dom";
+import { Routes, Route,  useNavigate, useLocation } from "react-router-dom";
 
 //sockets
 import { socket } from "./socket";
@@ -24,6 +26,7 @@ import { useEffect } from "react";
 function App() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const location = useLocation()
   const userId = useSelector((state) => state.userReducer.user?.id);
   const usera = useSelector((state) => state.userReducer.isUserActive);
 
@@ -46,6 +49,13 @@ function App() {
 
   return (
     <>
+      {
+      location.pathname !== "/login" 
+      && location.pathname !== "/register"
+      && location.pathname !== "/chats"
+      ? <Navbar styles={navbar_styles}/>
+      : null
+      }
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Signup />} />

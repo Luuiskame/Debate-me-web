@@ -18,11 +18,19 @@ export const profileApi = createApi({
         method: "POST",
         body: reqbody,
       }) 
-    })
+    }),
+    getUserFollowers: builder.mutation({
+      query: ({userId, username})=> ({
+        url: `profile/${username}/getFollowers`,
+        method: "POST",
+        body: userId,
+      })
+    }),
   }),
 });
 
 export const {
   useGetIfFollowingUserMutation,
-  useUnfollowUserMutation
+  useUnfollowUserMutation,
+  useGetUserFollowersMutation
 } = profileApi;

@@ -54,7 +54,7 @@ const Navbar = ({ styles }) => {
       {/* main icons */}
       <div className={styles.mainIconsContainer}>
         <div className={`${styles.generalIconsSizeContainer}`}>
-          <CiHome color="#08616d"/>
+          <CiHome color="#08616d"/> 
         </div>
 
         <div className={`${styles.generalIconsSizeContainer}`}>

@@ -1,7 +1,7 @@
 import styles from './SendMessageButton.module.css'
 
-const SendMessageButton = ({receiverId, senderId})=>{
-    console.log(`receiverId ${receiverId}, senderId: ${senderId}`)
+const SendMessageButton = ({foreignId, senderId})=>{
+    console.log(`receiverId ${foreignId}, senderId: ${senderId}`)
 
     const createChat = ()=> {
         
