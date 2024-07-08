@@ -48,7 +48,7 @@ const Chat = ()=>{
     console.log(correctChatInfo)
 
     //once we got our correct chat, we also want to get the other user Id
-    const correctParticipantInfo = correctChatInfo?.participantsIds.find(participant=> participant !== personalUserId  )
+    const correctParticipantInfo = correctChatInfo?.participantsIds?.find(participant=> participant !== personalUserId  )
     console.log(correctParticipantInfo)
     
     const sendMessage = ()=>{

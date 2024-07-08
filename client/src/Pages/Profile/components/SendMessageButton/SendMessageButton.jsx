@@ -16,7 +16,7 @@ const SendMessageButton = ({foreignId, senderId})=>{
 
             if(response.id){
                 console.log(response.id)
-                navigate(`/chat/:${response.id}`)
+                navigate(`/chat/${response.id}`)
             }
 
 
