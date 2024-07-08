@@ -25,6 +25,8 @@ const startChat = async (req, res) => {
             }
         });
 
+        let created = false;
+
         if (!chat) {
             // Create a new chat if it doesn't exist
             chat = await Chat.create({
@@ -33,6 +35,9 @@ const startChat = async (req, res) => {
 
             // Add users to the chat
             await chat.addUsers([userId, participantId]);
+
+            // Set the created flag to true
+            created = true;
         }
 
         // Get participants' info
@@ -51,13 +56,17 @@ const startChat = async (req, res) => {
             order: [['createdAt', 'DESC']]
         });
 
-        // Return the desired response
-        return res.status(200).json({
+        // Prepare the response
+        const response = {
             id: chat.id,
             participantsInfo: participants,
             participantsIds: chat.participants,
-            lastMessage: lastMessage || null
-        });
+            lastMessage: lastMessage || null,
+            created: created  // Include the created flag
+        };
+
+        // Return the desired response
+        return res.status(200).json(response);
 
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -65,3 +74,4 @@ const startChat = async (req, res) => {
 };
 
 module.exports = startChat;
+

@@ -18,9 +18,12 @@ const chatSlice = createSlice({
         },
         setNotReadMessages: (state, action)=>{
             state.notReadMessages = state.notReadMessages + action.payload
+        },
+        addNewchat: (state,action)=> {
+            state.chats = [...state.chats, action.payload]
         }
     }
 })
 
-export const {setChats, setUsersBasicInfo, setNotReadMessages} = chatSlice.actions
+export const {setChats, setUsersBasicInfo, setNotReadMessages, addNewchat} = chatSlice.actions
 export default chatSlice.reducer
