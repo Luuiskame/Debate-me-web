@@ -63,7 +63,8 @@ const Chats = () => {
       </div>
 
       {chats?.length > 0 ? (
-    chats.map(chat =>  (
+    chats.map(chat => 
+      chat.lastMessage?.content !== undefined && (
         <ChatPreview
           key={chat.id}
           chatId={chat.id}
