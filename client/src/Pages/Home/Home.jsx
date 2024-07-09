@@ -16,20 +16,32 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 //chats state
-import { useGetChatsByUserIdQuery } from "../../redux/apiSlices/chatsAPI";
+import { useGetChatsByUserIdMutation } from "../../redux/apiSlices/chatsAPI";
 import { setChats } from "../../redux/slices/chatSlice";
 
 const Home = () => {
+  const [getChats] = useGetChatsByUserIdMutation()
   const dispatch = useDispatch()
   const user = useSelector((state) => state.userReducer.user);
   console.log(user);
 
   //getting chats and setting their state when initiatin the app
-  const { data: chats, isLoading, error } = useGetChatsByUserIdQuery(user?.id)
+  const getChatsFn = async ()=> {
+    try {
+      const response = await getChats({
+        userId: user?.id
+      })
+      if(response.id){
+        dispatch(setChats(response))
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  useEffect(()=>{
-    dispatch(setChats(chats))
-  },[chats])
+  useEffect(()=> {
+    getChatsFn()
+  },[])
 
 
   return (

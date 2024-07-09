@@ -7,8 +7,8 @@ export const chatsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: url }),
   endpoints: (builder) => ({
     // Define your endpoints here
-    getChatsByUserId: builder.query({
-      query: (userId) => ({
+    getChatsByUserId: builder.mutation({
+      query: ({userId}) => ({
         url: `chats/get/${userId}`,
         method: "GET",
       }),
@@ -24,4 +24,4 @@ export const chatsApi = createApi({
 });
 
 // Export the generated hooks for each endpoint
-export const { useGetChatsByUserIdQuery, useStartOrReturnChatMutation } = chatsApi;
+export const { useGetChatsByUserIdMutation, useStartOrReturnChatMutation } = chatsApi;

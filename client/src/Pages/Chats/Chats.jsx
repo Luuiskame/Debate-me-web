@@ -12,7 +12,7 @@ import ChatPreview from './ChatPreview/ChatPreview';
 import styles from './Chats.module.css'
 
 //redux
-import { useGetChatsByUserIdQuery } from '../../redux/apiSlices/chatsAPI';
+import { useGetChatsByUserIdMutation } from '../../redux/apiSlices/chatsAPI';
 import { setChats, setUsersBasicInfo } from '../../redux/slices/chatSlice';
 
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
@@ -24,32 +24,29 @@ const Chats = () => {
   //we gonna keep track of the users 
   const currentUserId = useSelector((state)=> state.userReducer.user?.id)
   const userChats = useSelector((state)=> state.chatsReducer.chats)
+  const chats = useSelector(state=> state.chatsReducer?.chats)
   console.log(`current user id: ${currentUserId}`)
   console.log(userChats)
 
   const dispatch = useDispatch()
-  const { data: chats, isLoading, error } = useGetChatsByUserIdQuery(currentUserId)
-  console.log(chats)
+  const [getChats] = useGetChatsByUserIdMutation()
 
-  useEffect(()=>{
-    dispatch(setChats(chats))
-    
-    const arr = []
-
-    chats?.map((chat)=>{
-      arr.push(chat.renderChatInfo)
-    })
-    dispatch(setUsersBasicInfo(arr))
-  },[chats, dispatch])
-
-  useEffect(()=>{
-    const arr = []
-
-    chats?.map((chat)=> {
-      arr.push(chat.participants)
-    })
-    setParticipantsId([...arr])
-  },[])
+  const getChatsFn = async () => {
+    try {
+      const response = await getChats({ userId: currentUserId }); // Ensure userId is passed correctly
+      if (response.data) { // Access response.data to get the actual response data
+        dispatch(setChats(response.data)); // Dispatch the response data
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  useEffect(() => {
+    if (currentUserId) {
+      getChatsFn();
+    }
+  }, [currentUserId]); 
 
   return (
     <div className={styles.chatMainContainer}>
@@ -81,8 +78,8 @@ const Chats = () => {
   <p>No chats yet</p>
   )}
       {/* ste the height as 10dvh like the cards => containerClassname is the class that wraps all skeletons*/}
-      { isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' width='100%' count={3}/>: null}
-      {error ? <p className={styles.loadingText}>{error}</p> : null}
+      {/* { isLoading ? <Skeleton containerClassName={styles.skeletonContainer} height='10dvh' width='100%' count={3}/>: null}
+      {error ? <p className={styles.loadingText}>{error}</p> : null} */}
     </div>
   );
 };
