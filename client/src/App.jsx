@@ -49,12 +49,18 @@ function App() {
     }
   },[userId])
 
+  const isChatRoute = (path) => {
+    const chatRoutePattern = /^\/chat\/[^\/]+$/;
+    return chatRoutePattern.test(path);
+  };
+
   return (
     <>
       {
       location.pathname !== "/login" 
       && location.pathname !== "/register"
       && location.pathname !== "/chats"
+      && !isChatRoute(location.pathname)
       ? <Navbar styles={navbar_styles}/>
       : null
       }
