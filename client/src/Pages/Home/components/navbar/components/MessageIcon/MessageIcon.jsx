@@ -9,12 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setNotReadMessages } from "../../../../../../redux/slices/chatSlice";
 
 const MessageIcon = () => {
-  const [num, setNum] = useState(0);
-
-  useEffect(() => {
-    console.info("setting num");
-    console.log(num);
-  }, [num]);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userReducer.user.id);

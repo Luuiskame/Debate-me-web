@@ -1,5 +1,5 @@
 //react
-import { useState, useEffect} from 'react'
+import { useState, useEffect, useCallback} from 'react'
 import {useParams} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 
@@ -71,70 +71,74 @@ const Chat = ()=>{
       setMessage('')
     }
   
-    useEffect(()=>{
-      socket.on("receiveMessage", (data)=>{
-        socket.auth.serverOffset = data?.id
-        socket.auth.chatId = data.chatId
-        
-        if(Array.isArray(data)){
-          console.log(data)
-            // Update the state once with all accumulated messages
-            setMessageReceived([...messageReceived, ...data])
-            setActivateRead(true)
-            console.log('one')
-        } else {
-          // console.log(messageReceived)
-          setMessageReceived([...messageReceived, data])
-          setActivateRead(true)
-          console.log('one')
-        }
-
-      })
-
-    },[socket, messageReceived])
-    
-
-    useEffect(()=> {
-      if (messageReceived.length > 0 && chatId && personalUserId && activateRead === true) {
-        const arr = [...messageReceived]
-        const lastMesage = arr.pop();
-        console.log(lastMesage);
-        if (
-          lastMesage?.receiverId === personalUserId &&
-          lastMesage.readStatus === false
-        ) {
+    const handleReceiveMessage = useCallback((data) => {
+      socket.auth.serverOffset = data?.id;
+      socket.auth.chatId = data.chatId;
+  
+      if (Array.isArray(data)) {
+        console.log(data);
+        // Update the state once with all accumulated messages
+        setMessageReceived((prevMessages) => [...prevMessages, ...data]);
+        setActivateRead(true);
+        console.log('one');
+      } else {
+        // console.log(messageReceived)
+        setMessageReceived((prevMessages) => [...prevMessages, data]);
+        setActivateRead(true);
+        console.log('one');
+      }
+    }, [socket]);
+  
+    const handleReceiveUpdatedReadStatus = useCallback((data) => {
+      // Pop the last message so we can then put our new last message with the updated read status
+      setMessageReceived((prevMessages) => {
+        const arr = [...prevMessages];
+        arr.pop();
+        return [...arr, data];
+      });
+      console.log(data);
+    }, []);
+  
+    useEffect(() => {
+      socket.on("receiveMessage", handleReceiveMessage);
+      
+      return () => {
+        socket.off("receiveMessage", handleReceiveMessage);
+      };
+    }, [handleReceiveMessage]);
+  
+    useEffect(() => {
+      if (messageReceived.length > 0 && chatId && personalUserId && activateRead) {
+        const arr = [...messageReceived];
+        const lastMessage = arr.pop();
+        console.log(lastMessage);
+        if (lastMessage?.receiverId === personalUserId && lastMessage.readStatus === false) {
           console.log("activating lastread");
           socket.emit("updateReadStatus", chatId);
-
+  
           // this part may cause a glitch in case we send the -1 and not receive the updated message by some error
-          dispatch(setNotReadMessages(-1))
-            console.log("activating unread msg")
+          dispatch(setNotReadMessages(-1));
+          console.log("activating unread msg");
         }
+        
+        socket.on("ReceiveUpdatedReadStatus", handleReceiveUpdatedReadStatus);
+  
+        return () => {
+          socket.off("ReceiveUpdatedReadStatus", handleReceiveUpdatedReadStatus);
+        };
       }
-      
-      if(activateRead){
-        socket.on("ReceiveUpdatedReadStatus", data=> {
-          //! we pop the last message so we can then put our new last message with the updated read status
-          messageReceived.pop()
-          setMessageReceived([...messageReceived, data])
-          console.log(data)
-        })
-      }
-      setActivateRead(false)
-      
-    },[socket,activateRead])
-
-    
-
-    useEffect(()=>{
-      socket.connect()
-      socket.emit("joinRoom", chatId)
-
-
-      return ()=>{
-        socket.disconnect()
-      }
-    },[])
+  
+      setActivateRead(false);
+    }, [messageReceived, chatId, personalUserId, activateRead, handleReceiveUpdatedReadStatus, dispatch, socket]);
+  
+    useEffect(() => {
+      socket.connect();
+      socket.emit("joinRoom", chatId);
+  
+      return () => {
+        socket.disconnect();
+      };
+    }, [socket, chatId]);
   
     return (
       <div className={styles.chatMainContainer}>
